@@ -43,6 +43,62 @@ const main = async () => {
       },
     ])
 
+    await db.insert(schema.units).values([
+      {
+        id: 1,
+        courseId: 1, //Japanese
+        title: "unit 1",
+        description: "Learn the basics of Japanese",
+        order: 1,
+      }
+    ])
+
+    await db.insert(schema.lessons).values([
+      {
+        id: 1,
+        unitId: 1, //Unit 1 Learn the basics...
+        order: 1,
+        title: "Nouns",
+      },
+    ])
+
+    await db.insert(schema.challenges).values([
+      {
+        id: 1,
+        lessonId: 1,
+        type: "SELECT",
+        order: 1,
+        question: 'Which one of these is "the man"?',
+      },
+    ])
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        id: 1,
+        challengeId: 1, //Which one of these is the man?
+        imageSrc: "/man.svg",
+        correct: true,
+        text: "男の人",
+        audioSrc: "/jp_man.mp3",
+      },
+      {
+        id: 2,
+        challengeId: 1,
+        imageSrc: "/woman.svg",
+        correct: false,
+        text: "女の人",
+        audioSrc: "/jp_woman.mp3",
+      },
+      {
+        id: 3,
+        challengeId: 1,
+        imageSrc: "/robot.svg",
+        correct: false,
+        text: "ロボット",
+        audioSrc: "/robot.mp3",
+      },
+    ])
+
     console.log("Seeding finished")
   } catch (error) {
     console.error(error)
