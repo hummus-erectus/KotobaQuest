@@ -1,4 +1,4 @@
-" use server"
+"use server"
 
 import { auth } from "@clerk/nextjs/server"
 import { and, eq } from "drizzle-orm"
@@ -14,6 +14,8 @@ export const upsertChallengeProgress = async (challengeId: number) => {
   if (!userId) {
     throw new Error("Unauthorized")
   }
+
+
 
   const currentUserProgress = await getUserProgress()
   // TODO: Handle subscription
@@ -36,7 +38,7 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     where: and(
       eq(challengeProgress.userId, userId),
       eq(challengeProgress.challengeId, challengeId),
-    )
+    ),
   })
 
   const isPractice = !!existingChallengeProgress
@@ -46,7 +48,10 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     return {error: "hearts"}
   }
 
-  if(!isPractice) {
+  console.log("Check this", existingChallengeProgress)
+
+
+  if(isPractice) {
     await db
       .update(challengeProgress)
       .set({
@@ -70,5 +75,19 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     return
   }
 
+  await db.insert(challengeProgress).values({
+    challengeId,
+    userId,
+    completed: true,
+  })
 
+  await db.update(userProgress).set({
+    points: currentUserProgress.points + 10,
+  }).where(eq(userProgress.userId, userId))
+
+  revalidatePath("/learn")
+  revalidatePath("/lesson")
+  revalidatePath("/quests")
+  revalidatePath("/leaderboard")
+  revalidatePath(`/lesson/${lessonId}`)
 }
