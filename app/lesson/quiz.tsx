@@ -11,6 +11,7 @@ import { Header } from "./header"
 import { Footer } from "./footer"
 import { Challenge } from "./challenge"
 import { QuestionBubble } from "./question-bubble"
+import { useAudio } from "react-use"
 
 type Props = {
   initialPercentage: number
@@ -30,6 +31,16 @@ export const Quiz = ({
   initialLessonChallenges,
   userSubscription
 }: Props) => {
+  const [
+    correctAudio,
+    _c,
+    correctControls,
+  ] = useAudio({ src: "/correct.wav" })
+  const [
+    incorrectAudio,
+    _i,
+    incorrectControls,
+  ] = useAudio({ src: "/incorrect.wav" })
   const [pending, startTransition] = useTransition()
 
   const [hearts, setHearts] = useState(initialHearts)
@@ -85,6 +96,7 @@ export const Quiz = ({
               return
             }
 
+            correctControls.play()
             setStatus("correct")
             setPercentage((prev) => prev + 100 / challenges.length)
 
@@ -104,6 +116,7 @@ export const Quiz = ({
               return
             }
 
+            incorrectControls.play()
             setStatus("wrong")
 
             if (!response?.error) {
@@ -121,6 +134,8 @@ export const Quiz = ({
 
   return (
     <>
+    {incorrectAudio}
+    {correctAudio}
       <Header
         hearts={hearts}
         percentage={percentage}
