@@ -1,14 +1,16 @@
 "use client"
 
+import { toast } from "sonner"
 import { useState, useTransition } from "react"
 
+import { reduceHearts } from "@/actions/user-progress"
 import { challengeOptions, challenges} from "@/db/schema"
-import { Header } from "./header"
-import { QuestionBubble } from "./question-bubble"
-import { Challenge } from "./challenge"
-import { Footer } from "./footer"
 import { upsertChallengeProgress } from "@/actions/challenge-progress"
-import { toast } from "sonner"
+
+import { Header } from "./header"
+import { Footer } from "./footer"
+import { Challenge } from "./challenge"
+import { QuestionBubble } from "./question-bubble"
 
 type Props = {
   initialPercentage: number
@@ -94,7 +96,22 @@ export const Quiz = ({
           .catch(() => toast.error("Something went wrong. Please try again."))
       })
     } else {
-      console.error("Incorrect Option")
+      startTransition(() => {
+        reduceHearts(challenge.id)
+          .then((response) => {
+            if (response?.error === "hearts"){
+              console.error("Missing hearts")
+              return
+            }
+
+            setStatus("wrong")
+
+            if (!response?.error) {
+              setHearts((prev) => Math.max(prev -1, 0))
+            }
+          })
+          .catch(() => toast.error("Something went wrong. Please try again."))
+      })
     }
   }
 
@@ -124,7 +141,7 @@ export const Quiz = ({
                 onSelect={onSelect}
                 status="none"
                 selectedOption={selectedOption}
-                disabled={false}
+                disabled={pending}
                 type={challenge.type}
               />
             </div>
@@ -132,7 +149,7 @@ export const Quiz = ({
         </div>
       </div>
       <Footer
-        disabled={!selectedOption}
+        disabled={pending || !selectedOption}
         status={status}
         onCheck={onContinue}
       />
