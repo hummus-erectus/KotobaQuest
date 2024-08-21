@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
 
 import { lessons, units as unitsSchema } from "@/db/schema"
+import { Promo } from "@/components/promo"
 import { StickyWrapper } from "@/components/sticky-wrapper"
 import { FeedWrapper } from "@/components/feed-wrapper"
 import { UserProgress } from "@/components/user-progress"
@@ -38,6 +39,8 @@ const LearnPage = async () => {
     redirect("/courses")
   }
 
+  const isPro = !!userSubscription?.isActive
+
   return (
     <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
@@ -45,8 +48,11 @@ const LearnPage = async () => {
           activeCourse={userProgress.activeCourse}
           hearts={userProgress.hearts}
           points={userProgress.points}
-          hasActiveSubscription={!!userSubscription?.isActive}
+          hasActiveSubscription={isPro}
         />
+        {!isPro && (
+          <Promo />
+        )}
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />
