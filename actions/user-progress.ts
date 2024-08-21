@@ -6,12 +6,10 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 import db from "@/db/drizzle"
-import { getCourseById, getUserProgress } from "@/db/queries"
+import { MAXIMUM_HEARTS, POINTS_TO_REFILL } from "@/db/constants"
+import { getCourseById, getUserProgress, getUserSubscription } from "@/db/queries"
 import { challengeProgress, challenges, userProgress } from "@/db/schema"
 import { usePracticeModal } from "@/store/use-practice-modal"
-
-// TODO: Move alongside item component constant into a common file
-const POINTS_TO_REFILL = 10
 
 export const upsertUserProgress = async (courseId: number) => {
   const { userId } = await auth()
@@ -27,10 +25,9 @@ export const upsertUserProgress = async (courseId: number) => {
     throw new Error("Course not found")
   }
 
-  // TODO: Enable once units and lessons are added
-  // if (!course.units.length || !course.units[0].lessons.length) {
-  //   throw new Error("course is empty")
-  // }
+  if (!course.units.length || !course.units[0].lessons.length) {
+    throw new Error("course is empty")
+  }
 
   const existingUserProgress = await getUserProgress()
 
@@ -65,8 +62,8 @@ export const reduceHearts = async (challengeId: number) => {
     throw new Error("Unauthorized")
   }
 
-  const currentUserProgress =await getUserProgress()
-  //TODO Get user subscription
+  const currentUserProgress = await getUserProgress()
+  const userSubscription = await getUserSubscription()
 
   const challenge = await db.query.challenges.findFirst({
     where: eq(challenges.id, challengeId)
@@ -95,7 +92,9 @@ export const reduceHearts = async (challengeId: number) => {
     throw new Error("User progress not found")
   }
 
-  // TODO Handle subscription
+  if (userSubscription?.isActive) {
+    return { error: "subscription"}
+  }
 
   if (currentUserProgress.hearts === 0) {
     return { error: "hearts"}
@@ -119,7 +118,7 @@ export const refillHearts = async () => {
     throw new Error("User progress not found")
   }
 
-  if (currentUserProgress.hearts === 5) {
+  if (currentUserProgress.hearts === MAXIMUM_HEARTS) {
     throw new Error("Hearts are already full")
   }
 
@@ -128,7 +127,7 @@ export const refillHearts = async () => {
   }
 
   await db.update(userProgress).set({
-    hearts: 5,
+    hearts: MAXIMUM_HEARTS,
     points: currentUserProgress.points - POINTS_TO_REFILL,
   }).where(eq(userProgress.userId, currentUserProgress.userId))
 

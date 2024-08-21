@@ -7,8 +7,7 @@ import { startTransition, useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { refillHearts } from "@/actions/user-progress"
 import { createStripeUrl } from "@/actions/user-subscription"
-
-const POINTS_TO_REFILL = 10
+import { MAXIMUM_HEARTS, POINTS_TO_REFILL } from "@/db/constants"
 
 type Props = {
   hearts: number
@@ -24,7 +23,7 @@ export const Items = ({
   const [pending, startTransition] = useTransition()
 
   const onRefillHearts = () => {
-    if (pending || hearts === 5 || points < POINTS_TO_REFILL) {
+    if (pending || hearts === MAXIMUM_HEARTS || points < POINTS_TO_REFILL) {
       return
     }
 
@@ -65,11 +64,11 @@ export const Items = ({
           onClick={onRefillHearts}
           disabled={
             pending
-            || hearts === 5
+            || hearts === MAXIMUM_HEARTS
             || points < POINTS_TO_REFILL
           }
         >
-          {hearts === 5
+          {hearts === MAXIMUM_HEARTS
             ? "full"
             : (
               <div className="flex items-center">

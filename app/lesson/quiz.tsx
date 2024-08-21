@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation"
 import { reduceHearts } from "@/actions/user-progress"
 import { useHeartsModal } from "@/store/use-hearts-modal"
 import { usePracticeModal } from "@/store/use-practice-modal"
-import { challengeOptions, challenges} from "@/db/schema"
+import { challengeOptions, challenges, userSubscription} from "@/db/schema"
 import { upsertChallengeProgress } from "@/actions/challenge-progress"
 
 import { Header } from "./header"
@@ -18,6 +18,7 @@ import { Footer } from "./footer"
 import { Challenge } from "./challenge"
 import { QuestionBubble } from "./question-bubble"
 import { ResultCard } from "./result-card"
+import { MAXIMUM_HEARTS } from "@/db/constants"
 
 type Props = {
   initialPercentage: number
@@ -27,7 +28,9 @@ type Props = {
     completed: boolean
     challengeOptions: typeof challengeOptions.$inferSelect[]
   })[]
-  userSubscription: any; //TODO: Replace with subscription DB type
+  userSubscription: typeof userSubscription.$inferSelect & {
+    isActive: boolean
+  } | null
 }
 
 export const Quiz = ({
@@ -127,7 +130,7 @@ export const Quiz = ({
 
             // This is a practice
             if (initialPercentage === 100) {
-              setHearts((prev) => Math.min(prev +1, 5))
+              setHearts((prev) => Math.min(prev +1, MAXIMUM_HEARTS))
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."))
@@ -189,7 +192,7 @@ export const Quiz = ({
             />
             <ResultCard
               variant="hearts"
-              value={hearts}
+              value={userSubscription?.isActive ? Infinity : hearts}
             />
           </div>
         </div>
@@ -213,7 +216,7 @@ export const Quiz = ({
       <Header
         hearts={hearts}
         percentage={percentage}
-        hasActiveSubscription={!!userSubscription?.isAtive}
+        hasActiveSubscription={!!userSubscription?.isActive}
       />
       <div className="flex-1">
         <div className="h-full flex items-center justify-center">
