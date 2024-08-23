@@ -55,11 +55,11 @@ const LeaderboardPage = async () => {
             height={90}
             width={90}
           />
-          <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
+          <h1 className="text-center font-bold text-neutral-800 text-2xl my-6 font-pressStart2P">
             Leaderboard
           </h1>
-          <p className="text-muted-foreground text-center text-lg mb-6">
-            See where you stand among other learners in the community.
+          <p className="text-muted-foreground text-center text-lg mb-6 font-dotgothic16 font-bold">
+          コミュニティ内の他の学習者と比べて自分の位置を確認しよう。
           </p>
           <Separator className="mb-4 h-0.5 rounded-full"/>
           {leaderboard.map((userProgress, index) => (
@@ -76,7 +76,7 @@ const LeaderboardPage = async () => {
                   src={userProgress.userImageSrc}
                 />
               </Avatar>
-              <p className="font-bold text-netural-800 flex-1">
+              <p className="text-netural-800 flex-1 font-pressStart2P">
                 {userProgress.userName}
               </p>
               <p>

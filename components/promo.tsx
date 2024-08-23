@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export const Promo = () => {
   return (
-    <div className="border-2 rounded-xl p-4 space-y-4">
+    <div className="border-2 rounded-xl p-4 space-y-4 font-dotgothic16">
       <div className="space-y-2">
         <div className="flex items-center gap-x-2">
           <Image
@@ -14,11 +14,11 @@ export const Promo = () => {
             width={26}
           />
           <h3 className="font-bold text-lg">
-            Upgrade to Pro
+            プロにアップグレード
           </h3>
         </div>
         <p className="text-muted-foreground">
-          Get unlimited hearts and more!
+          無限のハートと特典をゲット！
         </p>
       </div>
         <Button
@@ -28,7 +28,7 @@ export const Promo = () => {
           size="lg"
         >
           <Link href="/shop">
-            Upgrade today
+          今すぐアップグレード
           </Link>
         </Button>
     </div>

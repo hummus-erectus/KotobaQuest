@@ -182,8 +182,8 @@ export const Quiz = ({
             height={50}
             width={50}
           />
-          <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
-            Great job! <br />You&apos;ve completed the lesson.
+          <h1 className="text-xl lg:text-3xl font-bold font-dotgothic16 text-neutral-700">
+            素晴らしい！ <br />レッスンを完了しました。
           </h1>
           <div className="flex items-center gap-x-4 w-full">
             <ResultCard

@@ -47,7 +47,7 @@ export const Items = ({
 
 
   return (
-    <ul className="w-full">
+    <ul className="w-full font-dotgothic16">
       <div className="flex items-center w-full p-4 gap-x-4 border-t-2">
         <Image
           src="/heart.svg"
@@ -57,7 +57,7 @@ export const Items = ({
         />
         <div className="flex-1">
           <p className="text-neutral-700 text-base lg:text-xl font-bold">
-            Refill hearts
+            ハートを補充
           </p>
         </div>
         <Button
@@ -69,7 +69,7 @@ export const Items = ({
           }
         >
           {hearts === MAXIMUM_HEARTS
-            ? "full"
+            ? "満タン"
             : (
               <div className="flex items-center">
                 <Image
@@ -95,14 +95,14 @@ export const Items = ({
         />
         <div className="flex-1">
           <p className="text-neutral-700 text-base lg:text-xl font-bold">
-            Unlimited hearts
+            無限のハート
           </p>
         </div>
         <Button
           onClick={onUpgrade}
           disabled={pending}
         >
-          {hasActiveSubscription ? "settings" : "upgrade"}
+          {hasActiveSubscription ? "設定" : "アップグレード"}
         </Button>
       </div>
     </ul>

@@ -11,9 +11,9 @@ type Props = {
 
 export const Quests = ({ points }: Props) => {
   return (
-    <div className="border-2 rounded-xl p-4 space-y-4">
+    <div className="border-2 rounded-xl p-4 space-y-4 font-dotgothic16">
       <div className="flex items-center justify-between w-full space-y-2">
-        <h3 className="font-bold text-lg">
+        <h3 className="font-bold text-lg font-pressStart2P">
           Quests
         </h3>
         <Link href="quests">
@@ -21,7 +21,7 @@ export const Quests = ({ points }: Props) => {
             size="sm"
             variant="primaryOutline"
           >
-            View all
+            すべて見る
           </Button>
         </Link>
       </div>

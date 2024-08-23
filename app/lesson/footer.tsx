@@ -22,7 +22,7 @@ export const Footer = ({
 
   return (
     <footer className={cn(
-      "lg-h[140px] h-[100px] border-t-2",
+      "lg-h[140px] h-[100px] border-t-2 font-dotgothic16",
       status === "correct" && "border-transparent bg-green-100",
       status === "wrong" && "border-transparent bg-rose-100",
     )}>
@@ -30,13 +30,13 @@ export const Footer = ({
         {status === "correct" && (
           <div className="text-green-500 font-bold text-base lg:text:2xl flex items-center">
             <CheckCircle className="h-6 w-6 lg:h-10 lg:w-10 mr-4"/>
-            Nicely done!
+            よくできました！
           </div>
         )}
         {status === "wrong" && (
           <div className="text-rose-500 font-bold text-base lg:text:2xl flex items-center">
             <XCircle className="h-6 w-6 lg:h-10 lg:w-10 mr-4"/>
-            Try again.
+            もう一度挑戦しよう。
           </div>
         )}
         {status === "completed" && (
@@ -45,7 +45,7 @@ export const Footer = ({
             size={isMobile ? "sm" : "lg"}
             onClick={() => window.location.href = `/lesson/${lessonId}`}
           >
-            Practice again
+            もう一度練習する
           </Button>
         )}
         <Button
@@ -55,10 +55,10 @@ export const Footer = ({
           size={isMobile ? "sm" : "lg"}
           variant={status === "wrong"? "danger" : "secondary"}
         >
-          {status === "none" && "Check"}
-          {status === "correct" && "Next"}
-          {status === "wrong" && "Retry"}
-          {status === "completed" && "Continue"}
+          {status === "none" && "確認"}
+          {status === "correct" && "次へ"}
+          {status === "wrong" && "再挑戦"}
+          {status === "completed" && "続く"}
         </Button>
       </div>
     </footer>

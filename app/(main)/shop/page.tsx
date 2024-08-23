@@ -47,11 +47,11 @@ const ShopPage = async () => {
             height={90}
             width={90}
           />
-          <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
+          <h1 className="text-center font-bold text-neutral-800 text-2xl my-6 font-pressStart2P">
             Shop
           </h1>
-          <p className="text-muted-foreground text-center text-lg mb-6">
-            Spend your points on cool stuff.
+          <p className="text-muted-foreground text-center text-lg mb-6 font-dotgothic16 font-bold">
+            ポイントを使って素敵なアイテムを手に入れよう。
           </p>
           <Items
             hearts={userProgress.hearts}

@@ -48,11 +48,11 @@ const QuestsPage = async () => {
             height={90}
             width={90}
           />
-          <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
+          <h1 className="text-center font-bold text-neutral-800 text-2xl my-6 font-pressStart2P">
             Quests
           </h1>
-          <p className="text-muted-foreground text-center text-lg mb-6">
-            Complete quests by earning points.
+          <p className="text-muted-foreground text-center text-lg mb-6 font-dotgothic16 font-bold">
+          ポイントを獲得してクエストを完了しよう。
           </p>
           <ul className="w-full">
             {quests.map((quest) => {
@@ -70,7 +70,7 @@ const QuestsPage = async () => {
                     height={60}
                   />
                   <div className="flex flex-col gap-y-2 w-full">
-                    <p className="text-neutral-700 text-xl font-bold">
+                    <p className="text-neutral-700 text-xl font-bold font-dotgothic16">
                       {quest.title}
                     </p>
                     <Progress value={progress} className="h-3"/>
