@@ -43,11 +43,11 @@ export const HeartsModal = () => {
               width={80}
             />
           </div>
-          <DialogTitle className="text-center font-bold text-2xl">
-            You ran out of hearts!
+          <DialogTitle className="text-center font-bold font-dotgothic16 text-2xl">
+            ハートがなくなりました！
           </DialogTitle>
-          <DialogDescription className="text-center text-base">
-            Get Pro for unlimited hearts, or purchase them in the store.
+          <DialogDescription className="text-center text-base font-dotgothic16">
+            プロ版にアップグレードして無限のハートを手に入れるか、ストアで購入してください。
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="mb-4">
@@ -58,7 +58,7 @@ export const HeartsModal = () => {
               size="lg"
               onClick={onClick}
             >
-              Get unlimited hearts
+              <span className="font-dotgothic16">無限のハートを手に入れる</span>
             </Button>
             <Button
               variant="primaryOutline"
@@ -66,7 +66,7 @@ export const HeartsModal = () => {
               size="lg"
               onClick={close}
             >
-              No thanks
+              <span className="font-dotgothic16">結構です</span>
             </Button>
           </div>
         </DialogFooter>

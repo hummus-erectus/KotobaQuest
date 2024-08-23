@@ -37,22 +37,22 @@ export const PracticeModal = () => {
               width={100}
             />
           </div>
-          <DialogTitle className="text-center font-bold text-2xl">
-            Practice lesson
+          <DialogTitle className="text-center font-bold text-2xl font-dotgothic16">
+            練習レッスン
           </DialogTitle>
-          <DialogDescription className="text-center text-base">
-            Use practice lessons to regain hearts and points. You cannot lose hearts or points in practice lessons.
+          <DialogDescription className="text-center text-base font-dotgothic16">
+            練習レッスンを使ってハートとポイントを取り戻そう。練習レッスンではハートやポイントを失うことはありません。
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="mb-4">
-          <div className="flex flex-col gap-y-4 w-full">
+          <div className="flex flex-col gap-y-4 w-full font-dotgothic16">
             <Button
               variant="primary"
               className="w-full"
               size="lg"
               onClick={close}
             >
-              Got it!
+              <span className="font-dotgothic16">了解！</span>
             </Button>
           </div>
         </DialogFooter>

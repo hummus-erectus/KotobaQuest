@@ -43,7 +43,7 @@ const main = async () => {
       {
         id: 1,
         courseId: 1, //英語
-        title: "unit 1",
+        title: "章 1",
         description: "英語の基本を学ぼう",
         order: 1,
       }

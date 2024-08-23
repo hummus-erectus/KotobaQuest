@@ -38,11 +38,11 @@ export const ExitModal = () => {
               width={80}
             />
           </div>
-          <DialogTitle className="text-center font-bold text-2xl">
-            Wait, don&apos;t go!
+          <DialogTitle className="text-center font-bold text-2xl font-dotgothic16">
+            待って、行かないで！
           </DialogTitle>
-          <DialogDescription className="text-center text-base">
-            You&apos;re about to leave the lesson. Are you sure?
+          <DialogDescription className="text-center text-base font-dotgothic16">
+            レッスンを終了しようとしています。本当に終了しますか？
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="mb-4">
@@ -53,7 +53,7 @@ export const ExitModal = () => {
               size="lg"
               onClick={close}
             >
-              Keep learning
+              <span className="font-dotgothic16">学習を続ける</span>
             </Button>
             <Button
               variant="dangerOutline"
@@ -64,7 +64,7 @@ export const ExitModal = () => {
                 router.push("/learn")
               }}
             >
-              End session
+              <span className="font-dotgothic16">セッションを終了する</span>
             </Button>
           </div>
         </DialogFooter>
