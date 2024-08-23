@@ -24,32 +24,27 @@ const main = async () => {
     await db.insert(schema.courses).values([
       {
         id: 1,
-        title: "Japanese",
+        title: "英語",
         imageSrc: "/JP.svg",
       },
       {
         id: 2,
-        title: "German",
+        title: "ドイツ語",
         imageSrc: "/DE.svg",
       },
       {
         id: 3,
-        title: "French",
+        title: "フランス語",
         imageSrc: "/FR.svg",
-      },
-      {
-        id: 4,
-        title: "Hebrew",
-        imageSrc: "/IL.svg",
       },
     ])
 
     await db.insert(schema.units).values([
       {
         id: 1,
-        courseId: 1, //Japanese
+        courseId: 1, //英語
         title: "unit 1",
-        description: "Learn the basics of Japanese",
+        description: "英語の基本を学ぼう",
         order: 1,
       }
     ])
@@ -59,30 +54,30 @@ const main = async () => {
         id: 1,
         unitId: 1, //Unit 1 Learn the basics...
         order: 1,
-        title: "Nouns",
+        title: "名詞 I",
       },
       {
         id: 2,
         unitId: 1, //Unit 1 Learn the basics...
         order: 2,
-        title: "Verbs",
+        title: "動詞 I",
       },
       {
         id: 3,
         unitId: 1, //Unit 1 Learn the basics...
         order: 3,
-        title: "Nouns",
+        title: "名詞 II",
       },
       {
         id: 4,
         unitId: 1, //Unit 1 Learn the basics...
         order: 4,
-        title: "Nouns",
+        title: "名詞 III",
       },{
         id: 5,
         unitId: 1, //Unit 1 Learn the basics...
         order: 5,
-        title: "Nouns",
+        title: "名詞 IV",
       },
     ])
 
@@ -92,14 +87,14 @@ const main = async () => {
         lessonId: 1,
         type: "SELECT",
         order: 1,
-        question: 'Which one of these is "the man"?',
+        question: 'これらの言葉の中で「男の人」を意味するのはどれ\uFF1F',
       },
       {
         id: 2,
         lessonId: 1,
         type: "ASSIST",
         order: 2,
-        question: '"the man"',
+        question: '「男の人」',
       },
       {
         id: 3,
@@ -115,21 +110,21 @@ const main = async () => {
         challengeId: 1, //Which one of these is the man?
         imageSrc: "/man.svg",
         correct: true,
-        text: "男の人",
+        text: "man",
         audioSrc: "/jp_man.mp3",
       },
       {
         challengeId: 1,
         imageSrc: "/woman.svg",
         correct: false,
-        text: "女の人",
+        text: "woman",
         audioSrc: "/jp_woman.mp3",
       },
       {
         challengeId: 1,
         imageSrc: "/robot.svg",
         correct: false,
-        text: "ロボット",
+        text: "robot",
         audioSrc: "/jp_robot.mp3",
       },
     ])
@@ -138,13 +133,13 @@ const main = async () => {
       {
         challengeId: 2, //Which one of these is the man?
         correct: true,
-        text: "男の人",
+        text: "man",
         audioSrc: "/jp_man.mp3",
       },
       {
         challengeId: 2,
         correct: false,
-        text: "女の人",
+        text: "woman",
         audioSrc: "/jp_woman.mp3",
       },
       {
