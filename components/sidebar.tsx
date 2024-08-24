@@ -12,10 +12,10 @@ type Props = {
 export const Sidebar = ({ className }: Props) => {
   return (
     <div className={cn("h-full lg:w-[290px] lg:fixed left-0 top-0 px-4 border-r-2 flex-col font-pressStart2P", className,)}>
-      <Link href="/learn">
+      <Link href="/learn" className="hover:no-underline">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/mascot.svg" height={40} width={40} alt="Mascot"/>
-          <h1 className="text-xl font-extrabold text-green-600 tracking-wide font-dotgothic16">ことばクエスト</h1>
+          <h1 className="text-xl font-extrabold text-nesBlue tracking-wide font-dotgothic16">ことばクエスト</h1>
         </div>
       </Link>
       <div className="flex flex-col gap-y-2 flex-1">

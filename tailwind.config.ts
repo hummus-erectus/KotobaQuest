@@ -19,6 +19,11 @@ const config = {
     },
     extend: {
       colors: {
+        nesBlue: '#209CEE',
+        nesGreen: '#92CC41',
+        nesYellow: '#F7D51D',
+        nesRed: '#E76E55',
+        nesGrey: '#E76E55',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

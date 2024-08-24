@@ -20,21 +20,19 @@ export const SidebarItem = ({
   const active = pathname === href
 
   return (
-    <Button
-      variant={active ? "sidebarOutline" : "sidebar"}
-      className="justify-start h-[52px] text-sm"
-      asChild
-    >
       <Link href={href}>
-      <Image
-        src={iconSrc}
-        alt={label}
-        className="mr-5"
-        height={32}
-        width={32}
-      />
-        {label}
+        <button type="button" className={`nes-btn w-full ${active ? "is-primary" : "is-normal"}`}>
+          <div className="flex flex-start items-center">
+            <Image
+              src={iconSrc}
+              alt={label}
+              className="mr-5 inline"
+              height={32}
+              width={32}
+            />
+            <span>{label}</span>
+          </div>
+        </button>
       </Link>
-    </Button>
   )
 }

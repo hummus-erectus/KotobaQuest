@@ -12,7 +12,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center gap-y-8">
         <h1 className="text-xl lg:text-3xl font-bold text-neutral-600 max-w-[480px] text-center">
-        冒険の旅へ出発しよう&#65281;<span className="break-keep text-green-500">ことばクエスト</span>と共に新しい言語を学び、練習し、マスターしよう&#65281;
+        冒険の旅へ出発しよう&#65281;<span className="break-keep text-nesBlue">ことばクエスト</span>と共に新しい言語を学び、練習し、マスターしよう&#65281;
         </h1>
         <div className="flex flex-col items-center gap-y-3 max-w-[330px] w-full">
           <ClerkLoading>
@@ -25,26 +25,26 @@ export default function Home() {
                 forceRedirectUrl="/learn"
                 signInForceRedirectUrl="/learn"
               >
-                <Button size="lg" variant="secondary" className="w-full">
-                  冒険を始める
-                </Button>
+              <button type="button" className="nes-btn w-80 is-primary font-bold font-dotgothic16">
+                冒険を始める
+              </button>
               </SignUpButton>
               <SignInButton
                 mode="modal"
                 forceRedirectUrl="/learn"
                 signUpForceRedirectUrl="/learn"
               >
-                <Button size="lg" variant="primaryOutline" className="w-full">
+                <Button size="lg" variant="ghost" className="w-full">
                   すでにアカウントをお持ちです
                 </Button>
               </SignInButton>
             </SignedOut>
             <SignedIn>
-              <Button size="lg" variant="secondary" className="w-full" asChild>
-                <Link href="/learn">
-                  冒険を続ける
-                </Link>
-              </Button>
+              <Link href="/learn">
+                <button type="button" className="nes-btn w-80 is-primary font-bold font-dotgothic16">
+                    冒険を続ける
+                </button>
+              </Link>
             </SignedIn>
           </ClerkLoaded>
         </div>

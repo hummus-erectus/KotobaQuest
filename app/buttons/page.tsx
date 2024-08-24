@@ -48,8 +48,6 @@ const ButtonsPage = () => {
         <p>Disabled</p>
         <br/>
 
-        <button type="button" className="nes-btn is-disabled font-pressStart2P">Disabled</button>
-
       </div>
     </>
   )
