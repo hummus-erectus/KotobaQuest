@@ -25,6 +25,7 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
     "lucide-react": "^0.427.0",
+    "nes.css": "^2.2.1",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "ra-data-simple-rest": "^5.1.2",

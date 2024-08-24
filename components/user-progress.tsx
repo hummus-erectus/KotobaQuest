@@ -19,7 +19,7 @@ export const UserProgress = ({
   hasActiveSubscription
  }: Props) => {
   return (
-    <div className="flex items-center justify-between gap-x-2 w-full">
+    <div className="flex items-center justify-between gap-x-2 w-full font-pressStart2P">
       <Link href="/courses">
         <Button variant="ghost">
           <Image

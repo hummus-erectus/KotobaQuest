@@ -6,6 +6,7 @@ import { ExitModal } from "@/components/modals/exit-modal"
 import { HeartsModal } from "@/components/modals/hearts-modal"
 import { PracticeModal } from "@/components/modals/practice-modal"
 import "./globals.css"
+import "nes.css/css/nes.min.css"
 
 const nunito = Nunito({
   subsets: ["latin"],

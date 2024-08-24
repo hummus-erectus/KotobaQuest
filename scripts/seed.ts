@@ -25,7 +25,7 @@ const main = async () => {
       {
         id: 1,
         title: "英語",
-        imageSrc: "/JP.svg",
+        imageSrc: "/GB.svg",
       },
       {
         id: 2,
@@ -111,21 +111,21 @@ const main = async () => {
         imageSrc: "/man.svg",
         correct: true,
         text: "man",
-        audioSrc: "/jp_man.mp3",
+        audioSrc: "/en_man.mp3",
       },
       {
         challengeId: 1,
         imageSrc: "/woman.svg",
         correct: false,
         text: "woman",
-        audioSrc: "/jp_woman.mp3",
+        audioSrc: "/en_woman.mp3",
       },
       {
         challengeId: 1,
         imageSrc: "/robot.svg",
         correct: false,
         text: "robot",
-        audioSrc: "/jp_robot.mp3",
+        audioSrc: "/en_robot.mp3",
       },
     ])
 
@@ -134,19 +134,19 @@ const main = async () => {
         challengeId: 2, //Which one of these is the man?
         correct: true,
         text: "man",
-        audioSrc: "/jp_man.mp3",
+        audioSrc: "/en_man.mp3",
       },
       {
         challengeId: 2,
         correct: false,
         text: "woman",
-        audioSrc: "/jp_woman.mp3",
+        audioSrc: "/en_woman.mp3",
       },
       {
         challengeId: 2,
         correct: false,
         text: "ロボット",
-        audioSrc: "/jp_robot.mp3",
+        audioSrc: "/en_robot.mp3",
       },
     ])
 
@@ -156,21 +156,21 @@ const main = async () => {
         imageSrc: "/man.svg",
         correct: false,
         text: "男の人",
-        audioSrc: "/jp_man.mp3",
+        audioSrc: "/en_man.mp3",
       },
       {
         challengeId: 3,
         imageSrc: "/woman.svg",
         correct: false,
         text: "女の人",
-        audioSrc: "/jp_woman.mp3",
+        audioSrc: "/en_woman.mp3",
       },
       {
         challengeId: 3,
         imageSrc: "/robot.svg",
         correct: true,
         text: "ロボット",
-        audioSrc: "/jp_robot.mp3",
+        audioSrc: "/en_robot.mp3",
       },
     ])
 
