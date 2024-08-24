@@ -40,15 +40,22 @@ export const Footer = ({
           </div>
         )}
         {status === "completed" && (
-          <Button
-            variant="default"
-            size={isMobile ? "sm" : "lg"}
+          // <Button
+          //   variant="default"
+          //   size={isMobile ? "sm" : "lg"}
+          //   onClick={() => window.location.href = `/lesson/${lessonId}`}
+          // >
+          //   もう一度練習する
+          // </Button>
+          <button
+          type="button"
+          className="nes-btn w-36 text-sm lg:w-44 lg:text-base"
             onClick={() => window.location.href = `/lesson/${lessonId}`}
           >
             もう一度練習する
-          </Button>
+          </button>
         )}
-        <Button
+        {/* <Button
           disabled={disabled}
           className="ml-auto"
           onClick={onCheck}
@@ -59,7 +66,18 @@ export const Footer = ({
           {status === "correct" && "次へ"}
           {status === "wrong" && "再挑戦"}
           {status === "completed" && "続く"}
-        </Button>
+        </Button> */}
+        <button
+          disabled={disabled}
+          type="button"
+          className={`nes-btn !ml-auto w-36 ${status === "wrong"? "is-error" : "is-success"}`}
+          onClick={onCheck}
+        >
+          {status === "none" && "確認"}
+          {status === "correct" && "次へ"}
+          {status === "wrong" && "再挑戦"}
+          {status === "completed" && "続く"}
+        </button>
       </div>
     </footer>
   )
