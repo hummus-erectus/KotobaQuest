@@ -5,7 +5,6 @@ import { StickyWrapper } from "@/components/sticky-wrapper"
 import { FeedWrapper } from "@/components/feed-wrapper"
 import { UserProgress } from "@/components/user-progress"
 import Image from "next/image"
-import { Progress } from "@/components/ui/progress"
 import { Promo } from "@/components/promo"
 import { quests } from "@/db/constants"
 
@@ -60,7 +59,7 @@ const QuestsPage = async () => {
 
               return(
                 <div
-                  className="flex items-center w-full p-4 gap-x-4 border-t-2"
+                  className="flex items-center w-full p-4 gap-x-4"
                   key={quest.title}
                 >
                   <Image
@@ -73,7 +72,7 @@ const QuestsPage = async () => {
                     <p className="text-neutral-700 text-xl font-bold font-dotgothic16">
                       {quest.title}
                     </p>
-                    <Progress value={progress} className="h-3"/>
+                    <progress value={progress} max="100"className="nes-progress nes-progress-sm is-success"/>
                   </div>
                 </div>
               )
