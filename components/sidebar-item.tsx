@@ -30,7 +30,7 @@ export const SidebarItem = ({
               height={32}
               width={32}
             />
-            <span>{label}</span>
+            <span className="overflow-hidden text-ellipsis whitespace-nowrap">{label}</span>
           </div>
         </button>
       </Link>
