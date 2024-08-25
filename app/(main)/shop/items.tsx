@@ -60,31 +60,34 @@ export const Items = ({
             ハートを補充
           </p>
         </div>
-        <Button
+        <button
+        disabled= {(pending
+          || hearts === MAXIMUM_HEARTS
+          || points < POINTS_TO_REFILL)}
+        className={`nes-btn ${(pending
+          || hearts === MAXIMUM_HEARTS
+          || points < POINTS_TO_REFILL)
+          && "is-disabled"}`
+        }
           onClick={onRefillHearts}
-          disabled={
-            pending
-            || hearts === MAXIMUM_HEARTS
-            || points < POINTS_TO_REFILL
-          }
         >
           {hearts === MAXIMUM_HEARTS
             ? "満タン"
             : (
-              <div className="flex items-center">
+              <div className="flex ">
                 <Image
                   src="/points.svg"
                   alt="Points"
                   height={20}
                   width={20}
                 />
-                <p>
+                <p className="font-pressStart2P m-auto">
                   {POINTS_TO_REFILL}
                 </p>
               </div>
             )
           }
-        </Button>
+        </button>
       </div>
       <div className="flex items-center w-full p-4 pt-8 gap-x-4 border-t-2">
         <Image
@@ -98,12 +101,12 @@ export const Items = ({
             無限のハート
           </p>
         </div>
-        <Button
+        <button
+          className="nes-btn font-bold"
           onClick={onUpgrade}
-          disabled={pending}
         >
           {hasActiveSubscription ? "設定" : "アップグレード"}
-        </Button>
+        </button>
       </div>
     </ul>
   )
