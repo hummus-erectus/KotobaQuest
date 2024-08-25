@@ -7,7 +7,7 @@ import { redirect } from "next/navigation"
 
 import db from "@/db/drizzle"
 import { MAXIMUM_HEARTS, POINTS_TO_REFILL } from "@/db/constants"
-import { getCourseById, getUserProgress, getUserSubscription } from "@/db/queries"
+import { getCourseById, getUserProgress, getUserSubscription, getLesson } from "@/db/queries"
 import { challengeProgress, challenges, userProgress } from "@/db/schema"
 import { usePracticeModal } from "@/store/use-practice-modal"
 
@@ -64,6 +64,7 @@ export const reduceHearts = async (challengeId: number) => {
 
   const currentUserProgress = await getUserProgress()
   const userSubscription = await getUserSubscription()
+  const currentLesson = await getLesson()
 
   const challenge = await db.query.challenges.findFirst({
     where: eq(challenges.id, challengeId)
@@ -71,6 +72,10 @@ export const reduceHearts = async (challengeId: number) => {
 
   if(!challenge) {
     throw new Error("Challenge not found")
+  }
+
+  if(!currentLesson) {
+    throw new Error("Lesson not found")
   }
 
   const lessonId = challenge.lessonId
@@ -94,6 +99,10 @@ export const reduceHearts = async (challengeId: number) => {
 
   if (userSubscription?.isActive) {
     return { error: "subscription"}
+  }
+
+  if (currentLesson.order===1){
+    return { error: "first lesson"}
   }
 
   if (currentUserProgress.hearts === 0) {
