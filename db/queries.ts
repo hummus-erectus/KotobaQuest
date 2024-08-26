@@ -108,7 +108,7 @@ export const getCourseProgress = cache(async () => {
   const { userId } = await auth()
   const userProgress = await getUserProgress()
 
-  if(!userId || !userProgress?.activeCourseId) {
+  if (!userId || !userProgress?.activeCourseId) {
     return null
   }
 
@@ -132,6 +132,7 @@ export const getCourseProgress = cache(async () => {
     },
   })
 
+  // Find the first uncompleted lesson
   const firstUncompletedLesson = unitsInActiveCourse
     .flatMap((unit) => unit.lessons)
     .find((lesson) => {
@@ -142,10 +143,22 @@ export const getCourseProgress = cache(async () => {
       })
     })
 
-    return {
-      activeLesson: firstUncompletedLesson,
-      activeLessonId: firstUncompletedLesson?.id
-    }
+  // Find the last completed lesson as a fallback
+  const lastCompletedLesson = unitsInActiveCourse
+    .flatMap((unit) => unit.lessons)
+    .reverse()
+    .find((lesson) => {
+      return lesson.challenges.every((challenge) => {
+        return challenge.challengeProgress
+          && challenge.challengeProgress.length > 0
+          && challenge.challengeProgress.every((progress) => progress.completed)
+      })
+    })
+
+  return {
+    activeLesson: firstUncompletedLesson || lastCompletedLesson,
+    activeLessonId: firstUncompletedLesson?.id || lastCompletedLesson?.id,
+  }
 })
 
 export const getLesson = cache(async (id?: number) => {
@@ -158,6 +171,10 @@ export const getLesson = cache(async (id?: number) => {
   const courseProgress = await getCourseProgress()
 
   const lessonId = id || courseProgress?.activeLessonId
+
+  console.log("Course Progress:", courseProgress);
+
+  console.log("Lesson ID:", lessonId);
 
   if (!lessonId) {
     return null
