@@ -12,7 +12,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
 import { usePracticeModal } from "@/store/use-practice-modal"
 
 export const PracticeModal = () => {
@@ -46,14 +45,13 @@ export const PracticeModal = () => {
         </DialogHeader>
         <DialogFooter className="mb-4">
           <div className="flex flex-col gap-y-4 w-full font-dotgothic16">
-            <Button
-              variant="primary"
-              className="w-full"
-              size="lg"
+            <button
+              type="button"
+              className="nes-btn is-primary"
               onClick={close}
             >
-              <span className="font-dotgothic16">了解！</span>
-            </Button>
+              <span className="font-dotgothic16 font-bold">了解！</span>
+            </button>
           </div>
         </DialogFooter>
       </DialogContent>
