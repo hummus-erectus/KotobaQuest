@@ -62,23 +62,23 @@ const main = async () => {
         order: 2,
         title: "動詞 I",
       },
-      {
-        id: 3,
-        unitId: 1, //Unit 1 Learn the basics...
-        order: 3,
-        title: "名詞 II",
-      },
-      {
-        id: 4,
-        unitId: 1, //Unit 1 Learn the basics...
-        order: 4,
-        title: "名詞 III",
-      },{
-        id: 5,
-        unitId: 1, //Unit 1 Learn the basics...
-        order: 5,
-        title: "名詞 IV",
-      },
+      // {
+      //   id: 3,
+      //   unitId: 1, //Unit 1 Learn the basics...
+      //   order: 3,
+      //   title: "名詞 II",
+      // },
+      // {
+      //   id: 4,
+      //   unitId: 1, //Unit 1 Learn the basics...
+      //   order: 4,
+      //   title: "名詞 III",
+      // },{
+      //   id: 5,
+      //   unitId: 1, //Unit 1 Learn the basics...
+      //   order: 5,
+      //   title: "名詞 IV",
+      // },
     ])
 
     await db.insert(schema.challenges).values([
@@ -195,6 +195,75 @@ const main = async () => {
         type: "SELECT",
         order: 3,
         question: 'Which one of these is "the robot"?',
+      },
+    ])
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 4, //Which one of these is the man?
+        imageSrc: "/man.svg",
+        correct: true,
+        text: "man",
+        audioSrc: "/en_man.mp3",
+      },
+      {
+        challengeId: 4,
+        imageSrc: "/woman.svg",
+        correct: false,
+        text: "woman",
+        audioSrc: "/en_woman.mp3",
+      },
+      {
+        challengeId: 4,
+        imageSrc: "/robot.svg",
+        correct: false,
+        text: "robot",
+        audioSrc: "/en_robot.mp3",
+      },
+    ])
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 5, //Which one of these is the man?
+        correct: true,
+        text: "man",
+        audioSrc: "/en_man.mp3",
+      },
+      {
+        challengeId: 5,
+        correct: false,
+        text: "woman",
+        audioSrc: "/en_woman.mp3",
+      },
+      {
+        challengeId: 5,
+        correct: false,
+        text: "ロボット",
+        audioSrc: "/en_robot.mp3",
+      },
+    ])
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 6, //Which one of these is the robot?
+        imageSrc: "/man.svg",
+        correct: false,
+        text: "男の人",
+        audioSrc: "/en_man.mp3",
+      },
+      {
+        challengeId: 6,
+        imageSrc: "/woman.svg",
+        correct: false,
+        text: "女の人",
+        audioSrc: "/en_woman.mp3",
+      },
+      {
+        challengeId: 6,
+        imageSrc: "/robot.svg",
+        correct: true,
+        text: "ロボット",
+        audioSrc: "/en_robot.mp3",
       },
     ])
 

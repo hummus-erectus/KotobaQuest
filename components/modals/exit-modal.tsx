@@ -47,25 +47,23 @@ export const ExitModal = () => {
         </DialogHeader>
         <DialogFooter className="mb-4">
           <div className="flex flex-col gap-y-4 w-full">
-            <Button
-              variant="primary"
-              className="w-full"
-              size="lg"
+            <button
+              type="button"
+              className="nes-btn is-primary"
               onClick={close}
             >
-              <span className="font-dotgothic16">学習を続ける</span>
-            </Button>
-            <Button
-              variant="dangerOutline"
-              className="w-full"
-              size="lg"
+              <span className="font-dotgothic16 font-bold">学習を続ける</span>
+            </button>
+            <button
+              className="nes-btn"
+              type="button"
               onClick={() => {
                 close()
                 router.push("/learn")
               }}
             >
-              <span className="font-dotgothic16">セッションを終了する</span>
-            </Button>
+              <span className="font-dotgothic16 font-bold">セッションを終了する</span>
+            </button>
           </div>
         </DialogFooter>
       </DialogContent>

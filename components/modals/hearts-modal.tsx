@@ -24,7 +24,7 @@ export const HeartsModal = () => {
 
   const onClick = () => {
     close()
-    router.push("/store")
+    router.push("/shop")
   }
 
   if (!isClient) {
@@ -52,22 +52,20 @@ export const HeartsModal = () => {
         </DialogHeader>
         <DialogFooter className="mb-4">
           <div className="flex flex-col gap-y-4 w-full">
-            <Button
-              variant="primary"
-              className="w-full"
-              size="lg"
+            <button
+              type="button"
+              className="nes-btn is-primary"
               onClick={onClick}
             >
-              <span className="font-dotgothic16">無限のハートを手に入れる</span>
-            </Button>
-            <Button
-              variant="primaryOutline"
-              className="w-full"
-              size="lg"
+              <span className="font-dotgothic16 font-bold">無限のハートを手に入れる</span>
+            </button>
+            <button
+              className="nes-btn"
               onClick={close}
+              type="button"
             >
-              <span className="font-dotgothic16">結構です</span>
-            </Button>
+              <span className="font-dotgothic16 font-bold">結構です</span>
+            </button>
           </div>
         </DialogFooter>
       </DialogContent>
