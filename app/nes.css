@@ -783,11 +783,11 @@
    background-color: #fff;
  }
  
- @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+ /* @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
    .nes-balloon {
      border-image-repeat: space;
    }
- }
+ } */
  
  @supports (-moz-appearance: meterbar) {
    .nes-balloon {

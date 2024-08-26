@@ -1,6 +1,5 @@
-import { NotebookText } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { NotebookText } from "lucide-react"
+import Link from "next/link"
 
 type Props = {
   title: string;
