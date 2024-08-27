@@ -28,12 +28,12 @@ export const PracticeModal = () => {
     <Dialog open={isOpen} onOpenChange={close}>
       <DialogContent>
         <DialogHeader>
-          <div className="flex items-center w-full justify-center mb-5">
+          <div className="flex items-center w-full justify-center">
             <Image
-              src="/heart.svg"
+              src="/heart.webp"
               alt="Heart"
-              height={100}
-              width={100}
+              height={120}
+              width={120}
             />
           </div>
           <DialogTitle className="text-center font-bold text-2xl font-dotgothic16">
