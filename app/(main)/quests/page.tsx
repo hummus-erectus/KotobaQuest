@@ -63,7 +63,7 @@ const QuestsPage = async () => {
                   key={quest.title}
                 >
                   <Image
-                    src="/points.svg"
+                    src="/points.png"
                     alt="Points"
                     width={60}
                     height={60}

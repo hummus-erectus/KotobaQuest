@@ -22,7 +22,7 @@ export const Header = ({
       <progress value={percentage} max="100"className="nes-progress nes-progress-sm is-success"/>
       <div className="text-rose-500 flex items-center font-pressStart2P font-bold">
         <Image
-          src="/heart.webp"
+          src="/heart.png"
           height={28}
           width={28}
           alt="Heart"

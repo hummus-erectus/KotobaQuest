@@ -30,7 +30,7 @@ export const PracticeModal = () => {
         <DialogHeader>
           <div className="flex items-center w-full justify-center">
             <Image
-              src="/heart.webp"
+              src="/heart.png"
               alt="Heart"
               height={120}
               width={120}

@@ -30,7 +30,7 @@ export const Quests = ({ points }: Props) => {
               key={quest.title}
             >
               <Image
-                src="/points.svg"
+                src="/points.png"
                 alt="Points"
                 width={40}
                 height={40}

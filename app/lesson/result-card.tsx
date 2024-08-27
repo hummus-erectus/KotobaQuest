@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const ResultCard = ({ value, variant }: Props) => {
-  const imageSrc = variant === "hearts" ? "/heart.webp" : "/points.svg"
+  const imageSrc = variant === "hearts" ? "/heart.png" : "/points.png"
 
   return (
     <div className={cn(
@@ -28,8 +28,8 @@ export const ResultCard = ({ value, variant }: Props) => {
         <Image
           alt="Icon"
           src={imageSrc}
-          height={30}
-          width={30}
+          height={20}
+          width={20}
           className="mr-1.5"
         />
         {value === Infinity ? (
