@@ -30,18 +30,18 @@ export const ExitModal = () => {
     <Dialog open={isOpen} onOpenChange={close}>
       <DialogContent>
         <DialogHeader>
-          <div className="flex items-center w-full justify-center mb-5">
+          <div className="flex items-center w-full justify-center mb-2">
             <Image
               src="/starry_sad.png"
               alt="Starry sad"
-              height={80}
-              width={80}
+              height={100}
+              width={100}
             />
           </div>
           <DialogTitle className="text-center font-bold text-2xl font-dotgothic16">
             待って、行かないで！
           </DialogTitle>
-          <DialogDescription className="text-center text-base font-dotgothic16">
+          <DialogDescription className="text-center text-white font-dotgothic16 !mb-4">
             レッスンを終了しようとしています。本当に終了しますか？
           </DialogDescription>
         </DialogHeader>

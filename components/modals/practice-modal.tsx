@@ -39,7 +39,7 @@ export const PracticeModal = () => {
           <DialogTitle className="text-center font-bold text-2xl font-dotgothic16">
             練習レッスン
           </DialogTitle>
-          <DialogDescription className="text-center text-base font-dotgothic16">
+          <DialogDescription className="text-center text-white font-dotgothic16 !mb-4">
             練習レッスンを使ってハートとポイントを取り戻そう。練習レッスンではハートやポイントを失うことはありません。
           </DialogDescription>
         </DialogHeader>
