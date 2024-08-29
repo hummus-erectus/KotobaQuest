@@ -111,21 +111,21 @@ const main = async () => {
         imageSrc: "/man.svg",
         correct: true,
         text: "man",
-        audioSrc: "/en_man.mp3",
+        audioSrc: "/audio/en/en_man.mp3",
       },
       {
         challengeId: 1,
         imageSrc: "/woman.svg",
         correct: false,
         text: "woman",
-        audioSrc: "/en_woman.mp3",
+        audioSrc: "/audio/en/en_woman.mp3",
       },
       {
         challengeId: 1,
         imageSrc: "/robot.svg",
         correct: false,
         text: "robot",
-        audioSrc: "/en_robot.mp3",
+        audioSrc: "/audio/en/en_robot.mp3",
       },
     ])
 
@@ -134,19 +134,19 @@ const main = async () => {
         challengeId: 2, //Which one of these is the man?
         correct: true,
         text: "man",
-        audioSrc: "/en_man.mp3",
+        audioSrc: "/audio/en/en_man.mp3",
       },
       {
         challengeId: 2,
         correct: false,
         text: "woman",
-        audioSrc: "/en_woman.mp3",
+        audioSrc: "/audio/en/en_woman.mp3",
       },
       {
         challengeId: 2,
         correct: false,
         text: "ロボット",
-        audioSrc: "/en_robot.mp3",
+        audioSrc: "/audio/en/en_robot.mp3",
       },
     ])
 
@@ -156,21 +156,21 @@ const main = async () => {
         imageSrc: "/man.svg",
         correct: false,
         text: "男の人",
-        audioSrc: "/en_man.mp3",
+        audioSrc: "/audio/en/en_man.mp3",
       },
       {
         challengeId: 3,
         imageSrc: "/woman.svg",
         correct: false,
         text: "女の人",
-        audioSrc: "/en_woman.mp3",
+        audioSrc: "/audio/en/en_woman.mp3",
       },
       {
         challengeId: 3,
         imageSrc: "/robot.svg",
         correct: true,
         text: "ロボット",
-        audioSrc: "/en_robot.mp3",
+        audioSrc: "/audio/en/en_robot.mp3",
       },
     ])
 
@@ -204,21 +204,21 @@ const main = async () => {
         imageSrc: "/man.svg",
         correct: true,
         text: "man",
-        audioSrc: "/en_man.mp3",
+        audioSrc: "/audio/en/en_man.mp3",
       },
       {
         challengeId: 4,
         imageSrc: "/woman.svg",
         correct: false,
         text: "woman",
-        audioSrc: "/en_woman.mp3",
+        audioSrc: "/audio/en/en_woman.mp3",
       },
       {
         challengeId: 4,
         imageSrc: "/robot.svg",
         correct: false,
         text: "robot",
-        audioSrc: "/en_robot.mp3",
+        audioSrc: "/audio/en/en_robot.mp3",
       },
     ])
 
@@ -227,19 +227,19 @@ const main = async () => {
         challengeId: 5, //Which one of these is the man?
         correct: true,
         text: "man",
-        audioSrc: "/en_man.mp3",
+        audioSrc: "/audio/en/en_man.mp3",
       },
       {
         challengeId: 5,
         correct: false,
         text: "woman",
-        audioSrc: "/en_woman.mp3",
+        audioSrc: "/audio/en/en_woman.mp3",
       },
       {
         challengeId: 5,
         correct: false,
         text: "ロボット",
-        audioSrc: "/en_robot.mp3",
+        audioSrc: "/audio/en/en_robot.mp3",
       },
     ])
 
@@ -249,21 +249,21 @@ const main = async () => {
         imageSrc: "/man.svg",
         correct: false,
         text: "男の人",
-        audioSrc: "/en_man.mp3",
+        audioSrc: "/audio/en/en_man.mp3",
       },
       {
         challengeId: 6,
         imageSrc: "/woman.svg",
         correct: false,
         text: "女の人",
-        audioSrc: "/en_woman.mp3",
+        audioSrc: "/audio/en/en_woman.mp3",
       },
       {
         challengeId: 6,
         imageSrc: "/robot.svg",
         correct: true,
         text: "ロボット",
-        audioSrc: "/en_robot.mp3",
+        audioSrc: "/audio/en/en_robot.mp3",
       },
     ])
 
