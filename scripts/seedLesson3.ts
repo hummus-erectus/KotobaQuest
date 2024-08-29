@@ -22,7 +22,7 @@ const main = async () => {
         id: 3,
         unitId: 1, // Unit 1, Lesson 3
         order: 3,
-        title: "名詞 III",
+        title: "名詞 II",
       },
     ])
 
@@ -32,81 +32,88 @@ const main = async () => {
         lessonId: 3,
         type: "SELECT",
         order: 1,
-        question: 'これらの言葉の中で「本」を意味するのはどれ？',
+        question: 'これらの言葉の中で「猫」を意味するのはどれ？',
       },
       {
         id: 22,
         lessonId: 3,
         type: "ASSIST",
         order: 2,
-        question: '「本」',
+        question: '「猫」',
       },
       {
         id: 23,
         lessonId: 3,
         type: "SELECT",
         order: 3,
-        question: 'これらの言葉の中で「椅子」を意味するのはどれ？',
+        question: 'これらの言葉の中で「家」を意味するのはどれ？',
       },
       {
         id: 24,
         lessonId: 3,
         type: "ASSIST",
         order: 4,
-        question: '「椅子」',
+        question: '「家」',
       },
       {
         id: 25,
         lessonId: 3,
         type: "SELECT",
         order: 5,
-        question: 'これらの言葉の中で「学校」を意味するのはどれ？',
+        question: 'これらの言葉の中で「車」を意味するのはどれ？',
       },
       {
         id: 26,
         lessonId: 3,
         type: "ASSIST",
         order: 6,
-        question: '「学校」',
+        question: '「車」',
       },
       {
         id: 27,
         lessonId: 3,
         type: "SELECT",
         order: 7,
-        question: 'これらの言葉の中で「テーブル」を意味するのはどれ？',
+        question: 'これらの言葉の中で「木」を意味するのはどれ？',
       },
       {
         id: 28,
         lessonId: 3,
         type: "ASSIST",
         order: 8,
-        question: '「テーブル」',
+        question: '「木」',
       },
       {
         id: 29,
         lessonId: 3,
         type: "SELECT",
         order: 9,
-        question: 'これらの言葉の中で「自転車」を意味するのはどれ？',
+        question: 'これらの言葉の中で「本」を意味するのはどれ？',
       },
       {
         id: 30,
         lessonId: 3,
         type: "ASSIST",
         order: 10,
-        question: '「自転車」',
+        question: '「本」',
       },
     ])
 
     await db.insert(schema.challengeOptions).values([
-      // Question 1 - 本 (book)
+      // Question 1 - 猫 (cat)
       {
         challengeId: 21,
-        imageSrc: "/book.svg",
+        imageSrc: "/cat.svg",
         correct: true,
-        text: "book",
-        audioSrc: "/en_book.mp3",
+        text: "cat",
+        audioSrc: "/en_cat.mp3",
+      },
+      {
+        challengeId: 21,
+        imageSrc: "/house.svg",
+        correct: false,
+        text: "house",
+        audioSrc: "/en_house.mp3",
       },
       {
         challengeId: 21,
@@ -117,25 +124,24 @@ const main = async () => {
       },
       {
         challengeId: 21,
-        imageSrc: "/cat.svg",
+        imageSrc: "/tree.svg",
         correct: false,
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
+      },
+
+      // Question 2 - 猫 (cat) ASSIST
+      {
+        challengeId: 22,
+        correct: true,
         text: "cat",
         audioSrc: "/en_cat.mp3",
       },
       {
-        challengeId: 21,
-        imageSrc: "/dog.svg",
-        correct: false,
-        text: "dog",
-        audioSrc: "/en_dog.mp3",
-      },
-
-      // Question 2 - 本 (book) ASSIST
-      {
         challengeId: 22,
-        correct: true,
-        text: "book",
-        audioSrc: "/en_book.mp3",
+        correct: false,
+        text: "house",
+        audioSrc: "/en_house.mp3",
       },
       {
         challengeId: 22,
@@ -146,30 +152,17 @@ const main = async () => {
       {
         challengeId: 22,
         correct: false,
-        text: "cat",
-        audioSrc: "/en_cat.mp3",
-      },
-      {
-        challengeId: 22,
-        correct: false,
-        text: "dog",
-        audioSrc: "/en_dog.mp3",
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
       },
 
-      // Question 3 - 椅子 (chair)
+      // Question 3 - 家 (house)
       {
         challengeId: 23,
-        imageSrc: "/chair.svg",
+        imageSrc: "/house.svg",
         correct: true,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
-      },
-      {
-        challengeId: 23,
-        imageSrc: "/book.svg",
-        correct: false,
-        text: "book",
-        audioSrc: "/en_book.mp3",
+        text: "house",
+        audioSrc: "/en_house.mp3",
       },
       {
         challengeId: 23,
@@ -180,24 +173,25 @@ const main = async () => {
       },
       {
         challengeId: 23,
-        imageSrc: "/dog.svg",
+        imageSrc: "/car.svg",
         correct: false,
-        text: "dog",
-        audioSrc: "/en_dog.mp3",
+        text: "car",
+        audioSrc: "/en_car.mp3",
+      },
+      {
+        challengeId: 23,
+        imageSrc: "/tree.svg",
+        correct: false,
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
       },
 
-      // Question 4 - 椅子 (chair) ASSIST
+      // Question 4 - 家 (house) ASSIST
       {
         challengeId: 24,
         correct: true,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
-      },
-      {
-        challengeId: 24,
-        correct: false,
-        text: "book",
-        audioSrc: "/en_book.mp3",
+        text: "house",
+        audioSrc: "/en_house.mp3",
       },
       {
         challengeId: 24,
@@ -208,31 +202,23 @@ const main = async () => {
       {
         challengeId: 24,
         correct: false,
-        text: "dog",
-        audioSrc: "/en_dog.mp3",
+        text: "car",
+        audioSrc: "/en_car.mp3",
+      },
+      {
+        challengeId: 24,
+        correct: false,
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
       },
 
-      // Question 5 - 学校 (school)
+      // Question 5 - 車 (car)
       {
         challengeId: 25,
-        imageSrc: "/school.svg",
+        imageSrc: "/car.svg",
         correct: true,
-        text: "school",
-        audioSrc: "/en_school.mp3",
-      },
-      {
-        challengeId: 25,
-        imageSrc: "/chair.svg",
-        correct: false,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
-      },
-      {
-        challengeId: 25,
-        imageSrc: "/book.svg",
-        correct: false,
-        text: "book",
-        audioSrc: "/en_book.mp3",
+        text: "car",
+        audioSrc: "/en_car.mp3",
       },
       {
         challengeId: 25,
@@ -241,25 +227,27 @@ const main = async () => {
         text: "cat",
         audioSrc: "/en_cat.mp3",
       },
+      {
+        challengeId: 25,
+        imageSrc: "/house.svg",
+        correct: false,
+        text: "house",
+        audioSrc: "/en_house.mp3",
+      },
+      {
+        challengeId: 25,
+        imageSrc: "/tree.svg",
+        correct: false,
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
+      },
 
-      // Question 6 - 学校 (school) ASSIST
+      // Question 6 - 車 (car) ASSIST
       {
         challengeId: 26,
         correct: true,
-        text: "school",
-        audioSrc: "/en_school.mp3",
-      },
-      {
-        challengeId: 26,
-        correct: false,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
-      },
-      {
-        challengeId: 26,
-        correct: false,
-        text: "book",
-        audioSrc: "/en_book.mp3",
+        text: "car",
+        audioSrc: "/en_car.mp3",
       },
       {
         challengeId: 26,
@@ -267,119 +255,132 @@ const main = async () => {
         text: "cat",
         audioSrc: "/en_cat.mp3",
       },
+      {
+        challengeId: 26,
+        correct: false,
+        text: "house",
+        audioSrc: "/en_house.mp3",
+      },
+      {
+        challengeId: 26,
+        correct: false,
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
+      },
 
-      // Question 7 - テーブル (table)
+      // Question 7 - 木 (tree)
       {
         challengeId: 27,
-        imageSrc: "/table.svg",
+        imageSrc: "/tree.svg",
         correct: true,
-        text: "table",
-        audioSrc: "/en_table.mp3",
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
       },
       {
         challengeId: 27,
-        imageSrc: "/school.svg",
+        imageSrc: "/cat.svg",
         correct: false,
-        text: "school",
-        audioSrc: "/en_school.mp3",
+        text: "cat",
+        audioSrc: "/en_cat.mp3",
       },
       {
         challengeId: 27,
-        imageSrc: "/chair.svg",
+        imageSrc: "/house.svg",
         correct: false,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
+        text: "house",
+        audioSrc: "/en_house.mp3",
       },
       {
         challengeId: 27,
+        imageSrc: "/car.svg",
+        correct: false,
+        text: "car",
+        audioSrc: "/en_car.mp3",
+      },
+
+      // Question 8 - 木 (tree) ASSIST
+      {
+        challengeId: 28,
+        correct: true,
+        text: "tree",
+        audioSrc: "/en_tree.mp3",
+      },
+      {
+        challengeId: 28,
+        correct: false,
+        text: "cat",
+        audioSrc: "/en_cat.mp3",
+      },
+      {
+        challengeId: 28,
+        correct: false,
+        text: "house",
+        audioSrc: "/en_house.mp3",
+      },
+      {
+        challengeId: 28,
+        correct: false,
+        text: "car",
+        audioSrc: "/en_car.mp3",
+      },
+
+      // Question 9 - 本 (book)
+      {
+        challengeId: 29,
         imageSrc: "/book.svg",
-        correct: false,
+        correct: true,
         text: "book",
         audioSrc: "/en_book.mp3",
       },
+      {
+        challengeId: 29,
+        imageSrc: "/cat.svg",
+        correct: false,
+        text: "cat",
+        audioSrc: "/en_cat.mp3",
+      },
+      {
+        challengeId: 29,
+        imageSrc: "/house.svg",
+        correct: false,
+        text: "house",
+        audioSrc: "/en_house.mp3",
+      },
+      {
+        challengeId: 29,
+        imageSrc: "/car.svg",
+        correct: false,
+        text: "car",
+        audioSrc: "/en_car.mp3",
+      },
 
-      // Question 8 - テーブル (table) ASSIST
+      // Question 10 - 本 (book) ASSIST
       {
-        challengeId: 28,
+        challengeId: 30,
         correct: true,
-        text: "table",
-        audioSrc: "/en_table.mp3",
-      },
-      {
-        challengeId: 28,
-        correct: false,
-        text: "school",
-        audioSrc: "/en_school.mp3",
-      },
-      {
-        challengeId: 28,
-        correct: false,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
-      },
-      {
-        challengeId: 28,
-        correct: false,
         text: "book",
         audioSrc: "/en_book.mp3",
       },
-
-      // Question 9 - 自転車 (bicycle)
-      {
-        challengeId: 29,
-        imageSrc: "/bicycle.svg",
-        correct: true,
-        text: "bicycle",
-        audioSrc: "/en_bicycle.mp3",
-      },
-      {
-        challengeId: 29,
-        imageSrc: "/table.svg",
-        correct: false,
-        text: "table",
-        audioSrc: "/en_table.mp3",
-      },
-      {
-        challengeId: 29,
-        imageSrc: "/school.svg",
-        correct: false,
-        text: "school",
-        audioSrc: "/en_school.mp3",
-      },
-      {
-        challengeId: 29,
-        imageSrc: "/chair.svg",
-        correct: false,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
-      },
-
-      // Question 10 - 自転車 (bicycle) ASSIST
       {
         challengeId: 30,
-        correct: true,
-        text: "bicycle",
-        audioSrc: "/en_bicycle.mp3",
+        correct: false,
+        text: "cat",
+        audioSrc: "/en_cat.mp3",
       },
       {
         challengeId: 30,
         correct: false,
-        text: "table",
-        audioSrc: "/en_table.mp3",
+        text: "house",
+        audioSrc: "/en_house.mp3",
       },
       {
         challengeId: 30,
         correct: false,
-        text: "school",
-        audioSrc: "/en_school.mp3",
-      },
-      {
-        challengeId: 30,
-        correct: false,
-        text: "chair",
-        audioSrc: "/en_chair.mp3",
+        text: "car",
+        audioSrc: "/en_car.mp3",
       },
     ])
+
     console.log("Seed data inserted successfully for Unit 1, Lesson 3!")
   } catch (error) {
     console.error("Error inserting seed data:", error)
