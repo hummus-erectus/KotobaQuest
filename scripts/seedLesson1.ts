@@ -10,7 +10,7 @@ const db = drizzle(sql, {schema})
 
 const main = async () => {
   try {
-    console.log("Seeding database")
+    console.log("Seeding database for Unit 1, Lesson 1")
 
     await db.delete(schema.courses)
     await db.delete(schema.userProgress)
@@ -19,7 +19,6 @@ const main = async () => {
     await db.delete(schema.challenges)
     await db.delete(schema.challengeOptions)
     await db.delete(schema.challengeProgress)
-    await db.delete(schema.userSubscription)
 
     await db.insert(schema.courses).values([
       {
@@ -413,10 +412,9 @@ const main = async () => {
       },
     ])
 
-    console.log("Seeding finished")
+    console.log("Seed data inserted successfully for Unit 1, Lesson 1!")
   } catch (error) {
-    console.error(error)
-    throw new Error("Failed to seed the database")
+    console.error("Error inserting seed data:", error)
   }
 }
 
