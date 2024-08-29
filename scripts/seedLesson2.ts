@@ -381,10 +381,9 @@ const main = async () => {
       },
     ])
 
-    console.log("Seeding finished")
+    console.log("Seed data inserted successfully for Unit 1, Lesson 2!")
   } catch (error) {
-    console.error(error)
-    throw new Error("Failed to seed the database")
+    console.error("Error inserting seed data:", error)
   }
 }
 
