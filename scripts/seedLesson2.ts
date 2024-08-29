@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/neon-http"
 import { neon } from "@neondatabase/serverless"
 
 import * as schema from "../db/schema"
+import { eq } from "drizzle-orm"
 
 const sql = neon(process.env.DATABASE_URL!)
 
@@ -12,12 +13,16 @@ const main = async () => {
   try {
     console.log("Seeding database")
 
+    await db.delete(schema.lessons).where(eq(schema.lessons.id, 2))
+    await db.delete(schema.challenges).where(eq(schema.challenges.lessonId, 2))
+    // await db.delete(schema.challengeOptions).where(eq(schema.challengeOptions.challengeId, 11 || 12 || 13 || 14 || 15 || 16 || 17 || 18 || 19 || 20))
+
     await db.insert(schema.lessons).values([
       {
         id: 2,
         unitId: 1, // Unit 1, Lesson 2
         order: 2,
-        title: "名詞 II",
+        title: "名詞 II test",
       },
     ])
 
@@ -27,7 +32,7 @@ const main = async () => {
         lessonId: 2,
         type: "SELECT",
         order: 1,
-        question: 'これらの言葉の中で「家」を意味するのはどれ？',
+        question: 'これらの言葉の中で「家」を意味するのはどれ？ test',
       },
       {
         id: 12,

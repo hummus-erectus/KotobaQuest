@@ -10,6 +10,7 @@
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push",
     "db:seed": "tsx ./scripts/seed.ts",
+    "db:seedReset": "tsx ./scripts/seedReset.ts",
     "db:seedLesson1": "tsx ./scripts/seedLesson1.ts",
     "db:seedLesson2": "tsx ./scripts/seedLesson2.ts",
     "db:seedAllLessons": "tsx ./scripts/seedLesson1.ts && tsx ./scripts/seedLesson2.ts",
