@@ -1156,11 +1156,11 @@
    border-image-outset: 0;
  }
  
- @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+ /* @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
    .nes-container.is-rounded.is-dark {
      border-image-repeat: space;
    }
- }
+ } */
  
  @supports (-moz-appearance: meterbar) {
    .nes-container.is-rounded.is-dark {
