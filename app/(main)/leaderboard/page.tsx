@@ -58,10 +58,10 @@ const LeaderboardPage = async () => {
           <h1 className="text-center font-bold text-neutral-800 text-2xl my-6 font-pressStart2P">
             Leaderboard
           </h1>
-          <p className="text-muted-foreground text-center text-lg mb-6 font-dotgothic16 font-bold">
+          <p className="text-black text-center text-lg mb-6 font-dotgothic16 font-bold">
           コミュニティ内の他の学習者と比べて自分の位置を確認しよう。
           </p>
-          <Separator className="mb-4 h-0.5 rounded-full"/>
+          <Separator className="mb-4 h-1 bg-black"/>
           {leaderboard.map((userProgress, index) => (
             <div
               key={userProgress.userId}
@@ -69,7 +69,7 @@ const LeaderboardPage = async () => {
             >
               <p className="font-bold text-lime-700 mr-4">{index + 1}</p>
               <Avatar
-                className=" border bg-nes h-12 w-12 ml-3 mr-6"
+                className="border bg-nes h-12 w-12 ml-3 mr-6"
               >
                 <AvatarImage
                 className="object-cover"

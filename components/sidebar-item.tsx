@@ -21,7 +21,7 @@ export const SidebarItem = ({
 
   return (
       <Link href={href}>
-        <button type="button" className={`nes-btn w-full ${active ? "is-primary" : "is-normal"}`}>
+        <button type="button" className={`nes-btn w-full h-12 ${active ? "is-primary" : "is-normal"}`}>
           <div className="flex flex-start items-center">
             <Image
               src={iconSrc}

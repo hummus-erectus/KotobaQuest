@@ -48,7 +48,7 @@ export const Items = ({
 
   return (
     <ul className="w-full font-dotgothic16">
-      <div className="flex items-center w-full p-4 gap-x-4 border-t-2">
+      <div className="flex items-center w-full p-4 gap-x-4 border-t-4 border-black">
         <Image
           src="/heart.png"
           alt="Heart"
@@ -56,7 +56,7 @@ export const Items = ({
           width={60}
         />
         <div className="flex-1">
-          <p className="text-neutral-700 text-base lg:text-xl font-bold">
+          <p className="text-black text-base lg:text-xl font-bold">
             ハートを補充
           </p>
         </div>
@@ -89,7 +89,7 @@ export const Items = ({
           }
         </button>
       </div>
-      <div className="flex items-center w-full p-4 pt-8 gap-x-4 border-t-2">
+      <div className="flex items-center w-full p-4 pt-8 gap-x-4 border-t-4 border-black">
         <Image
           src="/unlimited.svg"
           alt="Unlimited"
@@ -97,7 +97,7 @@ export const Items = ({
           width={60}
         />
         <div className="flex-1">
-          <p className="text-neutral-700 text-base lg:text-xl font-bold">
+          <p className="text-black text-base lg:text-xl font-bold">
             無限のハート
           </p>
         </div>

@@ -50,7 +50,7 @@ const ShopPage = async () => {
           <h1 className="text-center font-bold text-neutral-800 text-2xl my-6 font-pressStart2P">
             Shop
           </h1>
-          <p className="text-muted-foreground text-center text-lg mb-6 font-dotgothic16 font-bold">
+          <p className="text-black text-center text-lg mb-6 font-dotgothic16 font-bold">
             ポイントを使って素敵なアイテムを手に入れよう。
           </p>
           <Items

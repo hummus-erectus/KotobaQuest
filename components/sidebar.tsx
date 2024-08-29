@@ -11,7 +11,7 @@ type Props = {
 
 export const Sidebar = ({ className }: Props) => {
   return (
-    <div className={cn("h-full lg:w-[290px] lg:fixed left-0 top-0 px-4 border-r-2 flex-col font-pressStart2P", className,)}>
+    <div className={cn("h-full lg:w-[290px] lg:fixed left-0 top-0 px-4 border-r-4 border-black flex-col font-pressStart2P", className,)}>
       <Link href="/learn" className="hover:no-underline">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/starry.png" height={40} width={40} alt="Mascot"/>
