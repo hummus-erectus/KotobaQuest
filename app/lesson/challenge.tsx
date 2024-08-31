@@ -40,9 +40,9 @@ export const Challenge = ({
 
   return (
     <div className={cn(
-      "grid gap-4",
+      "grid gap-2 sm:gap-4",
       type === "ASSIST" && "grid-cols-1",
-      type === "SELECT" && "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]"
+      type === "SELECT" && "grid-cols-2"
     )}>
       {shuffledOptions.map((option, i) => (
         <Card
