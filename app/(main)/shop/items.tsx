@@ -91,7 +91,7 @@ export const Items = ({
       </div>
       <div className="flex items-center w-full p-4 pt-8 gap-x-4 border-t-4 border-black">
         <Image
-          src="/unlimited.svg"
+          src="/unlimited.png"
           alt="Unlimited"
           height={60}
           width={60}
