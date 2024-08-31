@@ -11,7 +11,7 @@ const db = drizzle(sql, {schema})
 
 const main = async () => {
   try {
-    console.log("Seeding database for Unit 1, Lesson 3")
+    console.log("Seeding database for English Unit 1, Lesson 3")
 
     await db.delete(schema.lessons).where(eq(schema.lessons.id, 3))
     await db.delete(schema.challenges).where(eq(schema.challenges.lessonId, 3))

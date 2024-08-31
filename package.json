@@ -11,15 +11,21 @@
     "db:push": "npx drizzle-kit push",
     "db:seed": "tsx ./scripts/seed.ts",
     "db:seedReset": "tsx ./scripts/seedReset.ts",
-    "db:seedENUnits": "tsx ./scripts/seedENUnits.ts",
-    "db:seedDEUnits": "tsx ./scripts/seedDEUnits.ts",
-    "db:seedFRUnits": "tsx ./scripts/seedFRUnits.ts",
-    "db:seedLesson1": "tsx ./scripts/seedLesson1.ts",
-    "db:seedLesson2": "tsx ./scripts/seedLesson2.ts",
-    "db:seedLesson3": "tsx ./scripts/seedLesson3.ts",
-    "db:seedLesson4": "tsx ./scripts/seedLesson4.ts",
 
-    "db:seedAllLessons": "tsx ./scripts/seedLesson1.ts && tsx ./scripts/seedLesson2.ts && tsx ./scripts/seedLesson3.ts && tsx ./scripts/seedLesson4.ts",
+    "db:seedENUnits": "tsx ./scripts/seedENUnits.ts",
+    "db:ENLesson1": "tsx ./scripts/seedENLesson1.ts",
+    "db:ENLesson2": "tsx ./scripts/seedENLesson2.ts",
+    "db:ENLesson3": "tsx ./scripts/seedENLesson3.ts",
+    "db:ENLesson4": "tsx ./scripts/seedENLesson4.ts",
+
+    "db:seedDEUnits": "tsx ./scripts/seedDEUnits.ts",
+    "db:DELesson1": "tsx ./scripts/seedDELesson1.ts",
+
+
+    "db:seedFRUnits": "tsx ./scripts/seedFRUnits.ts",
+
+
+    "db:seedAllENLessons": "tsx ./scripts/seedENLesson1.ts && tsx ./scripts/seedENLesson2.ts && tsx ./scripts/seedENLesson3.ts && tsx ./scripts/seedENLesson4.ts",
 
     "db:reset": "tsx ./scripts/reset.ts"
   },
