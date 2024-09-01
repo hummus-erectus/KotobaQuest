@@ -21,12 +21,11 @@
 
     "db:seedDEUnits": "tsx ./scripts/seedDEUnits.ts",
     "db:DELesson1": "tsx ./scripts/seedDELesson1.ts",
-
+    "db:DELesson2": "tsx ./scripts/seedDELesson2.ts",
 
     "db:seedFRUnits": "tsx ./scripts/seedFRUnits.ts",
 
     "db:resetProgess": "tsx ./scripts/resetProgress.ts",
-
 
     "db:reset": "tsx ./scripts/reset.ts"
   },
