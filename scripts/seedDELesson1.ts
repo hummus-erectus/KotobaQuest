@@ -14,12 +14,12 @@ const main = async () => {
   try {
     console.log("Seeding database for German Unit 1, Lesson 1")
 
-    await db.delete(schema.lessons).where(eq(schema.lessons.id, 66))
-    await db.delete(schema.challenges).where(eq(schema.challenges.lessonId, 66))
+    await db.delete(schema.lessons).where(eq(schema.lessons.id, 56))
+    await db.delete(schema.challenges).where(eq(schema.challenges.lessonId, 56))
 
     // Insert Lesson
     await db.insert(schema.lessons).values({
-      id: 66,
+      id: 56,
       unitId: 6, // German Unit 1, Lesson 1
       order: 1,
       title: "名詞 I",
@@ -29,16 +29,16 @@ const main = async () => {
     // der Man (man), die Frau (woman), das Mädchen
 
     await db.insert(schema.challenges).values([
-      { id: 751, lessonId: 66, type: "SELECT", order: 1, question: 'これらの言葉の中で「男の人」を意味するのはどれ？' },
-      { id: 752, lessonId: 66, type: "ASSIST", order: 2, question: '「男の人」' },
-      { id: 753, lessonId: 66, type: "SELECT", order: 3, question: 'これらの言葉の中で「女の人」を意味するのはどれ？' },
-      { id: 754, lessonId: 66, type: "ASSIST", order: 4, question: '「女の人」' },
-      { id: 755, lessonId: 66, type: "SELECT", order: 5, question: 'これらの言葉の中で「女の子」を意味するのはどれ？' },
-      { id: 756, lessonId: 66, type: "ASSIST", order: 6, question: '「女の子」' },
-      { id: 757, lessonId: 66, type: "SELECT", order: 7, question: 'これらの言葉の中で「男の子」を意味するのはどれ？' },
-      { id: 758, lessonId: 66, type: "ASSIST", order: 8, question: '「男の子」' },
-      { id: 759, lessonId: 66, type: "SELECT", order: 9, question: 'これらの言葉の中で「犬」を意味するのはどれ？' },
-      { id: 760, lessonId: 66, type: "ASSIST", order: 10, question: '「犬」' },
+      { id: 751, lessonId: 56, type: "SELECT", order: 1, question: 'これらの言葉の中で「男の人」を意味するのはどれ？' },
+      { id: 752, lessonId: 56, type: "ASSIST", order: 2, question: '「男の人」' },
+      { id: 753, lessonId: 56, type: "SELECT", order: 3, question: 'これらの言葉の中で「女の人」を意味するのはどれ？' },
+      { id: 754, lessonId: 56, type: "ASSIST", order: 4, question: '「女の人」' },
+      { id: 755, lessonId: 56, type: "SELECT", order: 5, question: 'これらの言葉の中で「女の子」を意味するのはどれ？' },
+      { id: 756, lessonId: 56, type: "ASSIST", order: 6, question: '「女の子」' },
+      { id: 757, lessonId: 56, type: "SELECT", order: 7, question: 'これらの言葉の中で「男の子」を意味するのはどれ？' },
+      { id: 758, lessonId: 56, type: "ASSIST", order: 8, question: '「男の子」' },
+      { id: 759, lessonId: 56, type: "SELECT", order: 9, question: 'これらの言葉の中で「犬」を意味するのはどれ？' },
+      { id: 760, lessonId: 56, type: "ASSIST", order: 10, question: '「犬」' },
     ])
 
     await db.insert(schema.challengeOptions).values([

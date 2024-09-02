@@ -12,8 +12,8 @@ const main = async () => {
   try {
     console.log("Seeding database with vocabulary words")
 
-    // Delete all previous entries
-    await db.delete(schema.options).execute()
+    // Delete all previous entries TODO: Specify per language and reinstate
+    // await db.delete(schema.options).execute()
 
     // Insert Words
     await db.insert(schema.options).values([

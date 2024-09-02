@@ -14,12 +14,12 @@ const main = async () => {
   try {
     console.log("Seeding database for German Unit 1, Lesson 2")
 
-    await db.delete(schema.lessons).where(eq(schema.lessons.id, 67))
-    await db.delete(schema.challenges).where(eq(schema.challenges.lessonId, 67))
+    await db.delete(schema.lessons).where(eq(schema.lessons.id, 57))
+    await db.delete(schema.challenges).where(eq(schema.challenges.lessonId, 57))
 
     // Insert Lesson
     await db.insert(schema.lessons).values({
-      id: 67,
+      id: 57,
       unitId: 6, // German Unit 1, Lesson 2
       order: 2,
       title: "動詞 I",
@@ -29,16 +29,16 @@ const main = async () => {
     // gehen (to walk), laufen (to run), essen (to eat), trinken (to drink), schlafen (to sleep)
 
     await db.insert(schema.challenges).values([
-      { id: 761, lessonId: 67, type: "SELECT", order: 1, question: 'これらの言葉の中で「歩く」を意味するのはどれ？' },
-      { id: 762, lessonId: 67, type: "ASSIST", order: 2, question: '「歩く」' },
-      { id: 763, lessonId: 67, type: "SELECT", order: 3, question: 'これらの言葉の中で「走る」を意味するのはどれ？' },
-      { id: 764, lessonId: 67, type: "ASSIST", order: 4, question: '「走る」' },
-      { id: 765, lessonId: 67, type: "SELECT", order: 5, question: 'これらの言葉の中で「食べる」を意味するのはどれ？' },
-      { id: 766, lessonId: 67, type: "ASSIST", order: 6, question: '「食べる」' },
-      { id: 767, lessonId: 67, type: "SELECT", order: 7, question: 'これらの言葉の中で「飲む」を意味するのはどれ？' },
-      { id: 768, lessonId: 67, type: "ASSIST", order: 8, question: '「飲む」' },
-      { id: 769, lessonId: 67, type: "SELECT", order: 9, question: 'これらの言葉の中で「眠る」を意味するのはどれ？' },
-      { id: 770, lessonId: 67, type: "ASSIST", order: 10, question: '「眠る」' },
+      { id: 761, lessonId: 57, type: "SELECT", order: 1, question: 'これらの言葉の中で「歩く」を意味するのはどれ？' },
+      { id: 762, lessonId: 57, type: "ASSIST", order: 2, question: '「歩く」' },
+      { id: 763, lessonId: 57, type: "SELECT", order: 3, question: 'これらの言葉の中で「走る」を意味するのはどれ？' },
+      { id: 764, lessonId: 57, type: "ASSIST", order: 4, question: '「走る」' },
+      { id: 765, lessonId: 57, type: "SELECT", order: 5, question: 'これらの言葉の中で「食べる」を意味するのはどれ？' },
+      { id: 766, lessonId: 57, type: "ASSIST", order: 6, question: '「食べる」' },
+      { id: 767, lessonId: 57, type: "SELECT", order: 7, question: 'これらの言葉の中で「飲む」を意味するのはどれ？' },
+      { id: 768, lessonId: 57, type: "ASSIST", order: 8, question: '「飲む」' },
+      { id: 769, lessonId: 57, type: "SELECT", order: 9, question: 'これらの言葉の中で「眠る」を意味するのはどれ？' },
+      { id: 770, lessonId: 57, type: "ASSIST", order: 10, question: '「眠る」' },
     ])
 
     await db.insert(schema.challengeOptions).values([

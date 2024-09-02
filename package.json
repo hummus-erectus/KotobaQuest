@@ -14,15 +14,22 @@
 
     "db:seedENUnits": "tsx ./scripts/EN/seedENUnits.ts",
     "db:seedENOptions": "tsx ./scripts/EN/seedENOptions.ts",
-    "db:seedAllENLessons": "tsx ./scripts/seedENLesson1.ts && tsx ./scripts/seedENLesson2.ts && tsx ./scripts/seedENLesson3.ts && tsx ./scripts/seedENLesson4.ts",
+    "db:seedAllENLessons": "tsx ./scripts/seedENLesson1.ts && tsx ./scripts/seedENLesson2.ts && tsx ./scripts/seedENLesson3.ts && tsx ./scripts/seedENLesson4.ts && tsx ./scripts/seedENLesson5.ts",
     "db:ENLesson1": "tsx ./scripts/seedENLesson1.ts",
     "db:ENLesson2": "tsx ./scripts/seedENLesson2.ts",
     "db:ENLesson3": "tsx ./scripts/seedENLesson3.ts",
     "db:ENLesson4": "tsx ./scripts/seedENLesson4.ts",
 
-    "db:seedDEUnits": "tsx ./scripts/seedDEUnits.ts",
+    "db:seedDEUnits": "tsx ./scripts/DE/seedDEUnits.ts",
+    "db:seedDEOptions": "tsx ./scripts/DE/seedDEOptions.ts",
+
+    "db:seedAllDELessons": "tsx ./scripts/seedDELesson1.ts && tsx ./scripts/seedDELesson2.ts && tsx ./scripts/seedDELesson3.ts && tsx ./scripts/seedDELesson4.ts && tsx ./scripts/seedDELesson5.ts",
     "db:DELesson1": "tsx ./scripts/seedDELesson1.ts",
     "db:DELesson2": "tsx ./scripts/seedDELesson2.ts",
+    "db:DELesson3": "tsx ./scripts/seedDELesson3.ts",
+    "db:DELesson4": "tsx ./scripts/seedDELesson4.ts",
+    "db:DELesson5": "tsx ./scripts/seedDELesson5.ts",
+
 
     "db:seedFRUnits": "tsx ./scripts/seedFRUnits.ts",
 
