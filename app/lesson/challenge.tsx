@@ -3,11 +3,18 @@
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import { challengeOptions, challenges } from "@/db/schema"
-
 import { Card } from "./card"
 
 type Props = {
-  options: typeof challengeOptions.$inferSelect[]
+  options: {
+    id: number;
+    option: {
+      imageSrc?: string | null;
+      audioSrc?: string | null;
+      text: string;
+    };
+    correct: boolean;
+  }[];
   onSelect: (id: number) => void
   status: "correct" | "wrong" | "none"
   selectedOption?: number
@@ -35,7 +42,8 @@ export const Challenge = ({
   const [shuffledOptions, setShuffledOptions] = useState<typeof options>([]);
 
   useEffect(() => {
-    setShuffledOptions(shuffleArray(options));
+    setShuffledOptions(shuffleArray(options))
+    console.log("shuffledOptions", options);
   }, [options]);
 
   return (
@@ -48,13 +56,13 @@ export const Challenge = ({
         <Card
           key={option.id}
           id={option.id}
-          text={option.text}
-          imageSrc={option.imageSrc}
+          text={option.option.text}
+          imageSrc={type !== "ASSIST" ? option.option.imageSrc ?? null : null}
           shortcut={`${i + 1}`}
           selected={selectedOption === option.id}
           onClick={() => onSelect(option.id)}
           status={status}
-          audioSrc={option.audioSrc}
+          audioSrc={option.option.audioSrc ?? null}
           disabled={disabled}
           type={type}
         />

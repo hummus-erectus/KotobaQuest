@@ -12,7 +12,8 @@
     "db:seed": "tsx ./scripts/seed.ts",
     "db:seedReset": "tsx ./scripts/seedReset.ts",
 
-    "db:seedENUnits": "tsx ./scripts/seedENUnits.ts",
+    "db:seedENUnits": "tsx ./scripts/EN/seedENUnits.ts",
+    "db:seedENOptions": "tsx ./scripts/EN/seedENOptions.ts",
     "db:seedAllENLessons": "tsx ./scripts/seedENLesson1.ts && tsx ./scripts/seedENLesson2.ts && tsx ./scripts/seedENLesson3.ts && tsx ./scripts/seedENLesson4.ts",
     "db:ENLesson1": "tsx ./scripts/seedENLesson1.ts",
     "db:ENLesson2": "tsx ./scripts/seedENLesson2.ts",

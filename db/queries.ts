@@ -164,17 +164,13 @@ export const getCourseProgress = cache(async () => {
 export const getLesson = cache(async (id?: number) => {
   const { userId } = await auth()
 
-  if(!userId) {
+  if (!userId) {
     return null
   }
 
   const courseProgress = await getCourseProgress()
 
   const lessonId = id || courseProgress?.activeLessonId
-
-  console.log("Course Progress:", courseProgress);
-
-  console.log("Lesson ID:", lessonId);
 
   if (!lessonId) {
     return null
@@ -186,7 +182,11 @@ export const getLesson = cache(async (id?: number) => {
       challenges: {
         orderBy: (challenges, { asc }) => [asc(challenges.order)],
         with: {
-          challengeOptions: true,
+          challengeOptions: {
+            with: {
+              option: true, // Fetch related option for each challengeOption
+            },
+          },
           challengeProgress: {
             where: eq(challengeProgress.userId, userId),
           },
@@ -207,8 +207,9 @@ export const getLesson = cache(async (id?: number) => {
     return { ...challenge, completed }
   })
 
-  return { ...data, challenges: normalizedChallenges}
+  return { ...data, challenges: normalizedChallenges }
 })
+
 
 export const getLessonPercentage = cache(async () => {
   const courseProgress = await getCourseProgress()

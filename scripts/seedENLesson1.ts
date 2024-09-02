@@ -2,12 +2,13 @@ import "dotenv/config"
 import { drizzle } from "drizzle-orm/neon-http"
 import { neon } from "@neondatabase/serverless"
 
-import * as schema from "../db/schema"
+import * as schema from "@/db/schema"
+
 import { eq } from "drizzle-orm"
 
 const sql = neon(process.env.DATABASE_URL!)
 
-const db = drizzle(sql, {schema})
+const db = drizzle(sql, { schema })
 
 const main = async () => {
   try {
@@ -16,368 +17,93 @@ const main = async () => {
     await db.delete(schema.lessons).where(eq(schema.lessons.id, 1))
     await db.delete(schema.challenges).where(eq(schema.challenges.lessonId, 1))
 
-    await db.insert(schema.lessons).values([
-      {
-        id: 1,
-        unitId: 1, // Unit 1, Lesson 1
-        order: 1,
-        title: "名詞 I",
-      },
-    ])
+    // Insert Lesson
+    await db.insert(schema.lessons).values({
+      id: 1,
+      unitId: 1, // English Unit 1, Lesson 1
+      order: 1,
+      title: "名詞 I",
+    })
 
+    // New words used in this lesson
+    // man, woman, girl, boy, dog
+
+    // Insert Challenges
     await db.insert(schema.challenges).values([
-      {
-        id: 1,
-        lessonId: 1, // Lesson 1
-        type: "SELECT",
-        order: 1,
-        question: 'これらの言葉の中で「男の人」を意味するのはどれ？',
-      },
-      {
-        id: 2,
-        lessonId: 1,
-        type: "ASSIST",
-        order: 2,
-        question: '「男の人」',
-      },
-      {
-        id: 3,
-        lessonId: 1,
-        type: "SELECT",
-        order: 3,
-        question: 'これらの言葉の中で「女の人」を意味するのはどれ？',
-      },
-      {
-        id: 4,
-        lessonId: 1,
-        type: "ASSIST",
-        order: 4,
-        question: '「女の人」',
-      },
-      {
-        id: 5,
-        lessonId: 1,
-        type: "SELECT",
-        order: 5,
-        question: 'これらの言葉の中で「犬」を意味するのはどれ？',
-      },
-      {
-        id: 6,
-        lessonId: 1,
-        type: "ASSIST",
-        order: 6,
-        question: '「犬」',
-      },
-      {
-        id: 7,
-        lessonId: 1,
-        type: "SELECT",
-        order: 7,
-        question: 'これらの言葉の中で「男の子」を意味するのはどれ？',
-      },
-      {
-        id: 8,
-        lessonId: 1,
-        type: "ASSIST",
-        order: 8,
-        question: '「男の子」',
-      },
-      {
-        id: 9,
-        lessonId: 1,
-        type: "SELECT",
-        order: 9,
-        question: 'これらの言葉の中で「女の子」を意味するのはどれ？',
-      },
-      {
-        id: 10,
-        lessonId: 1,
-        type: "ASSIST",
-        order: 10,
-        question: '「女の子」',
-      },
+      { id: 1, lessonId: 1, type: "SELECT", order: 1, question: 'これらの言葉の中で「男の人」を意味するのはどれ？' },
+      { id: 2, lessonId: 1, type: "ASSIST", order: 2, question: '「男の人」' },
+      { id: 3, lessonId: 1, type: "SELECT", order: 3, question: 'これらの言葉の中で「女の人」を意味するのはどれ？' },
+      { id: 4, lessonId: 1, type: "ASSIST", order: 4, question: '「女の人」' },
+      { id: 5, lessonId: 1, type: "SELECT", order: 5, question: 'これらの言葉の中で「女の子」を意味するのはどれ？' },
+      { id: 6, lessonId: 1, type: "ASSIST", order: 6, question: '「女の子」' },
+      { id: 7, lessonId: 1, type: "SELECT", order: 7, question: 'これらの言葉の中で「男の子」を意味するのはどれ？' },
+      { id: 8, lessonId: 1, type: "ASSIST", order: 8, question: '「男の子」' },
+      { id: 9, lessonId: 1, type: "SELECT", order: 9, question: 'これらの言葉の中で「犬」を意味するのはどれ？' },
+      { id: 10, lessonId: 1, type: "ASSIST", order: 10, question: '「犬」' },
     ])
 
+    // Insert ChallengeOptions
     await db.insert(schema.challengeOptions).values([
-      // Question 1 - 男の人 (man)
-      {
-        challengeId: 1,
-        imageSrc: "/man.svg",
-        correct: true,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 1,
-        imageSrc: "/woman.svg",
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 1,
-        imageSrc: "/girl.svg",
-        correct: false,
-        text: "girl",
-        audioSrc: "/audio/en/en_girl.mp3",
-      },
-      {
-        challengeId: 1,
-        imageSrc: "/boy.svg",
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 1 - SELECT "男の人" (man)
+      { challengeId: 1, optionId: 1, correct: true }, //man
+      { challengeId: 1, optionId: 2, correct: false }, //woman
+      { challengeId: 1, optionId: 3, correct: false }, //girl
+      { challengeId: 1, optionId: 4, correct: false }, //boy
 
-      // Question 2 - 男の人 (man) ASSIST
-      {
-        challengeId: 2,
-        correct: true,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 2,
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 2,
-        correct: false,
-        text: "girl",
-        audioSrc: "/audio/en/en_girl.mp3",
-      },
-      {
-        challengeId: 2,
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 2 - ASSIST "男の人" (man)
+      { challengeId: 2, optionId: 1, correct: true }, //man
+      { challengeId: 2, optionId: 2, correct: false }, //woman
+      { challengeId: 2, optionId: 3, correct: false }, //girl
+      { challengeId: 2, optionId: 4, correct: false }, //boy
 
-      // Question 3 - 女の人 (woman)
-      {
-        challengeId: 3,
-        imageSrc: "/woman.svg",
-        correct: true,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 3,
-        imageSrc: "/man.svg",
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 3,
-        imageSrc: "/girl.svg",
-        correct: false,
-        text: "girl",
-        audioSrc: "/audio/en/en_girl.mp3",
-      },
-      {
-        challengeId: 3,
-        imageSrc: "/boy.svg",
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 3 - SELECT "女の人" (woman)
+      { challengeId: 3, optionId: 2, correct: true }, //woman
+      { challengeId: 3, optionId: 1, correct: false }, //man
+      { challengeId: 3, optionId: 3, correct: false }, //girl
+      { challengeId: 3, optionId: 4, correct: false }, //boy
 
-      // Question 4 - 女の人 (woman) ASSIST
-      {
-        challengeId: 4,
-        correct: true,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 4,
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 4,
-        correct: false,
-        text: "girl",
-        audioSrc: "/audio/en/en_girl.mp3",
-      },
-      {
-        challengeId: 4,
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 4 - ASSIST "女の人" (woman)
+      { challengeId: 4, optionId: 2, correct: true }, //woman
+      { challengeId: 4, optionId: 1, correct: false }, //man
+      { challengeId: 4, optionId: 3, correct: false }, //girl
+      { challengeId: 4, optionId: 4, correct: false }, //boy
 
-      // Question 5 - 犬 (dog)
-      {
-        challengeId: 5,
-        imageSrc: "/dog.svg",
-        correct: true,
-        text: "dog",
-        audioSrc: "/audio/en/en_dog.mp3",
-      },
-      {
-        challengeId: 5,
-        imageSrc: "/man.svg",
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 5,
-        imageSrc: "/woman.svg",
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 5,
-        imageSrc: "/boy.svg",
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 5 - SELECT "女の子" (girl)
+      { challengeId: 5, optionId: 3, correct: true }, //girl
+      { challengeId: 5, optionId: 1, correct: false }, //man
+      { challengeId: 5, optionId: 2, correct: false }, //woman
+      { challengeId: 5, optionId: 4, correct: false }, //boy
 
-      // Question 6 - 犬 (dog) ASSIST
-      {
-        challengeId: 6,
-        correct: true,
-        text: "dog",
-        audioSrc: "/audio/en/en_dog.mp3",
-      },
-      {
-        challengeId: 6,
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 6,
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 6,
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 6 - ASSIST "女の子" (girl)
+      { challengeId: 6, optionId: 3, correct: true }, //girl
+      { challengeId: 6, optionId: 1, correct: false }, //man
+      { challengeId: 6, optionId: 2, correct: false }, //woman
+      { challengeId: 6, optionId: 4, correct: false }, //boy
 
-      // Question 7 - 男の子 (boy)
-      {
-        challengeId: 7,
-        imageSrc: "/boy.svg",
-        correct: true,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
-      {
-        challengeId: 7,
-        imageSrc: "/man.svg",
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 7,
-        imageSrc: "/woman.svg",
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 7,
-        imageSrc: "/dog.svg",
-        correct: false,
-        text: "dog",
-        audioSrc: "/audio/en/en_dog.mp3",
-      },
+      // Question 7 - SELECT "男の子" (boy)
+      { challengeId: 7, optionId: 4, correct: true }, //boy
+      { challengeId: 7, optionId: 1, correct: false }, //man
+      { challengeId: 7, optionId: 2, correct: false }, //woman
+      { challengeId: 7, optionId: 5, correct: false }, //dog
 
-      // Question 8 - 男の子 (boy) ASSIST
-      {
-        challengeId: 8,
-        correct: true,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
-      {
-        challengeId: 8,
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 8,
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 8,
-        correct: false,
-        text: "dog",
-        audioSrc: "/audio/en/en_dog.mp3",
-      },
+      // Question 8 - ASSIST "男の子" (boy)
+      { challengeId: 8, optionId: 4, correct: true }, //boy
+      { challengeId: 8, optionId: 1, correct: false }, //man
+      { challengeId: 8, optionId: 2, correct: false }, //woman
+      { challengeId: 8, optionId: 5, correct: false }, //dog
 
-      // Question 9 - 女の子 (girl)
-      {
-        challengeId: 9,
-        imageSrc: "/girl.svg",
-        correct: true,
-        text: "girl",
-        audioSrc: "/audio/en/en_girl.mp3",
-      },
-      {
-        challengeId: 9,
-        imageSrc: "/man.svg",
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 9,
-        imageSrc: "/woman.svg",
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 9,
-        imageSrc: "/boy.svg",
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 9 - SELECT "犬" (dog)
+      { challengeId: 9, optionId: 5, correct: true }, //dog
+      { challengeId: 9, optionId: 1, correct: false }, //man
+      { challengeId: 9, optionId: 2, correct: false }, //woman
+      { challengeId: 9, optionId: 4, correct: false }, //boy
 
-      // Question 10 - 女の子 (girl) ASSIST
-      {
-        challengeId: 10,
-        correct: true,
-        text: "girl",
-        audioSrc: "/audio/en/en_girl.mp3",
-      },
-      {
-        challengeId: 10,
-        correct: false,
-        text: "man",
-        audioSrc: "/audio/en/en_man.mp3",
-      },
-      {
-        challengeId: 10,
-        correct: false,
-        text: "woman",
-        audioSrc: "/audio/en/en_woman.mp3",
-      },
-      {
-        challengeId: 10,
-        correct: false,
-        text: "boy",
-        audioSrc: "/audio/en/en_boy.mp3",
-      },
+      // Question 10 - ASSIST "犬" (dog)
+      { challengeId: 10, optionId: 5, correct: true }, //dog
+      { challengeId: 10, optionId: 1, correct: false }, //man
+      { challengeId: 10, optionId: 2, correct: false }, //woman
+      { challengeId: 10, optionId: 4, correct: false }, //boy
+
     ])
 
     console.log("Seed data inserted successfully for Unit 1, Lesson 1!")

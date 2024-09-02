@@ -26,15 +26,29 @@ const LessonPage = async () => {
     .filter((challenge) => challenge.completed)
     .length / lesson.challenges.length * 100
 
+  // Transform challengeOptions to match expected type
+  const transformedChallenges = lesson.challenges.map(challenge => ({
+    ...challenge,
+    challengeOptions: challenge.challengeOptions.map(option => ({
+      ...option,
+      option: {
+        ...option.option,
+        imageSrc: option.option.imageSrc ?? undefined,
+        audioSrc: option.option.audioSrc ?? undefined,
+      },
+    })),
+  }))
+
   return (
     <Quiz
       initialLessonId={lesson.id}
-      initialLessonChallenges={lesson.challenges}
+      initialLessonChallenges={transformedChallenges}
       initialHearts={userProgress.hearts}
       initialPercentage={initialPercentage}
       userSubscription={userSubscription}
     />
   )
 }
+
 
 export default LessonPage

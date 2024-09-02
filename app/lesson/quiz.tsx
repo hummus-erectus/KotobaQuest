@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation"
 import { reduceHearts } from "@/actions/user-progress"
 import { useHeartsModal } from "@/store/use-hearts-modal"
 import { usePracticeModal } from "@/store/use-practice-modal"
-import { challengeOptions, challenges, userSubscription} from "@/db/schema"
+import { challengeOptions, challenges, userSubscription } from "@/db/schema"
 import { upsertChallengeProgress } from "@/actions/challenge-progress"
 
 import { Header } from "./header"
@@ -26,7 +26,15 @@ type Props = {
   initialLessonId: number
   initialLessonChallenges: (typeof challenges.$inferSelect & {
     completed: boolean
-    challengeOptions: typeof challengeOptions.$inferSelect[]
+    challengeOptions: {
+      id: number;
+      option: {
+        text: string;
+        imageSrc?: string;
+        audioSrc?: string;
+      };
+      correct: boolean;
+    }[];
   })[]
   userSubscription: typeof userSubscription.$inferSelect & {
     isActive: boolean
@@ -49,23 +57,13 @@ export const Quiz = ({
     }
   })
 
-
   const { width, height } = useWindowSize()
-
   const router = useRouter()
 
-  const [finishAudio] = useAudio( {src: "/finish.mp3", autoPlay: true})
+  const [finishAudio] = useAudio({ src: "/finish.mp3", autoPlay: true })
 
-  const [
-    correctAudio,
-    _c,
-    correctControls,
-  ] = useAudio({ src: "/correct.wav" })
-  const [
-    incorrectAudio,
-    _i,
-    incorrectControls,
-  ] = useAudio({ src: "/incorrect.wav" })
+  const [correctAudio, _c, correctControls] = useAudio({ src: "/correct.wav" })
+  const [incorrectAudio, _i, incorrectControls] = useAudio({ src: "/incorrect.wav" })
   const [pending, startTransition] = useTransition()
 
   const [lessonId, setLessonId] = useState(initialLessonId)
@@ -84,6 +82,8 @@ export const Quiz = ({
 
   const challenge = challenges[activeIndex]
   const options = challenge?.challengeOptions ?? []
+
+  console.log("Challenge options:", options)
 
   const onNext = () => {
     setActiveIndex((current) => current + 1)
@@ -113,13 +113,13 @@ export const Quiz = ({
 
     const correctOption = options.find((option) => option.correct)
 
-    if(!correctOption) return
+    if (!correctOption) return
 
-    if (correctOption && correctOption.id === selectedOption){
+    if (correctOption.id === selectedOption) {
       startTransition(() => {
         upsertChallengeProgress(challenge.id)
           .then((response) => {
-            if(response?.error === "hearts") {
+            if (response?.error === "hearts") {
               openHeartsModal()
               return
             }
@@ -130,7 +130,7 @@ export const Quiz = ({
 
             // This is a practice
             if (initialPercentage === 100) {
-              setHearts((prev) => Math.min(prev +1, MAXIMUM_HEARTS))
+              setHearts((prev) => Math.min(prev + 1, MAXIMUM_HEARTS))
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."))
@@ -139,7 +139,7 @@ export const Quiz = ({
       startTransition(() => {
         reduceHearts(challenge.id)
           .then((response) => {
-            if (response?.error === "hearts"){
+            if (response?.error === "hearts") {
               openHeartsModal()
               return
             }
@@ -148,7 +148,7 @@ export const Quiz = ({
             setStatus("wrong")
 
             if (!response?.error) {
-              setHearts((prev) => Math.max(prev -1, 0))
+              setHearts((prev) => Math.max(prev - 1, 0))
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."))
@@ -206,8 +206,8 @@ export const Quiz = ({
   }
 
   const title = challenge.type === "ASSIST"
-  ? "正しい意味を選んでください"
-  : challenge.question
+    ? "正しい意味を選んでください"
+    : challenge.question
 
   return (
     <>
