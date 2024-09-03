@@ -43,64 +43,64 @@ const main = async () => {
 
     await db.insert(schema.challengeOptions).values([
       // Question 1 - SELECT "男の人" (der Mann)
-      { challengeId: 751, optionId: 1, correct: true }, // der Mann
-      { challengeId: 751, optionId: 2, correct: false }, // die Frau
-      { challengeId: 751, optionId: 3, correct: false }, // das Mädchen
-      { challengeId: 751, optionId: 4, correct: false }, // der Junge
+      { challengeId: 751, optionId: 251, correct: true }, // der Mann
+      { challengeId: 751, optionId: 252, correct: false }, // die Frau
+      { challengeId: 751, optionId: 253, correct: false }, // das Mädchen
+      { challengeId: 751, optionId: 254, correct: false }, // der Junge
 
       // Question 2 - ASSIST "男の人" (der Mann)
-      { challengeId: 752, optionId: 1, correct: true }, // der Mann
-      { challengeId: 752, optionId: 2, correct: false }, // die Frau
-      { challengeId: 752, optionId: 3, correct: false }, // das Mädchen
-      { challengeId: 752, optionId: 4, correct: false }, // der Junge
+      { challengeId: 752, optionId: 251, correct: true }, // der Mann
+      { challengeId: 752, optionId: 252, correct: false }, // die Frau
+      { challengeId: 752, optionId: 253, correct: false }, // das Mädchen
+      { challengeId: 752, optionId: 254, correct: false }, // der Junge
 
       // Question 3 - SELECT "女の人" (die Frau)
-      { challengeId: 753, optionId: 2, correct: true }, // die Frau
-      { challengeId: 753, optionId: 1, correct: false }, // der Mann
-      { challengeId: 753, optionId: 3, correct: false }, // das Mädchen
-      { challengeId: 753, optionId: 4, correct: false }, // der Junge
+      { challengeId: 753, optionId: 252, correct: true }, // die Frau
+      { challengeId: 753, optionId: 251, correct: false }, // der Mann
+      { challengeId: 753, optionId: 253, correct: false }, // das Mädchen
+      { challengeId: 753, optionId: 254, correct: false }, // der Junge
 
       // Question 4 - ASSIST "女の人" (die Frau)
-      { challengeId: 754, optionId: 2, correct: true }, // die Frau
-      { challengeId: 754, optionId: 1, correct: false }, // der Mann
-      { challengeId: 754, optionId: 3, correct: false }, // das Mädchen
-      { challengeId: 754, optionId: 4, correct: false }, // der Junge
+      { challengeId: 754, optionId: 252, correct: true }, // die Frau
+      { challengeId: 754, optionId: 251, correct: false }, // der Mann
+      { challengeId: 754, optionId: 253, correct: false }, // das Mädchen
+      { challengeId: 754, optionId: 254, correct: false }, // der Junge
 
       // Question 5 - SELECT "女の子" (das Mädchen)
-      { challengeId: 755, optionId: 3, correct: true }, // das Mädchen
-      { challengeId: 755, optionId: 1, correct: false }, // der Mann
-      { challengeId: 755, optionId: 2, correct: false }, // die Frau
-      { challengeId: 755, optionId: 4, correct: false }, // der Junge
+      { challengeId: 755, optionId: 253, correct: true }, // das Mädchen
+      { challengeId: 755, optionId: 251, correct: false }, // der Mann
+      { challengeId: 755, optionId: 252, correct: false }, // die Frau
+      { challengeId: 755, optionId: 254, correct: false }, // der Junge
 
       // Question 6 - ASSIST "女の子" (das Mädchen)
-      { challengeId: 756, optionId: 3, correct: true }, // das Mädchen
-      { challengeId: 756, optionId: 1, correct: false }, // der Mann
-      { challengeId: 756, optionId: 2, correct: false }, // die Frau
-      { challengeId: 756, optionId: 4, correct: false }, // der Junge
+      { challengeId: 756, optionId: 253, correct: true }, // das Mädchen
+      { challengeId: 756, optionId: 251, correct: false }, // der Mann
+      { challengeId: 756, optionId: 252, correct: false }, // die Frau
+      { challengeId: 756, optionId: 254, correct: false }, // der Junge
 
       // Question 7 - SELECT "男の子" (der Junge)
-      { challengeId: 757, optionId: 4, correct: true }, // der Junge
-      { challengeId: 757, optionId: 1, correct: false }, // der Mann
-      { challengeId: 757, optionId: 2, correct: false }, // die Frau
-      { challengeId: 757, optionId: 5, correct: false }, // der Hund
+      { challengeId: 757, optionId: 254, correct: true }, // der Junge
+      { challengeId: 757, optionId: 251, correct: false }, // der Mann
+      { challengeId: 757, optionId: 252, correct: false }, // die Frau
+      { challengeId: 757, optionId: 255, correct: false }, // der Hund
 
       // Question 8 - ASSIST "男の子" (der Junge)
-      { challengeId: 758, optionId: 4, correct: true }, // der Junge
-      { challengeId: 758, optionId: 1, correct: false }, // der Mann
-      { challengeId: 758, optionId: 2, correct: false }, // die Frau
-      { challengeId: 758, optionId: 5, correct: false }, // der Hund
+      { challengeId: 758, optionId: 254, correct: true }, // der Junge
+      { challengeId: 758, optionId: 251, correct: false }, // der Mann
+      { challengeId: 758, optionId: 252, correct: false }, // die Frau
+      { challengeId: 758, optionId: 255, correct: false }, // der Hund
 
       // Question 9 - SELECT "犬" (der Hund)
-      { challengeId: 759, optionId: 5, correct: true }, // der Hund
-      { challengeId: 759, optionId: 1, correct: false }, // der Mann
-      { challengeId: 759, optionId: 2, correct: false }, // die Frau
-      { challengeId: 759, optionId: 4, correct: false }, // der Junge
+      { challengeId: 759, optionId: 255, correct: true }, // der Hund
+      { challengeId: 759, optionId: 251, correct: false }, // der Mann
+      { challengeId: 759, optionId: 252, correct: false }, // die Frau
+      { challengeId: 759, optionId: 254, correct: false }, // der Junge
 
       // Question 10 - ASSIST "犬" (der Hund)
-      { challengeId: 760, optionId: 5, correct: true }, // der Hund
-      { challengeId: 760, optionId: 1, correct: false }, // der Mann
-      { challengeId: 760, optionId: 2, correct: false }, // die Frau
-      { challengeId: 760, optionId: 4, correct: false }, // der Junge
+      { challengeId: 760, optionId: 255, correct: true }, // der Hund
+      { challengeId: 760, optionId: 251, correct: false }, // der Mann
+      { challengeId: 760, optionId: 252, correct: false }, // die Frau
+      { challengeId: 760, optionId: 254, correct: false }, // der Junge
 
     ])
 

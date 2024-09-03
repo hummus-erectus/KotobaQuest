@@ -43,64 +43,64 @@ const main = async () => {
 
     await db.insert(schema.challengeOptions).values([
       // Question 1 - SELECT "大きい" (groß)
-      { challengeId: 791, optionId: 1, correct: true }, // groß
-      { challengeId: 791, optionId: 2, correct: false }, // klein
-      { challengeId: 791, optionId: 3, correct: false }, // glücklich
-      { challengeId: 791, optionId: 4, correct: false }, // traurig
+      { challengeId: 791, optionId: 266, correct: true }, // groß
+      { challengeId: 791, optionId: 267, correct: false }, // klein
+      { challengeId: 791, optionId: 268, correct: false }, // glücklich
+      { challengeId: 791, optionId: 269, correct: false }, // traurig
 
       // Question 2 - ASSIST "大きい" (groß)
-      { challengeId: 792, optionId: 1, correct: true }, // groß
-      { challengeId: 792, optionId: 2, correct: false }, // klein
-      { challengeId: 792, optionId: 3, correct: false }, // glücklich
-      { challengeId: 792, optionId: 4, correct: false }, // traurig
+      { challengeId: 792, optionId: 266, correct: true }, // groß
+      { challengeId: 792, optionId: 267, correct: false }, // klein
+      { challengeId: 792, optionId: 268, correct: false }, // glücklich
+      { challengeId: 792, optionId: 269, correct: false }, // traurig
 
       // Question 3 - SELECT "小さい" (klein)
-      { challengeId: 793, optionId: 2, correct: true }, // klein
-      { challengeId: 793, optionId: 1, correct: false }, // groß
-      { challengeId: 793, optionId: 3, correct: false }, // glücklich
-      { challengeId: 793, optionId: 4, correct: false }, // traurig
+      { challengeId: 793, optionId: 267, correct: true }, // klein
+      { challengeId: 793, optionId: 266, correct: false }, // groß
+      { challengeId: 793, optionId: 268, correct: false }, // glücklich
+      { challengeId: 793, optionId: 269, correct: false }, // traurig
 
       // Question 4 - ASSIST "小さい" (klein)
-      { challengeId: 794, optionId: 2, correct: true }, // klein
-      { challengeId: 794, optionId: 1, correct: false }, // groß
-      { challengeId: 794, optionId: 3, correct: false }, // glücklich
-      { challengeId: 794, optionId: 4, correct: false }, // traurig
+      { challengeId: 794, optionId: 267, correct: true }, // klein
+      { challengeId: 794, optionId: 266, correct: false }, // groß
+      { challengeId: 794, optionId: 268, correct: false }, // glücklich
+      { challengeId: 794, optionId: 269, correct: false }, // traurig
 
       // Question 5 - SELECT "幸せな" (glücklich)
-      { challengeId: 795, optionId: 3, correct: true }, // glücklich
-      { challengeId: 795, optionId: 1, correct: false }, // groß
-      { challengeId: 795, optionId: 2, correct: false }, // klein
-      { challengeId: 795, optionId: 4, correct: false }, // traurig
+      { challengeId: 795, optionId: 268, correct: true }, // glücklich
+      { challengeId: 795, optionId: 266, correct: false }, // groß
+      { challengeId: 795, optionId: 267, correct: false }, // klein
+      { challengeId: 795, optionId: 269, correct: false }, // traurig
 
       // Question 6 - ASSIST "幸せな" (glücklich)
-      { challengeId: 796, optionId: 3, correct: true }, // glücklich
-      { challengeId: 796, optionId: 1, correct: false }, // groß
-      { challengeId: 796, optionId: 2, correct: false }, // klein
-      { challengeId: 796, optionId: 4, correct: false }, // traurig
+      { challengeId: 796, optionId: 268, correct: true }, // glücklich
+      { challengeId: 796, optionId: 266, correct: false }, // groß
+      { challengeId: 796, optionId: 267, correct: false }, // klein
+      { challengeId: 796, optionId: 269, correct: false }, // traurig
 
       // Question 7 - SELECT "悲しい" (traurig)
-      { challengeId: 797, optionId: 4, correct: true }, // traurig
-      { challengeId: 797, optionId: 1, correct: false }, // groß
-      { challengeId: 797, optionId: 2, correct: false }, // klein
-      { challengeId: 797, optionId: 3, correct: false }, // glücklich
+      { challengeId: 797, optionId: 269, correct: true }, // traurig
+      { challengeId: 797, optionId: 266, correct: false }, // groß
+      { challengeId: 797, optionId: 267, correct: false }, // klein
+      { challengeId: 797, optionId: 268, correct: false }, // glücklich
 
       // Question 8 - ASSIST "悲しい" (traurig)
-      { challengeId: 798, optionId: 4, correct: true }, // traurig
-      { challengeId: 798, optionId: 1, correct: false }, // groß
-      { challengeId: 798, optionId: 2, correct: false }, // klein
-      { challengeId: 798, optionId: 3, correct: false }, // glücklich
+      { challengeId: 798, optionId: 269, correct: true }, // traurig
+      { challengeId: 798, optionId: 266, correct: false }, // groß
+      { challengeId: 798, optionId: 267, correct: false }, // klein
+      { challengeId: 798, optionId: 268, correct: false }, // glücklich
 
       // Question 9 - SELECT "速い" (schnell)
-      { challengeId: 799, optionId: 5, correct: true }, // schnell
-      { challengeId: 799, optionId: 1, correct: false }, // groß
-      { challengeId: 799, optionId: 2, correct: false }, // klein
-      { challengeId: 799, optionId: 3, correct: false }, // glücklich
+      { challengeId: 799, optionId: 270, correct: true }, // schnell
+      { challengeId: 799, optionId: 266, correct: false }, // groß
+      { challengeId: 799, optionId: 267, correct: false }, // klein
+      { challengeId: 799, optionId: 268, correct: false }, // glücklich
 
       // Question 10 - ASSIST "速い" (schnell)
-      { challengeId: 800, optionId: 5, correct: true }, // schnell
-      { challengeId: 800, optionId: 1, correct: false }, // groß
-      { challengeId: 800, optionId: 2, correct: false }, // klein
-      { challengeId: 800, optionId: 3, correct: false }, // glücklich
+      { challengeId: 800, optionId: 270, correct: true }, // schnell
+      { challengeId: 800, optionId: 266, correct: false }, // groß
+      { challengeId: 800, optionId: 267, correct: false }, // klein
+      { challengeId: 800, optionId: 268, correct: false }, // glücklich
     ])
 
     console.log("Seed data inserted successfully for German Unit 1, Lesson 4!")

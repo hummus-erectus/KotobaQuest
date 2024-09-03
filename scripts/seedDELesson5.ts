@@ -43,64 +43,64 @@ const main = async () => {
 
     await db.insert(schema.challengeOptions).values([
       // Question 1 - SELECT "リンゴ" (der Apfel)
-      { challengeId: 811, optionId: 1, correct: true }, // der Apfel
-      { challengeId: 811, optionId: 2, correct: false }, // die Banane
-      { challengeId: 811, optionId: 3, correct: false }, // das Brot
-      { challengeId: 811, optionId: 4, correct: false }, // das Wasser
+      { challengeId: 811, optionId: 271, correct: true }, // der Apfel
+      { challengeId: 811, optionId: 272, correct: false }, // die Banane
+      { challengeId: 811, optionId: 273, correct: false }, // das Brot
+      { challengeId: 811, optionId: 274, correct: false }, // das Wasser
 
       // Question 2 - ASSIST "リンゴ" (der Apfel)
-      { challengeId: 812, optionId: 1, correct: true }, // der Apfel
-      { challengeId: 812, optionId: 2, correct: false }, // die Banane
-      { challengeId: 812, optionId: 3, correct: false }, // das Brot
-      { challengeId: 812, optionId: 4, correct: false }, // das Wasser
+      { challengeId: 812, optionId: 271, correct: true }, // der Apfel
+      { challengeId: 812, optionId: 272, correct: false }, // die Banane
+      { challengeId: 812, optionId: 273, correct: false }, // das Brot
+      { challengeId: 812, optionId: 274, correct: false }, // das Wasser
 
       // Question 3 - SELECT "バナナ" (die Banane)
-      { challengeId: 813, optionId: 2, correct: true }, // die Banane
-      { challengeId: 813, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 813, optionId: 3, correct: false }, // das Brot
-      { challengeId: 813, optionId: 4, correct: false }, // das Wasser
+      { challengeId: 813, optionId: 272, correct: true }, // die Banane
+      { challengeId: 813, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 813, optionId: 273, correct: false }, // das Brot
+      { challengeId: 813, optionId: 274, correct: false }, // das Wasser
 
       // Question 4 - ASSIST "バナナ" (die Banane)
-      { challengeId: 814, optionId: 2, correct: true }, // die Banane
-      { challengeId: 814, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 814, optionId: 3, correct: false }, // das Brot
-      { challengeId: 814, optionId: 4, correct: false }, // das Wasser
+      { challengeId: 814, optionId: 272, correct: true }, // die Banane
+      { challengeId: 814, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 814, optionId: 273, correct: false }, // das Brot
+      { challengeId: 814, optionId: 274, correct: false }, // das Wasser
 
       // Question 5 - SELECT "パン" (das Brot)
-      { challengeId: 815, optionId: 3, correct: true }, // das Brot
-      { challengeId: 815, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 815, optionId: 2, correct: false }, // die Banane
-      { challengeId: 815, optionId: 4, correct: false }, // das Wasser
+      { challengeId: 815, optionId: 273, correct: true }, // das Brot
+      { challengeId: 815, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 815, optionId: 272, correct: false }, // die Banane
+      { challengeId: 815, optionId: 274, correct: false }, // das Wasser
 
       // Question 6 - ASSIST "パン" (das Brot)
-      { challengeId: 816, optionId: 3, correct: true }, // das Brot
-      { challengeId: 816, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 816, optionId: 2, correct: false }, // die Banane
-      { challengeId: 816, optionId: 4, correct: false }, // das Wasser
+      { challengeId: 816, optionId: 273, correct: true }, // das Brot
+      { challengeId: 816, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 816, optionId: 272, correct: false }, // die Banane
+      { challengeId: 816, optionId: 274, correct: false }, // das Wasser
 
       // Question 7 - SELECT "水" (das Wasser)
-      { challengeId: 817, optionId: 4, correct: true }, // das Wasser
-      { challengeId: 817, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 817, optionId: 2, correct: false }, // die Banane
-      { challengeId: 817, optionId: 3, correct: false }, // das Brot
+      { challengeId: 817, optionId: 274, correct: true }, // das Wasser
+      { challengeId: 817, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 817, optionId: 272, correct: false }, // die Banane
+      { challengeId: 817, optionId: 273, correct: false }, // das Brot
 
       // Question 8 - ASSIST "水" (das Wasser)
-      { challengeId: 818, optionId: 4, correct: true }, // das Wasser
-      { challengeId: 818, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 818, optionId: 2, correct: false }, // die Banane
-      { challengeId: 818, optionId: 3, correct: false }, // das Brot
+      { challengeId: 818, optionId: 274, correct: true }, // das Wasser
+      { challengeId: 818, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 818, optionId: 272, correct: false }, // die Banane
+      { challengeId: 818, optionId: 273, correct: false }, // das Brot
 
       // Question 9 - SELECT "ミルク" (die Milch)
-      { challengeId: 819, optionId: 5, correct: true }, // die Milch
-      { challengeId: 819, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 819, optionId: 2, correct: false }, // die Banane
-      { challengeId: 819, optionId: 3, correct: false }, // das Brot
+      { challengeId: 819, optionId: 275, correct: true }, // die Milch
+      { challengeId: 819, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 819, optionId: 272, correct: false }, // die Banane
+      { challengeId: 819, optionId: 273, correct: false }, // das Brot
 
       // Question 10 - ASSIST "ミルク" (die Milch)
-      { challengeId: 820, optionId: 5, correct: true }, // die Milch
-      { challengeId: 820, optionId: 1, correct: false }, // der Apfel
-      { challengeId: 820, optionId: 2, correct: false }, // die Banane
-      { challengeId: 820, optionId: 3, correct: false }, // das Brot
+      { challengeId: 820, optionId: 275, correct: true }, // die Milch
+      { challengeId: 820, optionId: 271, correct: false }, // der Apfel
+      { challengeId: 820, optionId: 272, correct: false }, // die Banane
+      { challengeId: 820, optionId: 273, correct: false }, // das Brot
     ])
 
     console.log("Seed data inserted successfully for German Unit 1, Lesson 5!")

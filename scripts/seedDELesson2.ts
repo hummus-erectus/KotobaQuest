@@ -43,64 +43,64 @@ const main = async () => {
 
     await db.insert(schema.challengeOptions).values([
       // Question 1 - SELECT "歩く" (gehen)
-      { challengeId: 761, optionId: 1, correct: true }, // gehen
-      { challengeId: 761, optionId: 2, correct: false }, // laufen
-      { challengeId: 761, optionId: 3, correct: false }, // essen
-      { challengeId: 761, optionId: 4, correct: false }, // trinken
+      { challengeId: 761, optionId: 256, correct: true }, // gehen
+      { challengeId: 761, optionId: 257, correct: false }, // laufen
+      { challengeId: 761, optionId: 258, correct: false }, // essen
+      { challengeId: 761, optionId: 259, correct: false }, // trinken
 
       // Question 2 - ASSIST "歩く" (gehen)
-      { challengeId: 762, optionId: 1, correct: true }, // gehen
-      { challengeId: 762, optionId: 2, correct: false }, // laufen
-      { challengeId: 762, optionId: 3, correct: false }, // essen
-      { challengeId: 762, optionId: 4, correct: false }, // trinken
+      { challengeId: 762, optionId: 256, correct: true }, // gehen
+      { challengeId: 762, optionId: 257, correct: false }, // laufen
+      { challengeId: 762, optionId: 258, correct: false }, // essen
+      { challengeId: 762, optionId: 259, correct: false }, // trinken
 
       // Question 3 - SELECT "走る" (laufen)
-      { challengeId: 763, optionId: 2, correct: true }, // laufen
-      { challengeId: 763, optionId: 1, correct: false }, // gehen
-      { challengeId: 763, optionId: 3, correct: false }, // essen
-      { challengeId: 763, optionId: 4, correct: false }, // trinken
+      { challengeId: 763, optionId: 257, correct: true }, // laufen
+      { challengeId: 763, optionId: 256, correct: false }, // gehen
+      { challengeId: 763, optionId: 258, correct: false }, // essen
+      { challengeId: 763, optionId: 259, correct: false }, // trinken
 
       // Question 4 - ASSIST "走る" (laufen)
-      { challengeId: 764, optionId: 2, correct: true }, // laufen
-      { challengeId: 764, optionId: 1, correct: false }, // gehen
-      { challengeId: 764, optionId: 3, correct: false }, // essen
-      { challengeId: 764, optionId: 4, correct: false }, // trinken
+      { challengeId: 764, optionId: 257, correct: true }, // laufen
+      { challengeId: 764, optionId: 256, correct: false }, // gehen
+      { challengeId: 764, optionId: 258, correct: false }, // essen
+      { challengeId: 764, optionId: 259, correct: false }, // trinken
 
       // Question 5 - SELECT "食べる" (essen)
-      { challengeId: 765, optionId: 3, correct: true }, // essen
-      { challengeId: 765, optionId: 1, correct: false }, // gehen
-      { challengeId: 765, optionId: 2, correct: false }, // laufen
-      { challengeId: 765, optionId: 4, correct: false }, // trinken
+      { challengeId: 765, optionId: 258, correct: true }, // essen
+      { challengeId: 765, optionId: 256, correct: false }, // gehen
+      { challengeId: 765, optionId: 257, correct: false }, // laufen
+      { challengeId: 765, optionId: 259, correct: false }, // trinken
 
       // Question 6 - ASSIST "食べる" (essen)
-      { challengeId: 766, optionId: 3, correct: true }, // essen
-      { challengeId: 766, optionId: 1, correct: false }, // gehen
-      { challengeId: 766, optionId: 2, correct: false }, // laufen
-      { challengeId: 766, optionId: 4, correct: false }, // trinken
+      { challengeId: 766, optionId: 258, correct: true }, // essen
+      { challengeId: 766, optionId: 256, correct: false }, // gehen
+      { challengeId: 766, optionId: 257, correct: false }, // laufen
+      { challengeId: 766, optionId: 259, correct: false }, // trinken
 
       // Question 7 - SELECT "飲む" (trinken)
-      { challengeId: 767, optionId: 4, correct: true }, // trinken
-      { challengeId: 767, optionId: 1, correct: false }, // gehen
-      { challengeId: 767, optionId: 2, correct: false }, // laufen
-      { challengeId: 767, optionId: 3, correct: false }, // essen
+      { challengeId: 767, optionId: 259, correct: true }, // trinken
+      { challengeId: 767, optionId: 256, correct: false }, // gehen
+      { challengeId: 767, optionId: 257, correct: false }, // laufen
+      { challengeId: 767, optionId: 258, correct: false }, // essen
 
       // Question 8 - ASSIST "飲む" (trinken)
-      { challengeId: 768, optionId: 4, correct: true }, // trinken
-      { challengeId: 768, optionId: 1, correct: false }, // gehen
-      { challengeId: 768, optionId: 2, correct: false }, // laufen
-      { challengeId: 768, optionId: 3, correct: false }, // essen
+      { challengeId: 768, optionId: 259, correct: true }, // trinken
+      { challengeId: 768, optionId: 256, correct: false }, // gehen
+      { challengeId: 768, optionId: 257, correct: false }, // laufen
+      { challengeId: 768, optionId: 258, correct: false }, // essen
 
       // Question 9 - SELECT "眠る" (schlafen)
-      { challengeId: 769, optionId: 5, correct: true }, // schlafen
-      { challengeId: 769, optionId: 1, correct: false }, // gehen
-      { challengeId: 769, optionId: 2, correct: false }, // laufen
-      { challengeId: 769, optionId: 3, correct: false }, // essen
+      { challengeId: 769, optionId: 260, correct: true }, // schlafen
+      { challengeId: 769, optionId: 256, correct: false }, // gehen
+      { challengeId: 769, optionId: 257, correct: false }, // laufen
+      { challengeId: 769, optionId: 258, correct: false }, // essen
 
       // Question 10 - ASSIST "眠る" (schlafen)
-      { challengeId: 770, optionId: 5, correct: true }, // schlafen
-      { challengeId: 770, optionId: 1, correct: false }, // gehen
-      { challengeId: 770, optionId: 2, correct: false }, // laufen
-      { challengeId: 770, optionId: 3, correct: false }, // essen
+      { challengeId: 770, optionId: 260, correct: true }, // schlafen
+      { challengeId: 770, optionId: 256, correct: false }, // gehen
+      { challengeId: 770, optionId: 257, correct: false }, // laufen
+      { challengeId: 770, optionId: 258, correct: false }, // essen
     ])
 
     console.log("Seed data inserted successfully for German Unit 1, Lesson 2!")
