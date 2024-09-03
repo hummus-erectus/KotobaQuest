@@ -43,64 +43,64 @@ const main = async () => {
 
     await db.insert(schema.challengeOptions).values([
       // Question 1 - SELECT "歩く" (walk)
-      { challengeId: 11, optionId: 1, correct: true }, //walk
-      { challengeId: 11, optionId: 2, correct: false }, //run
-      { challengeId: 11, optionId: 3, correct: false }, //eat
-      { challengeId: 11, optionId: 4, correct: false }, //drink
+      { challengeId: 11, optionId: 6, correct: true }, //walk
+      { challengeId: 11, optionId: 7, correct: false }, //run
+      { challengeId: 11, optionId: 8, correct: false }, //eat
+      { challengeId: 11, optionId: 9, correct: false }, //drink
 
       // Question 2 - ASSIST "歩く" (walk)
-      { challengeId: 12, optionId: 1, correct: true }, //walk
-      { challengeId: 12, optionId: 2, correct: false }, //run
-      { challengeId: 12, optionId: 3, correct: false }, //eat
-      { challengeId: 12, optionId: 4, correct: false }, //drink
+      { challengeId: 12, optionId: 6, correct: true }, //walk
+      { challengeId: 12, optionId: 7, correct: false }, //run
+      { challengeId: 12, optionId: 8, correct: false }, //eat
+      { challengeId: 12, optionId: 9, correct: false }, //drink
 
       // Question 3 - SELECT "走る" (run)
-      { challengeId: 13, optionId: 2, correct: true }, //run
-      { challengeId: 13, optionId: 1, correct: false }, //walk
-      { challengeId: 13, optionId: 3, correct: false }, //eat
-      { challengeId: 13, optionId: 4, correct: false }, //drink
+      { challengeId: 13, optionId: 7, correct: true }, //run
+      { challengeId: 13, optionId: 6, correct: false }, //walk
+      { challengeId: 13, optionId: 8, correct: false }, //eat
+      { challengeId: 13, optionId: 9, correct: false }, //drink
 
       // Question 4 - ASSIST "走る" (run)
-      { challengeId: 14, optionId: 2, correct: true }, //run
-      { challengeId: 14, optionId: 1, correct: false }, //walk
-      { challengeId: 14, optionId: 3, correct: false }, //eat
-      { challengeId: 14, optionId: 4, correct: false }, //drink
+      { challengeId: 14, optionId: 7, correct: true }, //run
+      { challengeId: 14, optionId: 6, correct: false }, //walk
+      { challengeId: 14, optionId: 8, correct: false }, //eat
+      { challengeId: 14, optionId: 9, correct: false }, //drink
 
       // Question 5 - SELECT "食べる" (eat)
-      { challengeId: 15, optionId: 3, correct: true }, //eat
-      { challengeId: 15, optionId: 1, correct: false }, //walk
-      { challengeId: 15, optionId: 2, correct: false }, //run
-      { challengeId: 15, optionId: 4, correct: false }, //drink
+      { challengeId: 15, optionId: 8, correct: true }, //eat
+      { challengeId: 15, optionId: 6, correct: false }, //walk
+      { challengeId: 15, optionId: 7, correct: false }, //run
+      { challengeId: 15, optionId: 9, correct: false }, //drink
 
       // Question 6 - ASSIST "食べる" (eat)
-      { challengeId: 16, optionId: 3, correct: true }, //eat
-      { challengeId: 16, optionId: 1, correct: false }, //walk
-      { challengeId: 16, optionId: 2, correct: false }, //run
-      { challengeId: 16, optionId: 4, correct: false }, //drink
+      { challengeId: 16, optionId: 8, correct: true }, //eat
+      { challengeId: 16, optionId: 6, correct: false }, //walk
+      { challengeId: 16, optionId: 7, correct: false }, //run
+      { challengeId: 16, optionId: 9, correct: false }, //drink
 
       // Question 7 - SELECT "飲む" (drink)
-      { challengeId: 17, optionId: 4, correct: true }, //drink
-      { challengeId: 17, optionId: 1, correct: false }, //walk
-      { challengeId: 17, optionId: 2, correct: false }, //run
-      { challengeId: 17, optionId: 3, correct: false }, //eat
+      { challengeId: 17, optionId: 9, correct: true }, //drink
+      { challengeId: 17, optionId: 6, correct: false }, //walk
+      { challengeId: 17, optionId: 7, correct: false }, //run
+      { challengeId: 17, optionId: 8, correct: false }, //eat
 
       // Question 8 - ASSIST "飲む" (drink)
-      { challengeId: 18, optionId: 4, correct: true }, //drink
-      { challengeId: 18, optionId: 1, correct: false }, //walk
-      { challengeId: 18, optionId: 2, correct: false }, //run
-      { challengeId: 18, optionId: 3, correct: false }, //eat
+      { challengeId: 18, optionId: 9, correct: true }, //drink
+      { challengeId: 18, optionId: 6, correct: false }, //walk
+      { challengeId: 18, optionId: 7, correct: false }, //run
+      { challengeId: 18, optionId: 8, correct: false }, //eat
 
       // Question 9 - SELECT "寝る" (sleep)
-      { challengeId: 19, optionId: 5, correct: true }, //sleep
-      { challengeId: 19, optionId: 1, correct: false }, //walk
-      { challengeId: 19, optionId: 2, correct: false }, //run
-      { challengeId: 19, optionId: 3, correct: false }, //eat
+      { challengeId: 19, optionId: 10, correct: true }, //sleep
+      { challengeId: 19, optionId: 6, correct: false }, //walk
+      { challengeId: 19, optionId: 7, correct: false }, //run
+      { challengeId: 19, optionId: 8, correct: false }, //eat
 
       // Question 10 - ASSIST "寝る" (sleep)
-      { challengeId: 20, optionId: 5, correct: true }, //sleep
-      { challengeId: 20, optionId: 1, correct: false }, //walk
-      { challengeId: 20, optionId: 2, correct: false }, //run
-      { challengeId: 20, optionId: 3, correct: false }, //eat
+      { challengeId: 20, optionId: 10, correct: true }, //sleep
+      { challengeId: 20, optionId: 6, correct: false }, //walk
+      { challengeId: 20, optionId: 7, correct: false }, //run
+      { challengeId: 20, optionId: 8, correct: false }, //eat
     ])
 
     console.log("Seed data inserted successfully for Unit 1, Lesson 2!")

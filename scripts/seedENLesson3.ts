@@ -43,64 +43,64 @@ const main = async () => {
 
     await db.insert(schema.challengeOptions).values([
       // Question 1 - SELECT "猫" (cat)
-      { challengeId: 21, optionId: 1, correct: true }, // cat
-      { challengeId: 21, optionId: 2, correct: false }, // house
-      { challengeId: 21, optionId: 3, correct: false }, // car
-      { challengeId: 21, optionId: 4, correct: false }, // tree
+      { challengeId: 21, optionId: 11, correct: true }, // cat
+      { challengeId: 21, optionId: 12, correct: false }, // house
+      { challengeId: 21, optionId: 13, correct: false }, // car
+      { challengeId: 21, optionId: 14, correct: false }, // tree
 
       // Question 2 - ASSIST "猫" (cat)
-      { challengeId: 22, optionId: 1, correct: true }, // cat
-      { challengeId: 22, optionId: 2, correct: false }, // house
-      { challengeId: 22, optionId: 3, correct: false }, // car
-      { challengeId: 22, optionId: 4, correct: false }, // tree
+      { challengeId: 22, optionId: 11, correct: true }, // cat
+      { challengeId: 22, optionId: 12, correct: false }, // house
+      { challengeId: 22, optionId: 13, correct: false }, // car
+      { challengeId: 22, optionId: 14, correct: false }, // tree
 
       // Question 3 - SELECT "家" (house)
-      { challengeId: 23, optionId: 2, correct: true }, // house
-      { challengeId: 23, optionId: 1, correct: false }, // cat
-      { challengeId: 23, optionId: 3, correct: false }, // car
-      { challengeId: 23, optionId: 4, correct: false }, // tree
+      { challengeId: 23, optionId: 12, correct: true }, // house
+      { challengeId: 23, optionId: 11, correct: false }, // cat
+      { challengeId: 23, optionId: 13, correct: false }, // car
+      { challengeId: 23, optionId: 14, correct: false }, // tree
 
       // Question 4 - ASSIST "家" (house)
-      { challengeId: 24, optionId: 2, correct: true }, // house
-      { challengeId: 24, optionId: 1, correct: false }, // cat
-      { challengeId: 24, optionId: 3, correct: false }, // car
-      { challengeId: 24, optionId: 4, correct: false }, // tree
+      { challengeId: 24, optionId: 12, correct: true }, // house
+      { challengeId: 24, optionId: 11, correct: false }, // cat
+      { challengeId: 24, optionId: 13, correct: false }, // car
+      { challengeId: 24, optionId: 14, correct: false }, // tree
 
       // Question 5 - SELECT "車" (car)
-      { challengeId: 25, optionId: 3, correct: true }, // car
-      { challengeId: 25, optionId: 1, correct: false }, // cat
-      { challengeId: 25, optionId: 2, correct: false }, // house
-      { challengeId: 25, optionId: 4, correct: false }, // tree
+      { challengeId: 25, optionId: 13, correct: true }, // car
+      { challengeId: 25, optionId: 11, correct: false }, // cat
+      { challengeId: 25, optionId: 12, correct: false }, // house
+      { challengeId: 25, optionId: 14, correct: false }, // tree
 
       // Question 6 - ASSIST "車" (car)
-      { challengeId: 26, optionId: 3, correct: true }, // car
-      { challengeId: 26, optionId: 1, correct: false }, // cat
-      { challengeId: 26, optionId: 2, correct: false }, // house
-      { challengeId: 26, optionId: 4, correct: false }, // tree
+      { challengeId: 26, optionId: 13, correct: true }, // car
+      { challengeId: 26, optionId: 11, correct: false }, // cat
+      { challengeId: 26, optionId: 12, correct: false }, // house
+      { challengeId: 26, optionId: 14, correct: false }, // tree
 
       // Question 7 - SELECT "木" (tree)
-      { challengeId: 27, optionId: 4, correct: true }, // tree
-      { challengeId: 27, optionId: 1, correct: false }, // cat
-      { challengeId: 27, optionId: 2, correct: false }, // house
-      { challengeId: 27, optionId: 3, correct: false }, // car
+      { challengeId: 27, optionId: 14, correct: true }, // tree
+      { challengeId: 27, optionId: 11, correct: false }, // cat
+      { challengeId: 27, optionId: 12, correct: false }, // house
+      { challengeId: 27, optionId: 13, correct: false }, // car
 
       // Question 8 - ASSIST "木" (tree)
-      { challengeId: 28, optionId: 4, correct: true }, // tree
-      { challengeId: 28, optionId: 1, correct: false }, // cat
-      { challengeId: 28, optionId: 2, correct: false }, // house
-      { challengeId: 28, optionId: 3, correct: false }, // car
+      { challengeId: 28, optionId: 14, correct: true }, // tree
+      { challengeId: 28, optionId: 11, correct: false }, // cat
+      { challengeId: 28, optionId: 12, correct: false }, // house
+      { challengeId: 28, optionId: 13, correct: false }, // car
 
       // Question 9 - SELECT "本" (book)
-      { challengeId: 29, optionId: 5, correct: true }, // book
-      { challengeId: 29, optionId: 1, correct: false }, // cat
-      { challengeId: 29, optionId: 2, correct: false }, // house
-      { challengeId: 29, optionId: 3, correct: false }, // car
+      { challengeId: 29, optionId: 15, correct: true }, // book
+      { challengeId: 29, optionId: 11, correct: false }, // cat
+      { challengeId: 29, optionId: 12, correct: false }, // house
+      { challengeId: 29, optionId: 13, correct: false }, // car
 
       // Question 10 - ASSIST "本" (book)
-      { challengeId: 30, optionId: 5, correct: true }, // book
-      { challengeId: 30, optionId: 1, correct: false }, // cat
-      { challengeId: 30, optionId: 2, correct: false }, // house
-      { challengeId: 30, optionId: 3, correct: false }, // car
+      { challengeId: 30, optionId: 15, correct: true }, // book
+      { challengeId: 30, optionId: 11, correct: false }, // cat
+      { challengeId: 30, optionId: 12, correct: false }, // house
+      { challengeId: 30, optionId: 13, correct: false }, // car
     ])
 
     console.log("Seed data inserted successfully for Unit 1, Lesson 3!")

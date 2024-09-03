@@ -43,64 +43,64 @@ const main = async () => {
 
     await db.insert(schema.challengeOptions).values([
       // Question 1 - 大きい (big)
-      { challengeId: 31, optionId: 1, correct: true }, // big
-      { challengeId: 31, optionId: 2, correct: false }, // small
-      { challengeId: 31, optionId: 3, correct: false }, // happy
-      { challengeId: 31, optionId: 4, correct: false }, // sad
+      { challengeId: 31, optionId: 16, correct: true }, // big
+      { challengeId: 31, optionId: 17, correct: false }, // small
+      { challengeId: 31, optionId: 18, correct: false }, // happy
+      { challengeId: 31, optionId: 19, correct: false }, // sad
 
       // Question 2 - 大きい (big) ASSIST
-      { challengeId: 32, optionId: 1, correct: true }, // big
-      { challengeId: 32, optionId: 2, correct: false }, // small
-      { challengeId: 32, optionId: 3, correct: false }, // happy
-      { challengeId: 32, optionId: 4, correct: false }, // sad
+      { challengeId: 32, optionId: 16, correct: true }, // big
+      { challengeId: 32, optionId: 17, correct: false }, // small
+      { challengeId: 32, optionId: 18, correct: false }, // happy
+      { challengeId: 32, optionId: 19, correct: false }, // sad
 
       // Question 3 - 小さい (small)
-      { challengeId: 33, optionId: 2, correct: true }, // small
-      { challengeId: 33, optionId: 1, correct: false }, // big
-      { challengeId: 33, optionId: 3, correct: false }, // happy
-      { challengeId: 33, optionId: 4, correct: false }, // sad
+      { challengeId: 33, optionId: 17, correct: true }, // small
+      { challengeId: 33, optionId: 16, correct: false }, // big
+      { challengeId: 33, optionId: 18, correct: false }, // happy
+      { challengeId: 33, optionId: 19, correct: false }, // sad
 
       // Question 4 - 小さい (small) ASSIST
-      { challengeId: 34, optionId: 2, correct: true }, // small
-      { challengeId: 34, optionId: 1, correct: false }, // big
-      { challengeId: 34, optionId: 3, correct: false }, // happy
-      { challengeId: 34, optionId: 4, correct: false }, // sad
+      { challengeId: 34, optionId: 17, correct: true }, // small
+      { challengeId: 34, optionId: 16, correct: false }, // big
+      { challengeId: 34, optionId: 18, correct: false }, // happy
+      { challengeId: 34, optionId: 19, correct: false }, // sad
 
       // Question 5 - 嬉しい (happy)
-      { challengeId: 35, optionId: 3, correct: true }, // happy
-      { challengeId: 35, optionId: 1, correct: false }, // big
-      { challengeId: 35, optionId: 2, correct: false }, // small
-      { challengeId: 35, optionId: 4, correct: false }, // sad
+      { challengeId: 35, optionId: 18, correct: true }, // happy
+      { challengeId: 35, optionId: 16, correct: false }, // big
+      { challengeId: 35, optionId: 17, correct: false }, // small
+      { challengeId: 35, optionId: 19, correct: false }, // sad
 
       // Question 6 - 嬉しい (happy) ASSIST
-      { challengeId: 36, optionId: 3, correct: true }, // happy
-      { challengeId: 36, optionId: 1, correct: false }, // big
-      { challengeId: 36, optionId: 2, correct: false }, // small
-      { challengeId: 36, optionId: 4, correct: false }, // sad
+      { challengeId: 36, optionId: 18, correct: true }, // happy
+      { challengeId: 36, optionId: 16, correct: false }, // big
+      { challengeId: 36, optionId: 17, correct: false }, // small
+      { challengeId: 36, optionId: 19, correct: false }, // sad
 
       // Question 7 - 悲しい (sad)
-      { challengeId: 37, optionId: 4, correct: true }, // sad
-      { challengeId: 37, optionId: 1, correct: false }, // big
-      { challengeId: 37, optionId: 2, correct: false }, // small
-      { challengeId: 37, optionId: 3, correct: false }, // happy
+      { challengeId: 37, optionId: 19, correct: true }, // sad
+      { challengeId: 37, optionId: 16, correct: false }, // big
+      { challengeId: 37, optionId: 17, correct: false }, // small
+      { challengeId: 37, optionId: 18, correct: false }, // happy
 
       // Question 8 - 悲しい (sad) ASSIST
-      { challengeId: 38, optionId: 4, correct: true }, // sad
-      { challengeId: 38, optionId: 1, correct: false }, // big
-      { challengeId: 38, optionId: 2, correct: false }, // small
-      { challengeId: 38, optionId: 3, correct: false }, // happy
+      { challengeId: 38, optionId: 19, correct: true }, // sad
+      { challengeId: 38, optionId: 16, correct: false }, // big
+      { challengeId: 38, optionId: 17, correct: false }, // small
+      { challengeId: 38, optionId: 18, correct: false }, // happy
 
       // Question 9 - 速い (fast)
-      { challengeId: 39, optionId: 5, correct: true }, // fast
-      { challengeId: 39, optionId: 1, correct: false }, // big
-      { challengeId: 39, optionId: 2, correct: false }, // small
-      { challengeId: 39, optionId: 4, correct: false }, // sad
+      { challengeId: 39, optionId: 20, correct: true }, // fast
+      { challengeId: 39, optionId: 16, correct: false }, // big
+      { challengeId: 39, optionId: 17, correct: false }, // small
+      { challengeId: 39, optionId: 19, correct: false }, // sad
 
       // Question 10 - 速い (fast) ASSIST
-      { challengeId: 40, optionId: 5, correct: true }, // fast
-      { challengeId: 40, optionId: 1, correct: false }, // big
-      { challengeId: 40, optionId: 2, correct: false }, // small
-      { challengeId: 40, optionId: 4, correct: false }, // sad
+      { challengeId: 40, optionId: 20, correct: true }, // fast
+      { challengeId: 40, optionId: 16, correct: false }, // big
+      { challengeId: 40, optionId: 17, correct: false }, // small
+      { challengeId: 40, optionId: 19, correct: false }, // sad
     ])
 
     console.log("Seed data inserted successfully for Unit 1, Lesson 4!")
