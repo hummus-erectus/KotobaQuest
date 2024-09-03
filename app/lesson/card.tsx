@@ -59,7 +59,13 @@ export const Card = ({
         <div
           className="relative aspect-square mb-4 max-h-[80px] lg:max-h-[150px] w-full"
         >
-          <Image src={imageSrc} fill alt={text} />
+          <Image
+            src={imageSrc}
+            height={150}
+            width={150}
+            alt={text}
+            className="object-cover mx-auto"
+          />
         </div>
       )}
       <div className={cn(
