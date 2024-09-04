@@ -169,18 +169,18 @@ export const Quiz = ({
         />
         <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
           <Image
-            src="/finish.svg"
+            src="/happy.png"
             alt="Finish"
             className="hidden lg:block"
-            height={100}
-            width={100}
+            height={150}
+            width={150}
           />
           <Image
-            src="/finish.svg"
+            src="/happy.png"
             alt="Finish"
             className="block lg:hidden"
-            height={50}
-            width={50}
+            height={80}
+            width={80}
           />
           <h1 className="text-xl lg:text-3xl font-bold font-dotgothic16 text-neutral-700">
             素晴らしい！ <br />レッスンを完了しました。
