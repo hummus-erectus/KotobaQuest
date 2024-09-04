@@ -26,7 +26,7 @@ const main = async () => {
     })
 
     // New words used in this lesson
-    // der Man (man), die Frau (woman), das Mädchen
+    // der Man (man), die Frau (woman), das Mädchen (girl), das Junge (boy), das Hund (dog)
 
     await db.insert(schema.challenges).values([
       { id: 751, lessonId: 56, type: "SELECT", order: 1, question: 'これらの言葉の中で「男の人」を意味するのはどれ？' },
