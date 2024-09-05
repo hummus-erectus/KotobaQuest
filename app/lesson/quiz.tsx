@@ -66,8 +66,8 @@ export const Quiz = ({
 
   const [finishAudio] = useAudio({ src: "/finish.mp3", autoPlay: true })
 
-  const [correctAudio, _c, correctControls] = useAudio({ src: "/correct.wav" })
-  const [incorrectAudio, _i, incorrectControls] = useAudio({ src: "/incorrect.wav" })
+  const [correctAudio, _c, correctControls] = useAudio({ src: "/correct.mp3" })
+  const [incorrectAudio, _i, incorrectControls] = useAudio({ src: "/incorrect.mp3" })
   const [pending, startTransition] = useTransition()
 
   const [lessonId, setLessonId] = useState(initialLessonId)
