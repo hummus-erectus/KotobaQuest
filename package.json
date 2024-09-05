@@ -22,7 +22,6 @@
 
     "db:seedDEUnits": "tsx ./scripts/DE/seedDEUnits.ts",
     "db:seedDEOptions": "tsx ./scripts/DE/seedDEOptions.ts",
-
     "db:seedAllDELessons": "tsx ./scripts/seedDELesson1.ts && tsx ./scripts/seedDELesson2.ts && tsx ./scripts/seedDELesson3.ts && tsx ./scripts/seedDELesson4.ts && tsx ./scripts/seedDELesson5.ts",
     "db:DELesson1": "tsx ./scripts/seedDELesson1.ts",
     "db:DELesson2": "tsx ./scripts/seedDELesson2.ts",
@@ -31,7 +30,14 @@
     "db:DELesson5": "tsx ./scripts/seedDELesson5.ts",
 
 
-    "db:seedFRUnits": "tsx ./scripts/seedFRUnits.ts",
+    "db:seedFRUnits": "tsx ./scripts/FR/seedFRUnits.ts",
+    "db:seedFROptions": "tsx ./scripts/FR/seedFROptions.ts",
+    "db:seedAllFRLessons": "tsx ./scripts/seedFRLesson1.ts && tsx ./scripts/seedFRLesson2.ts && tsx ./scripts/seedFRLesson3.ts && tsx ./scripts/seedFRLesson4.ts && tsx ./scripts/seedFRLesson5.ts",
+    "db:FRLesson1": "tsx ./scripts/seedFRLesson1.ts",
+    "db:FRLesson2": "tsx ./scripts/seedFRLesson2.ts",
+    "db:FRLesson3": "tsx ./scripts/seedFRLesson3.ts",
+    "db:FRLesson4": "tsx ./scripts/seedFRLesson4.ts",
+    "db:FRLesson5": "tsx ./scripts/seedFRLesson5.ts",
 
     "db:resetProgess": "tsx ./scripts/resetProgress.ts",
 
