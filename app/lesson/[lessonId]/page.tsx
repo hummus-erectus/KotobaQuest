@@ -35,10 +35,22 @@ const LessonIdPage = async ({
     .filter((challenge) => challenge.completed)
     .length / lesson.challenges.length * 100
 
+    const lessonChallenges = lesson.challenges.map((challenge) => ({
+      ...challenge,
+      challengeOptions: challenge.challengeOptions.map((option) => ({
+        ...option,
+        option: {
+          ...option.option,
+          imageSrc: option.option.imageSrc ?? undefined,
+          audioSrc: option.option.audioSrc ?? undefined,
+        },
+      })),
+    }));
+
   return (
     <Quiz
       initialLessonId={lesson.id}
-      initialLessonChallenges={lesson.challenges}
+      initialLessonChallenges={lessonChallenges}
       initialHearts={userProgress.hearts}
       initialPercentage={initialPercentage}
       userSubscription={userSubscription}
