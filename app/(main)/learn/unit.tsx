@@ -25,12 +25,17 @@ export const Unit = ({
   activeLesson,
   activeLessonPercentage,
 }: Props) => {
-  // console.log("Lessons!", lessons)
+  const isActiveUnit = activeLesson?.unitId === id
+
+  const isReachedUnit= activeLesson && activeLesson.unitId >= id
+
   return (
     <>
       <UnitBanner
         title={title}
         description={description}
+        isActive={isActiveUnit}
+        isReached={isReachedUnit ?? false}
       />
       <div className="flex items-center flex-col relative">
         {lessons.map((lesson, index) => {

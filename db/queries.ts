@@ -119,7 +119,6 @@ export const getCourseProgress = cache(async () => {
       lessons: {
         orderBy: (lessons, { asc }) => [asc(lessons.order)],
         with: {
-          unit: true,
           challenges: {
             with: {
               challengeProgress: {
@@ -143,11 +142,12 @@ export const getCourseProgress = cache(async () => {
       })
     })
 
-    console.log("firstUncompletedLesson", firstUncompletedLesson)
+  // If there are no uncompleted lessons, return the first lesson in the course
+  const activeLesson = firstUncompletedLesson || unitsInActiveCourse[0]?.lessons[0]
 
   return {
-    activeLesson: firstUncompletedLesson || undefined,
-    activeLessonId: firstUncompletedLesson?.id || undefined,
+    activeLesson,
+    activeLessonId: activeLesson?.id,
   }
 })
 
@@ -161,6 +161,8 @@ export const getLesson = cache(async (id?: number) => {
   const courseProgress = await getCourseProgress()
 
   const lessonId = id || courseProgress?.activeLessonId
+
+  console.log("lessonId", lessonId)
 
   if (!lessonId) {
     return null

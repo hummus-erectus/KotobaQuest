@@ -48,7 +48,7 @@ export const LessonButton = ({
   const isLast = index === totalCount
   const isCompleted = !current && !locked
 
-  const Icon = isCompleted ? Check : isLast ? Crown : Star
+  const Icon = (isCompleted || isFirst && percentage === 100) ? Check : isLast ? Crown : Star
 
   const href = isCompleted ? `/lesson/${id}` : "/lesson"
 
@@ -65,7 +65,7 @@ export const LessonButton = ({
           marginTop: isFirst && !isCompleted ? 60 : 24,
         }}
       >
-        {current ? (
+        {current && percentage !== 100 ? (
           <div className=" relative">
             <div className="!absolute w-[123px] text-center -top-10 -left-4 px-3 py-2.5 border-2 nes-container is-rounded is-dark font-bold animate-bounce text-nesBlue bg-white tracking-wide z-10">
               スタート
@@ -85,10 +85,7 @@ export const LessonButton = ({
                 <Icon
                   className={cn(
                     "h-10 w-10",
-                    locked
-                      ? "fill-neutral-400 text-neutral-400 stroke-neutral-400"
-                      : "fill-primary-foreground text-primary-foreground",
-                    isCompleted && "fill-none stroke-[4]"
+                     "fill-primary-foreground text-primary-foreground"
                   )}
                 />
                 <progress
@@ -121,8 +118,8 @@ export const LessonButton = ({
                   "h-10 w-10",
                   locked
                     ? "fill-neutral-400 text-neutral-400 stroke-neutral-400"
-                    : "fill-primary-foreground text-primary-foreground",
-                  isCompleted && "fill-none stroke-[4]"
+                    : "fill-primary-foreground text-primary-foreground ",
+                  (isCompleted || isFirst && percentage === 100) && "fill-none stroke-[4]"
                 )}
               />
             </button>
