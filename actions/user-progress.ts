@@ -9,7 +9,6 @@ import db from "@/db/drizzle"
 import { MAXIMUM_HEARTS, POINTS_TO_REFILL } from "@/db/constants"
 import { getCourseById, getUserProgress, getUserSubscription, getLesson } from "@/db/queries"
 import { challengeProgress, challenges, userProgress } from "@/db/schema"
-import { usePracticeModal } from "@/store/use-practice-modal"
 
 export const upsertUserProgress = async (courseId: number) => {
   const { userId } = await auth()

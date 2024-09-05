@@ -7,6 +7,7 @@ import { HeartsModal } from "@/components/modals/hearts-modal"
 import { PracticeModal } from "@/components/modals/practice-modal"
 import "./globals.css"
 import "./nes.css"
+import { FirstModal } from "@/components/modals/first-modal"
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -49,6 +50,7 @@ export default function RootLayout({
           <ExitModal />
           <HeartsModal />
           <PracticeModal />
+          <FirstModal />
           {children}
         </body>
       </html>

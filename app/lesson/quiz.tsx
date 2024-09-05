@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"
 import { reduceHearts } from "@/actions/user-progress"
 import { useHeartsModal } from "@/store/use-hearts-modal"
 import { usePracticeModal } from "@/store/use-practice-modal"
+import { useFirstModal } from "@/store/use-first-modal"
 import { challengeOptions, challenges, userSubscription } from "@/db/schema"
 import { upsertChallengeProgress } from "@/actions/challenge-progress"
 
@@ -50,10 +51,13 @@ export const Quiz = ({
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal()
   const { open: openPracticeModal } = usePracticeModal()
+  const { open: openFirstModal } = useFirstModal()
 
   useMount(() => {
     if (initialPercentage === 100) {
       openPracticeModal()
+    } else if (initialLessonId === 1 || 56 || 111) {
+      openFirstModal()
     }
   })
 
