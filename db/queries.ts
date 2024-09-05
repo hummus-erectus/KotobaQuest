@@ -143,21 +143,11 @@ export const getCourseProgress = cache(async () => {
       })
     })
 
-  // Find the last completed lesson as a fallback
-  const lastCompletedLesson = unitsInActiveCourse
-    .flatMap((unit) => unit.lessons)
-    .reverse()
-    .find((lesson) => {
-      return lesson.challenges.every((challenge) => {
-        return challenge.challengeProgress
-          && challenge.challengeProgress.length > 0
-          && challenge.challengeProgress.every((progress) => progress.completed)
-      })
-    })
+    console.log("firstUncompletedLesson", firstUncompletedLesson)
 
   return {
-    activeLesson: firstUncompletedLesson || lastCompletedLesson,
-    activeLessonId: firstUncompletedLesson?.id || lastCompletedLesson?.id,
+    activeLesson: firstUncompletedLesson || undefined,
+    activeLessonId: firstUncompletedLesson?.id || undefined,
   }
 })
 

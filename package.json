@@ -19,6 +19,8 @@
     "db:ENLesson2": "tsx ./scripts/seedENLesson2.ts",
     "db:ENLesson3": "tsx ./scripts/seedENLesson3.ts",
     "db:ENLesson4": "tsx ./scripts/seedENLesson4.ts",
+    "db:ENLesson5": "tsx ./scripts/seedENLesson5.ts",
+
 
     "db:seedDEUnits": "tsx ./scripts/DE/seedDEUnits.ts",
     "db:seedDEOptions": "tsx ./scripts/DE/seedDEOptions.ts",
