@@ -56,7 +56,7 @@ export const Quiz = ({
   useMount(() => {
     if (initialPercentage === 100) {
       openPracticeModal()
-    } else if (initialLessonId === 1 || 56 || 111) {
+    } else if (initialLessonId === 1 || initialLessonId === 56 || initialLessonId === 111) {
       openFirstModal()
     }
   })
