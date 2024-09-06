@@ -15,8 +15,8 @@ export const Header = () => {
     <header className="h-20 w-full border-b-2 border-white px-4 font-dotgothic16">
       <div className="lg:max-w-screen-lg mx-auto flex items-center justify-between h-full">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
-          <Image src="/starry.png" height={40} width={40} alt="Mascot"/>
-          <h1 className="text-2xl font-bold text-white tracking-wide">ことばクエスト</h1>
+          <Image src="/starry.png" height={40} width={40} alt="Starry"/>
+          <h1 className="text-sm sm:text-2xl font-bold text-white tracking-wide">ことばクエスト</h1>
         </div>
         <ClerkLoading>
           <Loader className="h-5 w-5 text-muted-foreground animate-spin"/>
