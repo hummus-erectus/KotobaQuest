@@ -74,7 +74,7 @@ export const Card = ({
       )}>
         {type === "ASSIST" && <div />}
         <p className={cn(
-          "text-neutral-600 text-xs sm:text-sm lg:text-base font-pressStart2P mx-auto",
+          "text-neutral-600 text-xs sm:text-sm lg:text-base font-pressStart2P mx-auto my-2",
           selected && "text-sky-500",
           selected && status === "correct" && "text-green-500",
           selected && status === "wrong" && "text-rose-500",
