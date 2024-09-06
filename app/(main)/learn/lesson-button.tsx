@@ -73,7 +73,7 @@ export const LessonButton = ({
                 className="absolute left-1/2 -bottom-2 w-0 h-0 border-x-8 border-x-transparent border-t-8 transform -translate-x-1/2 border-t-black"
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row">
               <button
                 className={cn(
                   "nes-btn !flex !flex-col !items-center",
@@ -94,7 +94,7 @@ export const LessonButton = ({
                   max="100"
                 />
               </button>
-              <div className="flex items-center font-bold font-dotgothic16 text-black m-4">
+              <div className="flex items-center font-bold font-dotgothic16 m-4">
                 <div className="nes-badge">
                   <span className="is-primary">
                     {title}
@@ -104,7 +104,7 @@ export const LessonButton = ({
             </div>
           </div>
         ) : (
-          <div className="flex">
+          <div className="flex flex-col items-center md:flex-row">
             <button
               className={cn(
                 "nes-btn !flex !items-center !justify-center",
@@ -123,7 +123,7 @@ export const LessonButton = ({
                 )}
               />
             </button>
-            <div className="flex items-center font-bold font-dotgothic16 text-black m-4">
+            <div className="flex items-center font-bold font-dotgothic16 m-4">
               <div className="nes-badge">
                 <span className="is-success">
                   {title}
