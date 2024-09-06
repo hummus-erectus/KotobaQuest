@@ -35,7 +35,7 @@ export default function Home() {
                 signUpForceRedirectUrl="/learn"
               >
                 <Button size="lg" variant="ghost" className="w-full">
-                  すでにアカウントをお持ちです
+                  すでにアカウントをお持ちの方はこちら
                 </Button>
               </SignInButton>
             </SignedOut>
