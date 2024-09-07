@@ -1,12 +1,12 @@
 import { useKey, useMedia } from "react-use"
-import { CheckCircle, XCircle } from "lucide-react"
+import { CheckCircle, Loader, XCircle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 type Props = {
   onCheck: () => void
-  status: "correct" | "wrong" | "none" | "completed"
+  status: "correct" | "wrong" | "none" | "completed" | "loading"
   disabled?: boolean
   lessonId?: number
 }
@@ -40,13 +40,6 @@ export const Footer = ({
           </div>
         )}
         {status === "completed" && (
-          // <Button
-          //   variant="default"
-          //   size={isMobile ? "sm" : "lg"}
-          //   onClick={() => window.location.href = `/lesson/${lessonId}`}
-          // >
-          //   もう一度練習する
-          // </Button>
           <button
           type="button"
           className="nes-btn w-36 text-sm lg:w-44 lg:text-base"
@@ -55,28 +48,17 @@ export const Footer = ({
             もう一度練習する
           </button>
         )}
-        {/* <Button
-          disabled={disabled}
-          className="ml-auto"
-          onClick={onCheck}
-          size={isMobile ? "sm" : "lg"}
-          variant={status === "wrong"? "danger" : "secondary"}
-        >
-          {status === "none" && "確認"}
-          {status === "correct" && "次へ"}
-          {status === "wrong" && "再挑戦"}
-          {status === "completed" && "続く"}
-        </Button> */}
         <button
           disabled={disabled}
           type="button"
-          className={`nes-btn !ml-auto w-36 ${status === "wrong"? "is-error" : "is-success"}`}
+          className={`nes-btn !ml-auto w-36           ${status === "loading" ? "is-disabled" : (status === "wrong" ? "is-error" : "is-success")}`}
           onClick={onCheck}
         >
           {status === "none" && "確認"}
           {status === "correct" && "次へ"}
           {status === "wrong" && "再挑戦"}
           {status === "completed" && "続く"}
+          {status === "loading" && <Loader className="h-6 w-6 text-muted-foreground animate-spin mx-auto"/>}
         </button>
       </div>
     </footer>

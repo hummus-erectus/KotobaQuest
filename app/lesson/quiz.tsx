@@ -82,12 +82,10 @@ export const Quiz = ({
   })
 
   const [selectedOption, setSelectedOption] = useState<number>()
-  const [status, setStatus] = useState<"correct" | "wrong" | "none">("none")
+  const [status, setStatus] = useState<"correct" | "wrong" | "none" | "completed" | "loading">("none")
 
   const challenge = challenges[activeIndex]
   const options = challenge?.challengeOptions ?? []
-
-  console.log("Challenge options:", options)
 
   const onNext = () => {
     setActiveIndex((current) => current + 1)
@@ -101,15 +99,6 @@ export const Quiz = ({
 
   const onContinue = () => {
     if (!selectedOption) return
-
-    // Check if this is a practice session (completed lesson)
-    const isPractice = initialPercentage === 100
-
-    // Allow users to proceed in practice lessons even with zero hearts
-    if (!isPractice && hearts <= 0) {
-      openHeartsModal()
-      return
-    }
 
     if (status === "wrong") {
       setStatus("none")
@@ -125,58 +114,62 @@ export const Quiz = ({
     }
 
     const correctOption = options.find((option) => option.correct)
+
     if (!correctOption) return
 
+    setStatus("loading") // Set status to loading before starting the async operation
+
     if (correctOption.id === selectedOption) {
-      correctControls.play()
-      setStatus("correct")
-      setPercentage((prev) => prev + 100 / challenges.length)
-
-      // Replenish hearts in practice sessions
-      if (isPractice) {
-        setHearts((prev) => Math.min(prev + 1, MAXIMUM_HEARTS))
-      }
-
-      // Optimistically update progress
       startTransition(() => {
         upsertChallengeProgress(challenge.id)
           .then((response) => {
-            if (!isPractice && response?.error === "hearts") {
+            if (response?.error === "hearts") {
               openHeartsModal()
               return
             }
+
+            correctControls.play()
+            setStatus("correct")
+            setPercentage((prev) => prev + 100 / challenges.length)
+
+            // This is a practice
+            if (initialPercentage === 100) {
+              setHearts((prev) => Math.min(prev + 1, MAXIMUM_HEARTS))
+            }
           })
-          .catch(() => toast.error("Something went wrong. Please try again."))
+          .catch(() => {
+            setStatus("none")
+            toast.error("Something went wrong. Please try again.")
+          })
       })
     } else {
-      incorrectControls.play()
-      setStatus("wrong")
+      startTransition(() => {
+        reduceHearts(challenge.id)
+          .then((response) => {
+            if (response?.error === "hearts") {
+              openHeartsModal()
+              return
+            }
 
-      // Reduce hearts and prevent progress if no hearts remain (unless it's practice)
-      if (!isPractice) {
-        startTransition(() => {
-          reduceHearts(challenge.id)
-            .then((response) => {
-              if (response?.error === "hearts") {
-                openHeartsModal();
-                return;
-              }
+            incorrectControls.play()
+            setStatus("wrong")
 
-              if (!response?.error) {
-                setHearts((prev) => Math.max(prev - 1, 0))
-              }
-            })
-            .catch(() => toast.error("Something went wrong. Please try again."))
-        })
-      }
+            if (!response?.error) {
+              setHearts((prev) => Math.max(prev - 1, 0))
+            }
+          })
+          .catch(() => {
+            setStatus("none")
+            toast.error("Something went wrong. Please try again.")
+          })
+      })
     }
   }
-
 
   if (!challenge) {
     return (
       <>
-      {finishAudio}
+        {finishAudio}
         <Confetti
           width={width}
           height={height}
@@ -228,8 +221,8 @@ export const Quiz = ({
 
   return (
     <>
-    {incorrectAudio}
-    {correctAudio}
+      {incorrectAudio}
+      {correctAudio}
       <Header
         hearts={hearts}
         percentage={percentage}
@@ -250,7 +243,7 @@ export const Quiz = ({
                 onSelect={onSelect}
                 status="none"
                 selectedOption={selectedOption}
-                disabled={pending}
+                disabled={status === "loading" || pending}
                 type={challenge.type}
               />
             </div>
@@ -258,9 +251,10 @@ export const Quiz = ({
         </div>
       </div>
       <Footer
-        disabled={pending || !selectedOption}
+        disabled={status === "loading" || pending || !selectedOption}
         status={status}
         onCheck={onContinue}
+        lessonId={lessonId}
       />
     </>
   )
