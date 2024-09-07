@@ -55,9 +55,6 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     return {error: "hearts"}
   }
 
-  // console.log("Check this", existingChallengeProgress)
-
-
   if(isPractice) {
     await db
       .update(challengeProgress)

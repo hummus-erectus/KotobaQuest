@@ -162,8 +162,6 @@ export const getLesson = cache(async (id?: number) => {
 
   const lessonId = id || courseProgress?.activeLessonId
 
-  console.log("lessonId", lessonId)
-
   if (!lessonId) {
     return null
   }

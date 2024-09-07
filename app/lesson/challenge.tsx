@@ -43,8 +43,7 @@ export const Challenge = ({
 
   useEffect(() => {
     setShuffledOptions(shuffleArray(options))
-    console.log("shuffledOptions", options);
-  }, [options]);
+  }, [options])
 
   return (
     <div className={cn(
