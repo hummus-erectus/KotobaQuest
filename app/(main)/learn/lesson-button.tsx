@@ -67,7 +67,7 @@ export const LessonButton = ({
       >
         {current && percentage !== 100 ? (
           <div className=" relative">
-            <div className="!absolute w-[123px] text-center -top-10 -left-4 px-3 py-2.5 border-2 nes-container is-rounded is-dark font-bold animate-bounce text-nesBlue bg-white tracking-wide z-10">
+            <div className="!absolute w-[123px] text-center -top-10 left-8 md:-left-4 px-3 py-2.5 border-2 nes-container is-rounded is-dark font-bold animate-bounce  tracking-wide z-10">
               スタート
               <div
                 className="absolute left-1/2 -bottom-2 w-0 h-0 border-x-8 border-x-transparent border-t-8 transform -translate-x-1/2 border-t-black"
