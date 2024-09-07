@@ -102,6 +102,15 @@ export const Quiz = ({
   const onContinue = () => {
     if (!selectedOption) return
 
+    // Check if this is a practice session (completed lesson)
+    const isPractice = initialPercentage === 100
+
+    // Allow users to proceed in practice lessons even with zero hearts
+    if (!isPractice && hearts <= 0) {
+      openHeartsModal()
+      return
+    }
+
     if (status === "wrong") {
       setStatus("none")
       setSelectedOption(undefined)
@@ -116,49 +125,53 @@ export const Quiz = ({
     }
 
     const correctOption = options.find((option) => option.correct)
-
     if (!correctOption) return
 
     if (correctOption.id === selectedOption) {
+      correctControls.play()
+      setStatus("correct")
+      setPercentage((prev) => prev + 100 / challenges.length)
+
+      // Replenish hearts in practice sessions
+      if (isPractice) {
+        setHearts((prev) => Math.min(prev + 1, MAXIMUM_HEARTS))
+      }
+
+      // Optimistically update progress
       startTransition(() => {
         upsertChallengeProgress(challenge.id)
           .then((response) => {
-            if (response?.error === "hearts") {
+            if (!isPractice && response?.error === "hearts") {
               openHeartsModal()
               return
-            }
-
-            correctControls.play()
-            setStatus("correct")
-            setPercentage((prev) => prev + 100 / challenges.length)
-
-            // This is a practice
-            if (initialPercentage === 100) {
-              setHearts((prev) => Math.min(prev + 1, MAXIMUM_HEARTS))
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."))
       })
     } else {
-      startTransition(() => {
-        reduceHearts(challenge.id)
-          .then((response) => {
-            if (response?.error === "hearts") {
-              openHeartsModal()
-              return
-            }
+      incorrectControls.play()
+      setStatus("wrong")
 
-            incorrectControls.play()
-            setStatus("wrong")
+      // Reduce hearts and prevent progress if no hearts remain (unless it's practice)
+      if (!isPractice) {
+        startTransition(() => {
+          reduceHearts(challenge.id)
+            .then((response) => {
+              if (response?.error === "hearts") {
+                openHeartsModal();
+                return;
+              }
 
-            if (!response?.error) {
-              setHearts((prev) => Math.max(prev - 1, 0))
-            }
-          })
-          .catch(() => toast.error("Something went wrong. Please try again."))
-      })
+              if (!response?.error) {
+                setHearts((prev) => Math.max(prev - 1, 0))
+              }
+            })
+            .catch(() => toast.error("Something went wrong. Please try again."))
+        })
+      }
     }
   }
+
 
   if (!challenge) {
     return (
