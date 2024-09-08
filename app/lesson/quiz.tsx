@@ -7,12 +7,14 @@ import { useState, useTransition } from "react"
 import { useAudio, useWindowSize, useMount } from "react-use"
 import { useRouter } from "next/navigation"
 
+import { challengeOptions, challenges, userSubscription } from "@/db/schema"
+
+import { upsertChallengeProgress } from "@/actions/challenge-progress"
 import { reduceHearts } from "@/actions/user-progress"
+
 import { useHeartsModal } from "@/store/use-hearts-modal"
 import { usePracticeModal } from "@/store/use-practice-modal"
 import { useFirstModal } from "@/store/use-first-modal"
-import { challengeOptions, challenges, userSubscription } from "@/db/schema"
-import { upsertChallengeProgress } from "@/actions/challenge-progress"
 
 import { Header } from "./header"
 import { Footer } from "./footer"

@@ -11,6 +11,8 @@ import { getCourseById, getUserProgress, getUserSubscription, getLesson } from "
 import { challengeProgress, challenges, userProgress } from "@/db/schema"
 
 export const upsertUserProgress = async (courseId: number) => {
+  console.time("upsertUserProgress")
+
   const { userId } = await auth()
   const user = await currentUser()
 
@@ -18,7 +20,9 @@ export const upsertUserProgress = async (courseId: number) => {
     throw new Error("Unauthorized")
   }
 
+  console.time("getCourseById")
   const course = await getCourseById(courseId)
+  console.timeEnd("getCourseById")
 
   if (!course) {
     throw new Error("Course not found")
@@ -28,99 +32,149 @@ export const upsertUserProgress = async (courseId: number) => {
     throw new Error("course is empty")
   }
 
+  console.time("getUserProgress")
   const existingUserProgress = await getUserProgress()
+  console.timeEnd("getUserProgress")
 
   if (existingUserProgress) {
+    console.time("updateUserProgress")
     await db.update(userProgress).set({
       activeCourseId: courseId,
       userName: user.firstName || "User",
       userImageSrc: user.imageUrl || "/starry.png",
     }).where(eq(userProgress.userId, userId))  // Update only the current user
+    console.timeEnd("updateUserProgress")
 
-    revalidatePath("/courses")
-    revalidatePath("/learn")
+    console.time("revalidatePaths")
+    await Promise.all([
+      revalidatePath("/courses"),
+      revalidatePath("/learn"),
+    ])
+    console.timeEnd("revalidatePaths")
+
+    console.timeEnd("upsertUserProgress")
     redirect("/learn")
   }
 
+  console.time("insertUserProgress")
   await db.insert(userProgress).values({
     userId,
     activeCourseId: courseId,
     userName: user.firstName || "User",
     userImageSrc: user.imageUrl || "/starry.png",
   })
+  console.timeEnd("insertUserProgress")
 
-  revalidatePath("/courses")
-  revalidatePath("/learn")
+  console.time("revalidatePathsAfterInsert")
+  await Promise.all([
+    revalidatePath("/courses"),
+    revalidatePath("/learn"),
+  ])
+  console.timeEnd("revalidatePathsAfterInsert")
+
+  console.timeEnd("upsertUserProgress")
   redirect("/learn")
 }
 
 export const reduceHearts = async (challengeId: number) => {
+  console.time("reduceHearts")
+
+  console.time("auth")
   const { userId } = await auth()
+  console.timeEnd("auth")
 
   if (!userId) {
     throw new Error("Unauthorized")
   }
 
-  const currentUserProgress = await getUserProgress()
-  const userSubscription = await getUserSubscription()
-  const currentLesson = await getLesson()
-
-  const challenge = await db.query.challenges.findFirst({
-    where: eq(challenges.id, challengeId)
-  })
-
-  if(!challenge) {
-    throw new Error("Challenge not found")
-  }
-
-  if(!currentLesson) {
-    throw new Error("Lesson not found")
-  }
-
-  const lessonId = challenge.lessonId
-
+  console.time("findExistingChallengeProgress")
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
     where: and(
       eq(challengeProgress.userId, userId),
       eq(challengeProgress.challengeId, challengeId),
     )
   })
+  console.timeEnd("findExistingChallengeProgress")
 
   const isPractice = !!existingChallengeProgress
 
   if (isPractice) {
+    console.timeEnd("reduceHearts")
     return { error: "practice" }
   }
+
+  console.time("getUserProgress")
+  const currentUserProgress = await getUserProgress()
+  console.timeEnd("getUserProgress")
+
+  console.time("getUserSubscription")
+  const userSubscription = await getUserSubscription()
+  console.timeEnd("getUserSubscription")
+
+  console.time("getLesson")
+  const currentLesson = await getLesson()
+  console.timeEnd("getLesson")
+
+  console.time("findChallenge")
+  const challenge = await db.query.challenges.findFirst({
+    where: eq(challenges.id, challengeId)
+  })
+  console.timeEnd("findChallenge")
+
+  if (!challenge) {
+    throw new Error("Challenge not found")
+  }
+
+  if (!currentLesson) {
+    throw new Error("Lesson not found")
+  }
+
+  const lessonId = challenge.lessonId
 
   if (!currentUserProgress) {
     throw new Error("User progress not found")
   }
 
   if (userSubscription?.isActive) {
-    return { error: "subscription"}
+    console.timeEnd("reduceHearts")
+    return { error: "subscription" }
   }
 
-  if (currentLesson.order===1){
-    return { error: "first lesson"}
+  if (currentLesson.order === 1) {
+    console.timeEnd("reduceHearts")
+    return { error: "first lesson" }
   }
 
   if (currentUserProgress.hearts === 0) {
-    return { error: "hearts"}
+    console.timeEnd("reduceHearts")
+    return { error: "hearts" }
   }
 
+  console.time("updateUserProgressHearts")
   await db.update(userProgress).set({
     hearts: Math.max(currentUserProgress.hearts - 1, 0),
   }).where(eq(userProgress.userId, userId))
+  console.timeEnd("updateUserProgressHearts")
 
-  revalidatePath("/shop")
-  revalidatePath("/learn")
-  revalidatePath("/quests")
-  revalidatePath("/leaderboard")
-  revalidatePath(`/lesson/${lessonId}`)
+  console.time("revalidatePaths")
+  await Promise.all([
+    revalidatePath("/shop"),
+    revalidatePath("/learn"),
+    revalidatePath("/quests"),
+    revalidatePath("/leaderboard"),
+    revalidatePath(`/lesson/${lessonId}`),
+  ])
+  console.timeEnd("revalidatePaths")
+
+  console.timeEnd("reduceHearts")
 }
 
 export const refillHearts = async () => {
+  console.time("refillHearts")
+
+  console.time("getUserProgress")
   const currentUserProgress = await getUserProgress()
+  console.timeEnd("getUserProgress")
 
   if (!currentUserProgress) {
     throw new Error("User progress not found")
@@ -134,13 +188,21 @@ export const refillHearts = async () => {
     throw new Error("Not enough points")
   }
 
+  console.time("updateUserProgressHeartsAndPoints")
   await db.update(userProgress).set({
     hearts: MAXIMUM_HEARTS,
     points: currentUserProgress.points - POINTS_TO_REFILL,
   }).where(eq(userProgress.userId, currentUserProgress.userId))
+  console.timeEnd("updateUserProgressHeartsAndPoints")
 
-  revalidatePath("/shop")
-  revalidatePath("/learn")
-  revalidatePath("/quests")
-  revalidatePath("/leaderboard")
+  console.time("revalidatePaths")
+  await Promise.all([
+    revalidatePath("/shop"),
+    revalidatePath("/learn"),
+    revalidatePath("/quests"),
+    revalidatePath("/leaderboard"),
+  ])
+  console.timeEnd("revalidatePaths")
+
+  console.timeEnd("refillHearts")
 }
