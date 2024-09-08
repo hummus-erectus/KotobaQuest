@@ -94,26 +94,34 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     return
   }
 
-  console.time("insertChallengeProgress")
-  await db.insert(challengeProgress).values({
-    challengeId,
-    userId,
-    completed: true,
-  })
-  console.timeEnd("insertChallengeProgress")
+  console.time("parallelInsertAndUpdate")
 
-  console.time("updateUserProgressNoHearts")
-  await db.update(userProgress).set({
-    points: currentUserProgress.points + 10,
-  }).where(eq(userProgress.userId, userId))
-  console.timeEnd("updateUserProgressNoHearts")
+  await Promise.all([
+    db.insert(challengeProgress).values({
+      challengeId,
+      userId,
+      completed: true,
+    }),
+
+    db.update(userProgress)
+      .set({
+        points: currentUserProgress.points + 10,
+      })
+      .where(eq(userProgress.userId, userId)),
+  ])
+
+  console.timeEnd("parallelInsertAndUpdate")
 
   console.time("revalidatePathsAfterInsert")
-  revalidatePath("/learn")
-  revalidatePath("/lesson")
-  revalidatePath("/quests")
-  revalidatePath("/leaderboard")
-  revalidatePath(`/lesson/${lessonId}`)
+
+  await Promise.all([
+    revalidatePath("/learn"),
+    revalidatePath("/lesson"),
+    revalidatePath("/quests"),
+    revalidatePath("/leaderboard"),
+    revalidatePath(`/lesson/${lessonId}`),
+  ])
+
   console.timeEnd("revalidatePathsAfterInsert")
 
   console.timeEnd("upsertChallengeProgress")
