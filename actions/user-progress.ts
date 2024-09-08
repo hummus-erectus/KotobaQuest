@@ -35,7 +35,7 @@ export const upsertUserProgress = async (courseId: number) => {
       activeCourseId: courseId,
       userName: user.firstName || "User",
       userImageSrc: user.imageUrl || "/starry.png",
-    })
+    }).where(eq(userProgress.userId, userId))  // Update only the current user
 
     revalidatePath("/courses")
     revalidatePath("/learn")
