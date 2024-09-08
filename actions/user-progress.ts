@@ -98,28 +98,20 @@ export const reduceHearts = async (challengeId: number) => {
 
   const isPractice = !!existingChallengeProgress
 
+  // Skip unnecessary calls if it's a practice session
   if (isPractice) {
     console.timeEnd("reduceHearts")
     return { error: "practice" }
   }
 
-  console.time("getUserProgress")
-  const currentUserProgress = await getUserProgress()
-  console.timeEnd("getUserProgress")
-
-  console.time("getUserSubscription")
-  const userSubscription = await getUserSubscription()
-  console.timeEnd("getUserSubscription")
-
-  console.time("getLesson")
-  const currentLesson = await getLesson()
-  console.timeEnd("getLesson")
-
-  console.time("findChallenge")
-  const challenge = await db.query.challenges.findFirst({
-    where: eq(challenges.id, challengeId)
-  })
-  console.timeEnd("findChallenge")
+  // Group related queries together (if possible, refactor to one batched query)
+  console.time("getUserProgressAndLesson")
+  const [currentUserProgress, currentLesson, challenge] = await Promise.all([
+    getUserProgress(),
+    getLesson(),
+    db.query.challenges.findFirst({ where: eq(challenges.id, challengeId) })
+  ])
+  console.timeEnd("getUserProgressAndLesson")
 
   if (!challenge) {
     throw new Error("Challenge not found")
@@ -129,25 +121,19 @@ export const reduceHearts = async (challengeId: number) => {
     throw new Error("Lesson not found")
   }
 
-  const lessonId = challenge.lessonId
-
   if (!currentUserProgress) {
     throw new Error("User progress not found")
-  }
-
-  if (userSubscription?.isActive) {
-    console.timeEnd("reduceHearts")
-    return { error: "subscription" }
-  }
-
-  if (currentLesson.order === 1) {
-    console.timeEnd("reduceHearts")
-    return { error: "first lesson" }
   }
 
   if (currentUserProgress.hearts === 0) {
     console.timeEnd("reduceHearts")
     return { error: "hearts" }
+  }
+
+  // Skip heart reduction for first lesson
+  if (currentLesson.order === 1) {
+    console.timeEnd("reduceHearts")
+    return { error: "first lesson" }
   }
 
   console.time("updateUserProgressHearts")
@@ -156,13 +142,11 @@ export const reduceHearts = async (challengeId: number) => {
   }).where(eq(userProgress.userId, userId))
   console.timeEnd("updateUserProgressHearts")
 
+  // Only revalidate relevant paths
   console.time("revalidatePaths")
   await Promise.all([
     revalidatePath("/shop"),
-    revalidatePath("/learn"),
-    revalidatePath("/quests"),
-    revalidatePath("/leaderboard"),
-    revalidatePath(`/lesson/${lessonId}`),
+    revalidatePath(`/lesson/${challenge.lessonId}`),
   ])
   console.timeEnd("revalidatePaths")
 
