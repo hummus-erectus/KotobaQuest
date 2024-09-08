@@ -79,12 +79,15 @@ export const upsertUserProgress = async (courseId: number) => {
 export const reduceHearts = async (challengeId: number) => {
   console.time("reduceHearts")
 
+  console.time("auth")
   const { userId } = await auth()
+  console.timeEnd("auth")
 
   if (!userId) {
     throw new Error("Unauthorized")
   }
 
+  console.time("initialQueries")
   const [
     existingChallengeProgress,
     currentUserProgress,
@@ -101,6 +104,7 @@ export const reduceHearts = async (challengeId: number) => {
     getLesson(),
     db.query.challenges.findFirst({ where: eq(challenges.id, challengeId) })
   ])
+  console.timeEnd("initialQueries")
 
   if (existingChallengeProgress) {
     console.timeEnd("reduceHearts")
@@ -122,16 +126,20 @@ export const reduceHearts = async (challengeId: number) => {
     return { error: "first lesson" }
   }
 
+  console.time("updateUserProgressHearts")
   await db.update(userProgress)
     .set({
       hearts: Math.max(currentUserProgress.hearts - 1, 0),
     })
     .where(eq(userProgress.userId, userId))
+  console.timeEnd("updateUserProgressHearts")
 
+  console.time("revalidatePaths")
   await Promise.all([
     revalidatePath("/shop"),
     revalidatePath(`/lesson/${challenge.lessonId}`),
   ])
+  console.timeEnd("revalidatePaths")
 
   console.timeEnd("reduceHearts")
 }
