@@ -102,9 +102,12 @@ export const Quiz = ({
   const onContinue = () => {
     if (!selectedOption) return
 
+    console.time("onContinue Execution Time")
+
     if (status === "wrong") {
       setStatus("none")
       setSelectedOption(undefined)
+      console.timeEnd("onContinue Execution Time")
       return
     }
 
@@ -112,21 +115,29 @@ export const Quiz = ({
       onNext()
       setStatus("none")
       setSelectedOption(undefined)
+      console.timeEnd("onContinue Execution Time")
       return
     }
 
     const correctOption = options.find((option) => option.correct)
 
-    if (!correctOption) return
+    if (!correctOption) {
+      console.timeEnd("onContinue Execution Time")
+      return
+    }
 
-    setStatus("loading") // Set status to loading before starting the async operation
+    setStatus("loading")
 
     if (correctOption.id === selectedOption) {
       startTransition(() => {
+        console.time("upsertChallengeProgress Execution Time")
         upsertChallengeProgress(challenge.id)
           .then((response) => {
+            console.timeEnd("upsertChallengeProgress Execution Time")
+
             if (response?.error === "hearts") {
               openHeartsModal()
+              console.timeEnd("onContinue Execution Time")
               return
             }
 
@@ -134,22 +145,28 @@ export const Quiz = ({
             setStatus("correct")
             setPercentage((prev) => prev + 100 / challenges.length)
 
-            // This is a practice
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, MAXIMUM_HEARTS))
             }
+
+            console.timeEnd("onContinue Execution Time")
           })
           .catch(() => {
             setStatus("none")
             toast.error("Something went wrong. Please try again.")
+            console.timeEnd("onContinue Execution Time")
           })
       })
     } else {
       startTransition(() => {
+        console.time("reduceHearts Execution Time")
         reduceHearts(challenge.id)
           .then((response) => {
+            console.timeEnd("reduceHearts Execution Time")
+
             if (response?.error === "hearts") {
               openHeartsModal()
+              console.timeEnd("onContinue Execution Time")
               return
             }
 
@@ -159,10 +176,13 @@ export const Quiz = ({
             if (!response?.error) {
               setHearts((prev) => Math.max(prev - 1, 0))
             }
+
+            console.timeEnd("onContinue Execution Time")
           })
           .catch(() => {
             setStatus("none")
             toast.error("Something went wrong. Please try again.")
+            console.timeEnd("onContinue Execution Time")
           })
       })
     }

@@ -42,7 +42,7 @@ export const upsertUserProgress = async (courseId: number) => {
       activeCourseId: courseId,
       userName: user.firstName || "User",
       userImageSrc: user.imageUrl || "/starry.png",
-    }).where(eq(userProgress.userId, userId))  // Update only the current user
+    }).where(eq(userProgress.userId, userId))
     console.timeEnd("updateUserProgress")
 
     console.time("revalidatePaths")
@@ -79,50 +79,37 @@ export const upsertUserProgress = async (courseId: number) => {
 export const reduceHearts = async (challengeId: number) => {
   console.time("reduceHearts")
 
-  console.time("auth")
   const { userId } = await auth()
-  console.timeEnd("auth")
 
   if (!userId) {
     throw new Error("Unauthorized")
   }
 
-  console.time("findExistingChallengeProgress")
-  const existingChallengeProgress = await db.query.challengeProgress.findFirst({
-    where: and(
-      eq(challengeProgress.userId, userId),
-      eq(challengeProgress.challengeId, challengeId),
-    )
-  })
-  console.timeEnd("findExistingChallengeProgress")
-
-  const isPractice = !!existingChallengeProgress
-
-  // Skip unnecessary calls if it's a practice session
-  if (isPractice) {
-    console.timeEnd("reduceHearts")
-    return { error: "practice" }
-  }
-
-  // Group related queries together (if possible, refactor to one batched query)
-  console.time("getUserProgressAndLesson")
-  const [currentUserProgress, currentLesson, challenge] = await Promise.all([
+  const [
+    existingChallengeProgress,
+    currentUserProgress,
+    currentLesson,
+    challenge
+  ] = await Promise.all([
+    db.query.challengeProgress.findFirst({
+      where: and(
+        eq(challengeProgress.userId, userId),
+        eq(challengeProgress.challengeId, challengeId),
+      )
+    }),
     getUserProgress(),
     getLesson(),
     db.query.challenges.findFirst({ where: eq(challenges.id, challengeId) })
   ])
-  console.timeEnd("getUserProgressAndLesson")
 
-  if (!challenge) {
-    throw new Error("Challenge not found")
+  if (existingChallengeProgress) {
+    console.timeEnd("reduceHearts")
+    return { error: "practice" }
   }
 
-  if (!currentLesson) {
-    throw new Error("Lesson not found")
-  }
-
-  if (!currentUserProgress) {
-    throw new Error("User progress not found")
+  if (!challenge || !currentLesson || !currentUserProgress) {
+    console.timeEnd("reduceHearts")
+    throw new Error("Required data not found")
   }
 
   if (currentUserProgress.hearts === 0) {
@@ -130,25 +117,21 @@ export const reduceHearts = async (challengeId: number) => {
     return { error: "hearts" }
   }
 
-  // Skip heart reduction for first lesson by checking isFirstLesson flag
   if (currentLesson.isFirstLesson) {
     console.timeEnd("reduceHearts")
     return { error: "first lesson" }
   }
 
-  console.time("updateUserProgressHearts")
-  await db.update(userProgress).set({
-    hearts: Math.max(currentUserProgress.hearts - 1, 0),
-  }).where(eq(userProgress.userId, userId))
-  console.timeEnd("updateUserProgressHearts")
+  await db.update(userProgress)
+    .set({
+      hearts: Math.max(currentUserProgress.hearts - 1, 0),
+    })
+    .where(eq(userProgress.userId, userId))
 
-  // Only revalidate relevant paths
-  console.time("revalidatePaths")
   await Promise.all([
     revalidatePath("/shop"),
     revalidatePath(`/lesson/${challenge.lessonId}`),
   ])
-  console.timeEnd("revalidatePaths")
 
   console.timeEnd("reduceHearts")
 }

@@ -5,7 +5,7 @@ import { and, eq } from "drizzle-orm"
 
 import db from "@/db/drizzle"
 import { getUserProgress, getUserSubscription } from "@/db/queries"
-import { challengeProgress, challenges, lessons, userProgress } from "@/db/schema" // Import 'lessons' schema
+import { challengeProgress, challenges, lessons, userProgress } from "@/db/schema"
 import { revalidatePath } from "next/cache"
 import { MAXIMUM_HEARTS } from "@/db/constants"
 
@@ -19,9 +19,13 @@ export const upsertChallengeProgress = async (challengeId: number) => {
   }
 
   console.time("fetchData")
-  const [currentUserProgress, userSubscription] = await Promise.all([
+  const [currentUserProgress, userSubscription, challenge] = await Promise.all([
     getUserProgress(),
     getUserSubscription(),
+
+    db.query.challenges.findFirst({
+      where: eq(challenges.id, challengeId),
+    }),
   ])
   console.timeEnd("fetchData")
 
@@ -29,29 +33,20 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     throw new Error("User progress not found")
   }
 
-  console.time("findChallenge")
-  const challenge = await db.query.challenges.findFirst({
-    where: eq(challenges.id, challengeId),
-  })
-  console.timeEnd("findChallenge")
-
   if (!challenge) {
     throw new Error("Challenge not found")
   }
 
   const lessonId = challenge.lessonId
 
-  // NEW CODE: Check if the lesson is the first lesson using and() and eq()
-  console.time("checkIsFirstLesson")
-  const currentLesson = await db.query.lessons.findFirst({
-    where: and(
-      eq(lessons.id, lessonId),
-      eq(lessons.isFirstLesson, true) // Check if it's the first lesson
-    ),
-  })
-  console.timeEnd("checkIsFirstLesson")
+  let isFirstLesson = false
 
-  const isFirstLesson = !!currentLesson // Will be true if the lesson is found and is the first
+  if (lessonId) {
+    const currentLesson = await db.query.lessons.findFirst({
+      where: and(eq(lessons.id, lessonId), eq(lessons.isFirstLesson, true)),
+    })
+    isFirstLesson = !!currentLesson
+  }
 
   console.time("findExistingChallengeProgress")
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
@@ -64,10 +59,9 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
   const isPractice = !!existingChallengeProgress
 
-  // Use the isFirstLesson flag directly instead of fetching all lessons
   if (
     currentUserProgress.hearts === 0 &&
-    !isFirstLesson && // Check if it's not the first lesson
+    !isFirstLesson &&
     !isPractice &&
     !userSubscription?.isActive
   ) {
