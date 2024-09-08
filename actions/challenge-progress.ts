@@ -4,8 +4,8 @@ import { auth } from "@clerk/nextjs/server"
 import { and, eq } from "drizzle-orm"
 
 import db from "@/db/drizzle"
-import { getUserProgress, getUserSubscription, getLesson } from "@/db/queries"
-import { challengeProgress, challenges, userProgress } from "@/db/schema"
+import { getUserProgress, getUserSubscription } from "@/db/queries"
+import { challengeProgress, challenges, lessons, userProgress } from "@/db/schema" // Import 'lessons' schema
 import { revalidatePath } from "next/cache"
 import { MAXIMUM_HEARTS } from "@/db/constants"
 
@@ -19,19 +19,14 @@ export const upsertChallengeProgress = async (challengeId: number) => {
   }
 
   console.time("fetchData")
-  const [currentUserProgress, currentLesson, userSubscription] = await Promise.all([
+  const [currentUserProgress, userSubscription] = await Promise.all([
     getUserProgress(),
-    getLesson(),
     getUserSubscription(),
   ])
   console.timeEnd("fetchData")
 
   if (!currentUserProgress) {
     throw new Error("User progress not found")
-  }
-
-  if (!currentLesson) {
-    throw new Error("Lesson not found")
   }
 
   console.time("findChallenge")
@@ -46,6 +41,18 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
   const lessonId = challenge.lessonId
 
+  // NEW CODE: Check if the lesson is the first lesson using and() and eq()
+  console.time("checkIsFirstLesson")
+  const currentLesson = await db.query.lessons.findFirst({
+    where: and(
+      eq(lessons.id, lessonId),
+      eq(lessons.isFirstLesson, true) // Check if it's the first lesson
+    ),
+  })
+  console.timeEnd("checkIsFirstLesson")
+
+  const isFirstLesson = !!currentLesson // Will be true if the lesson is found and is the first
+
   console.time("findExistingChallengeProgress")
   const existingChallengeProgress = await db.query.challengeProgress.findFirst({
     where: and(
@@ -57,9 +64,10 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
   const isPractice = !!existingChallengeProgress
 
+  // Use the isFirstLesson flag directly instead of fetching all lessons
   if (
     currentUserProgress.hearts === 0 &&
-    currentLesson.order !== 1 &&
+    !isFirstLesson && // Check if it's not the first lesson
     !isPractice &&
     !userSubscription?.isActive
   ) {
@@ -126,4 +134,3 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
   console.timeEnd("upsertChallengeProgress")
 }
-

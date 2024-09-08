@@ -130,8 +130,8 @@ export const reduceHearts = async (challengeId: number) => {
     return { error: "hearts" }
   }
 
-  // Skip heart reduction for first lesson
-  if (currentLesson.order === 1) {
+  // Skip heart reduction for first lesson by checking isFirstLesson flag
+  if (currentLesson.isFirstLesson) {
     console.timeEnd("reduceHearts")
     return { error: "first lesson" }
   }
