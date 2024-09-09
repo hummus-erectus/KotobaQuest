@@ -7,7 +7,7 @@ import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs"
 
 type Props = {
   className?: string;
-  closeSidebar: () => void;
+  closeSidebar?: () => void;
 }
 
 export const Sidebar = ({ className, closeSidebar }: Props) => {

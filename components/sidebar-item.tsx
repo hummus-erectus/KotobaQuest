@@ -8,7 +8,7 @@ type Props = {
   label: string;
   iconSrc: string;
   href: string;
-  closeSidebar: () => void;
+  closeSidebar?: () => void;
 }
 
 export const SidebarItem = ({
@@ -20,8 +20,14 @@ export const SidebarItem = ({
   const pathname = usePathname()
   const active = pathname === href
 
+  const handleClick = () => {
+    if (closeSidebar) {
+      closeSidebar()
+    }
+  }
+
   return (
-    <Link href={href} onClick={closeSidebar}>
+    <Link href={href} onClick={handleClick}>
       <button type="button" className={`nes-btn w-full h-12 ${active ? "is-primary" : "is-normal"}`}>
         <div className="flex flex-start items-center">
           <Image
