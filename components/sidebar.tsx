@@ -7,12 +7,13 @@ import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs"
 
 type Props = {
   className?: string;
+  closeSidebar: () => void;
 }
 
-export const Sidebar = ({ className }: Props) => {
+export const Sidebar = ({ className, closeSidebar }: Props) => {
   return (
-    <div className={cn("h-full lg:w-[290px] lg:fixed left-0 top-0 px-4 border-r-4 border-black flex-col font-pressStart2P", className,)}>
-      <Link href="/learn" className="hover:no-underline">
+    <div className={cn("h-full lg:w-[290px] lg:fixed left-0 top-0 px-4 border-r-4 border-black flex-col font-pressStart2P", className)}>
+      <Link href="/learn" className="hover:no-underline" onClick={closeSidebar}>
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/starry.png" height={40} width={40} alt="Mascot"/>
           <h1 className="text-xl font-extrabold text-nesBlue tracking-wide font-dotgothic16">ことばクエスト</h1>
@@ -23,21 +24,25 @@ export const Sidebar = ({ className }: Props) => {
           label="learn"
           href="/learn"
           iconSrc="/learn.svg"
+          closeSidebar={closeSidebar}
         />
         <SidebarItem
           label="leaderboard"
           href="/leaderboard"
           iconSrc="/leaderboard.svg"
+          closeSidebar={closeSidebar}
         />
         <SidebarItem
           label="quests"
           href="/quests"
           iconSrc="/quests.svg"
+          closeSidebar={closeSidebar}
         />
         <SidebarItem
           label="shop"
           href="/shop"
           iconSrc="/shop.svg"
+          closeSidebar={closeSidebar}
         />
       </div>
       <div className="p-4">
