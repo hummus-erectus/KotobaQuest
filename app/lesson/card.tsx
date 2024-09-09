@@ -46,7 +46,7 @@ export const Card = ({
     <div
       onClick={handleClick}
       className={cn(
-        "nes-container h-full p-4 lg:p-6 cursor-pointer active:border-b-2 active:border-t-[6px]",
+        "nes-container h-full !p-2 sm:!p-4 lg:!p-6 cursor-pointer active:border-b-2 active:border-t-[6px]",
         selected && "bg-sky-100 hover:bg-sky-100",
         selected && status === "correct" && "bg-green-100 hover:bg-green-100",
         selected && status === "wrong" && "bg-rose-100 hover:bg-rose-100",
@@ -57,7 +57,7 @@ export const Card = ({
       {audio}
       {imageSrc && (
         <div
-          className="relative aspect-square mb-4 max-h-[80px] lg:max-h-[150px] w-full"
+          className="relative aspect-square mb:1 sm:mb-4 max-h-[80px] lg:max-h-[150px] w-full"
         >
           <Image
             src={imageSrc}
