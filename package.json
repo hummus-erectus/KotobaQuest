@@ -7,10 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+
+
     "db:studio": "npx drizzle-kit studio",
+
     "db:push": "npx drizzle-kit push",
     "db:seed": "tsx ./scripts/seed.ts",
-    "db:seedReset": "tsx ./scripts/seedReset.ts",
+
+    "db:prod": "tsx ./scripts/seedProd.ts",
 
     "db:seedENUnits": "tsx ./scripts/EN/seedENUnits.ts",
     "db:seedENOptions": "tsx ./scripts/EN/seedENOptions.ts",

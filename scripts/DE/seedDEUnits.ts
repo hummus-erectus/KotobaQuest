@@ -14,12 +14,6 @@ const main = async () => {
     console.log("Seeding database with German course units and lessons")
 
     await db.delete(schema.courses).where(eq(schema.courses.id, 2))
-    // await db.delete(schema.userProgress)
-    // await db.delete(schema.units)
-    // await db.delete(schema.lessons)
-    // await db.delete(schema.challenges)
-    // await db.delete(schema.challengeOptions)
-    // await db.delete(schema.challengeProgress)
 
     await db.insert(schema.courses).values([
       {
